@@ -1,308 +1,293 @@
-# 🥈 TRACK 2 — STEP-BY-STEP WINNING PLAN (Poora Detail)
-## "Creating the Future of AI" · Ideathon · ₹30 Lakh (sabse bada pool)
+# 🥈 TRACK 2 — STEP-BY-STEP WINNING PLAN (Full Detail)
+## "Creating the Future of AI" · Ideathon · ₹30 Lakh (biggest pool)
 
-> **Yeh document kya hai?** Track 2 jeetne ka pura raasta. Yahan **coding nahi** — ek **PDF presentation (deck)** banana hai, 10 slide tak. Yeh document tumhe slide-by-slide content deta hai jo tum seedha copy kar sako.
+> **What is this document?** The full path to winning Track 2. There's **no coding** — you make a **PDF presentation (deck)**, up to 10 slides. This gives you slide-by-slide content you can copy directly.
 
 ---
 
-## 📖 PEHLE — Basic samajh lo
+## 📖 FIRST — Understand the basics
 
-**Deck kya hai?** Ek PDF presentation (jaise PowerPoint/Google Slides). Har page ko "slide" kehte hain.
+**What is a deck?** A PDF presentation (like PowerPoint/Google Slides). Each page is a "slide."
 
-**Kitne slides?** Maximum 10. Felix ne bola — *"kam slides, zyada clarity. Quantity se quality jeetti hai."*
+**How many slides?** Maximum 10. Felix said — *"Fewer slides, more clarity. Quality beats quantity."*
 
-**Konse tools se banaoge?** (Sab AI allowed hai)
-- **Gamma** (gamma.app) — AI se deck banata hai, sabse easy
-- **Canva** — sundar templates
+**Which tools to build it?** (All AI is allowed)
+- **Gamma** (gamma.app) — builds a deck with AI, the easiest
+- **Canva** — beautiful templates
 - **Pitch / Beautiful.ai** — professional
 
-**3 topics hain (PS1, PS2, PS3) — sirf EK choose karna hai.**
+**There are 3 topics (PS1, PS2, PS3) — pick just ONE.**
 
 ---
 
-## 🧭 KAUNSA PS CHOOSE KARUN? (Decision table)
+## 🧭 WHICH PS SHOULD I PICK? (Decision table)
 
-| PS | Kiske liye best | Coding? | Win potential |
+| PS | Best for | Coding? | Win potential |
 |---|---|---|---|
-| **PS1** AI Systems Architect | Technical/coding wale log | Nahi | ⭐⭐⭐⭐ |
-| **PS2** AI Growth Strategist | MBA/business/marketing wale | Nahi | ⭐⭐⭐⭐⭐ (Redrob ka real goal) |
-| **PS3** Everyday AI Innovator | Students/designers/beginners | Nahi | ⭐⭐⭐ (easiest) |
+| **PS1** AI Systems Architect | Technical/coding people | No | ⭐⭐⭐⭐ |
+| **PS2** AI Growth Strategist | MBA/business/marketing people | No | ⭐⭐⭐⭐⭐ (Redrob's real goal) |
+| **PS3** Everyday AI Innovator | Students/designers/beginners | No | ⭐⭐⭐ (easiest) |
 
-> **Sujhaav:** Agar Track 1 bhi kar rahe ho → **PS1** (wahi idea reuse). Agar business mind ho → **PS2** (sabse powerful). Agar pehli baar → **PS3** (easiest).
+> **Suggestion:** If you're also doing Track 1 → **PS1** (reuse that idea). If you have a business mind → **PS2** (most powerful). If it's your first time → **PS3** (easiest).
 
 ---
 ---
 
-## 📑 UNIVERSAL DECK STRUCTURE (Har PS ke liye — 10 slides)
+## 📑 UNIVERSAL DECK STRUCTURE (for every PS — 10 slides)
 
-> Yeh 10-slide ka skeleton hai. Har PS ke liye thoda adjust hota hai (neeche bataya).
+> This is a 10-slide skeleton. Adjust slightly per PS (explained below).
 
-| Slide | Kya rakho | Tip |
+| Slide | What to put | Tip |
 |---|---|---|
-| **1. Title** | Product ka naam + ek line tagline + team ka naam | Naam catchy + clean ho (jaise "SkillProof", "OutreachIQ") |
-| **2. Problem** | Ek **specific insaan** ki kahani | "Ek small-business owner ko..." se shuru |
-| **3. Kitna bada** | Kitne log affected (1-2 strong numbers) | Jaise "6 crore chhote business" |
-| **4. Solution** | Tumhara idea — ek clear line + AI kaise | Ek hi sentence mein samajh aaye |
-| **5. Kaise kaam karta** | Diagram/flow | Tech ho toh yahan |
-| **6. User journey** | Ek insaan ka step-by-step experience | Screens/mockup dikhao |
-| **7. India-first kyun** | Hindi/chhote sheher/bharosa | Redrob ki soch se connect |
-| **8. Business** | Paisa kaise (PS2 ka core; PS1/PS3 halka) | Realistic rakho |
-| **9. Impact + abhi kyun** | India mein fayda + "India ka time" | Emotional touch |
-| **10. Closing/Vision** | Ek bada sapna, ek line | Yaadgaar end |
+| **1. Title** | Product name + one-line tagline + team name | Name should be catchy + clean (like "SkillProof", "OutreachIQ") |
+| **2. Problem** | The story of one **specific person** | Start with "A small-business owner..." |
+| **3. How big** | How many people affected (1-2 strong numbers) | Like "6.3 crore small businesses" |
+| **4. Solution** | Your idea — one clear line + how the AI does it | Understandable in one sentence |
+| **5. How it works** | Diagram/flow | Tech goes here |
+| **6. User journey** | One person's step-by-step experience | Show screens/mockups |
+| **7. Why India-first** | Local language/small towns/trust | Connect to Redrob's thinking |
+| **8. Business** | How money is made (core for PS2; light for PS1/PS3) | Keep it realistic |
+| **9. Impact + why now** | The benefit in India + "India's time" | An emotional touch |
+| **10. Closing/Vision** | One big dream, one line | A memorable ending |
 
 **Design rules:**
-- **Ek slide = ek baat.** Zyada text mat bharo.
-- Photo/diagram/icon use karo (India visual country hai)
-- Ek hi color theme + font pure deck mein
-- Mockups (app ke nakli screens) bahut help karte hain
+- **One slide = one point.** Don't cram in two things.
+- Use a photo/diagram/icon (India is a visual country)
+- One color theme + font across the whole deck
+- Mockups (fake app screens) help a lot
 
 ---
 ---
 
-# 📌 PS1 — AI SYSTEMS ARCHITECT (Technical idea design)
+# 📌 PS1 — AI SYSTEMS ARCHITECT (design a technical idea)
 
-**Topic:** Ek groundbreaking AI system **design** karo (banana nahi) — jaise autonomous agents, smart search, AI co-pilots.
+**Topic:** **Design** a groundbreaking AI system (don't build it) — like autonomous agents, smart search, AI co-pilots.
 
 ## Step-by-step:
 
-### Step 1 — Idea final karo
-**⭐ Best (deep-dive se): "SkillProof — AI Skill-Verification Engine"** — Redrob ke "Skill Tests" coming-soon feature pe based, Felix ki visibility-philosophy hit karta hai. Poora detail `REDROB_DEEP_DIVE_AND_IDEAS.md` mein.
+### Step 1 — Finalize the idea
+**⭐ Best (from the deep-dive): "SkillProof — AI Skill-Verification Engine"** — based on Redrob's "Skill Tests" Coming-Soon feature, it hits Felix's visibility-philosophy. Full detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
-Doosre strong options (deep-dive):
-- **OutreachIQ** 🆕 — autonomous sales/GTM agent (Redrob ka aadha business = sales; kam log yeh sochenge = tum alag chamko ge)
-- **PrepPilot** — multilingual AI Interview Coach (Redrob ka "Interview Coach" feature)
-- **CareerPulse** — AI Market Pulse for job seekers (Redrob ka "Market Pulse" feature)
-- **HireFlow** — chhote business ka WhatsApp hiring copilot
+Other strong options (deep-dive):
+- **OutreachIQ** 🆕 — an autonomous sales/GTM agent (half of Redrob's business is sales; few people will think of this = you stand out)
+- **PrepPilot** — a multilingual AI Interview Coach (Redrob's "Interview Coach" feature)
+- **CareerPulse** — an AI Market Pulse for job seekers (Redrob's "Market Pulse" feature)
+- **HireFlow** — a WhatsApp hiring copilot for small businesses
 
-> 💡 **Winning rule:** Redrob ke **"Coming Soon"** feature ya **sales/GTM** ko pakdo + **multilingual** banao. Aisa idea mat banao jo unke paas already hai.
+> 💡 **Winning rule:** Pick a Redrob **"Coming Soon"** feature or **sales/GTM** + make it **multilingual**. Don't build something they already have.
 
-### Step 2 — System ka design banao
-Yeh decide karo:
-- **Kaunse AI agents/parts** honge aur har ek ka kaam kya
-- **Data flow:** input kya → process kya → output kya
-- **Kaunsa AI** use hoga (LLM sochne ke liye, embeddings search ke liye)
-- **Insaan ka control kahan** (trust ke liye — har faisle pe human approval)
+### Step 2 — Design the system
+Decide:
+- **Which AI agents/parts** there are and what each one does
+- **Data flow:** what's the input → what's processed → what's the output
+- **Which AI** is used (an LLM for reasoning, embeddings for search)
+- **Where the human is in control** (for trust — human approval at each decision)
 
-### Step 3 — DIAGRAM banao (PS1 ka dil)
-Ek saaf architecture diagram — yeh PS1 mein sabse zaroori hai. Dikhao:
+### Step 3 — Make a DIAGRAM (the heart of PS1)
+A clean architecture diagram — this is the most important thing in PS1. Show:
 ```
-Business owner (apni bhasha mein bole)
+Business owner (speaks in their language)
        ↓
-[ Samajhne wala AI ]
+[ Understanding AI ]
        ↓
-[ JD-banane wala ] → [ Candidate-dhoondhne wala ] → [ Screening wala ] → [ Scheduling wala ]
+[ JD-writer ] → [ Candidate-finder ] → [ Screener ] → [ Scheduler ]
        ↓
-Owner ko shortlist + interview time (WhatsApp pe)
+Owner gets a shortlist + interview time (on WhatsApp)
 ```
 
-### Step 4 — Technical depth dikhao
-- Kaunsa AI model kyun choose kiya
-- Speed/cost/scale ka socha (India mein crore log use karenge)
-- Galti hone pe kya hoga (safety)
+### Step 4 — Show technical depth
+- Which AI model you chose and why
+- Thinking about speed/cost/scale (crores of people will use it in India)
+- What happens on failure (safety)
 
 ### Step 5 — Differentiation
-- LinkedIn/Naukri se kaise alag/behtar
-- "Agentic + Hindi + India-context" = jeetne wala combo
+- How it's different/better than LinkedIn/Naukri
+- "Agentic + local language + India-context" = a winning combo
 
-### PS1 ka deck (special slides):
-- Slide 5: **bada architecture diagram**
-- Slide 6: **agents ka flow** (kaun kab kaam karta hai)
-- Slide 7: **India scale pe kaise** (cost, Hindi, WhatsApp)
+### PS1's deck (special slides):
+- Slide 5: **a big architecture diagram**
+- Slide 6: **the agent flow** (who works when)
+- Slide 7: **how it works at India scale** (cost, local language, WhatsApp)
 
 ---
 ---
 
-# 📌 PS2 — AI GROWTH STRATEGIST (Business plan) ⭐ SABSE POWERFUL
+# 📌 PS2 — AI GROWTH STRATEGIST (business plan) ⭐ MOST POWERFUL
 
-**Topic:** Ek AI product ko India mein famous (viral) + profitable kaise banaoge.
+**Topic:** How would you make an AI product famous (viral) + profitable in India?
 
 ## Step-by-step:
 
-### Step 1 — Idea: "Redrob ko 1 crore users tak le jaao"
-> Redrob ka **apna target** hai: December 2026 tak 1 crore (10 million) monthly users. Tum unka exact plan bana ke do — judges (Redrob founders) ka apna problem solve karoge!
+### Step 1 — The idea: "Take Redrob to 1 crore users"
+> Redrob's **own target** is: 1 crore (10 million) monthly users by December 2026. You hand them the exact plan — you're solving the judges' (Redrob founders') own problem!
 
-### Step 2 — Growth plan ke 5 pillars (5 slides):
+### Step 2 — The 5 pillars of the growth plan (5 slides):
 
-**Pillar 1 — Naye log laana (Acquisition):**
-- Chhote sheher ke colleges (Indore, Jaipur, Surat)
-- Hindi + regional app
-- College placement teams se tie-up
+**Pillar 1 — Bring in new users (Acquisition):**
+- Colleges in small cities (Indore, Jaipur, Surat)
+- A Hindi + regional-language app
+- Tie-ups with college placement teams
 
-**Pillar 2 — Pehli baar khush karna (Activation):**
-- 2 minute mein pehla job-match/resume = "wow moment"
-- Easy signup (phone/UPI, lambe form nahi)
+**Pillar 2 — Delight on first use (Activation):**
+- A "wow moment" — first job-match/resume in 2 minutes
+- Easy signup (phone/UPI, no long forms)
 
-**Pillar 3 — Wapas laana (Retention):**
-- Roz WhatsApp value: jobs, tips, interview prep
-- Habit banao (daily streak, notifications)
+**Pillar 3 — Bring them back (Retention):**
+- Daily WhatsApp value: jobs, tips, interview prep
+- Build a habit (daily streaks, notifications)
 
-**Pillar 4 — Dost ko bulana (Referral = viral engine):**
-- "Dost ko job dilao" referral
+**Pillar 4 — Get friends to join (Referral = the viral engine):**
+- A "get your friend a job" referral
 - Shareable resume cards
 
-**Pillar 5 — Paisa (Revenue):**
+**Pillar 5 — Money (Revenue):**
 - Candidates: FREE (mass adoption)
 - Companies/recruiters: PAID (B2B)
 - Premium features
 
-### Step 3 — Numbers slide (MBA judges YEH maangenge)
-- **CAC vs LTV:** ek user laane ka kharcha vs us se kamai
-- **Funnel:** 100 aaye → kitne ruke → kitne paid
-- **MAU ladder:** mahina-dar-mahina 1 crore tak ka plan
-- **Competition:** Naukri, LinkedIn, Apna, Foundit se Redrob kaise alag
+### Step 3 — The numbers slide (MBA judges WILL want this)
+- **CAC vs LTV:** cost to acquire a user vs revenue from them
+- **Funnel:** 100 sign-ups → how many stay → how many pay
+- **MAU ladder:** a month-by-month plan to 1 crore
+- **Competition:** how Redrob differs from Naukri, LinkedIn, Apna, Foundit
 
-### Step 4 — Trust angle (hiring = high trust)
+### Step 4 — The trust angle (hiring = high trust)
 - Data privacy, verified profiles, no fake jobs
-- Indians AI hiring platform pe **bharosa** kyun karenge
+- Why Indians will **trust** an AI hiring platform
 
 ### Step 5 — Viral mechanics
-- Ek concrete viral loop ka diagram
-- India mein kyun phailega (mobile-first, Hindi, network effect)
+- A concrete viral-loop diagram
+- Why it spreads in India (mobile-first, local language, network effects)
 
 ### Step 6 — Deck polish
 - Charts (funnel, growth curve, unit economics)
-- Competitor comparison table
-- Investor-grade clean storytelling
+- A competitor comparison table
+- Clean, investor-grade storytelling
 
-> **Kyun jeetega:** Tum judges ka apna business problem unke apne numbers se solve kar rahe ho. Sabse strong "hire/collaborate with us" signal.
+> **Why it wins:** You're solving the judges' own business problem with their own numbers. The strongest possible "hire/collaborate with us" signal.
 
 ---
 ---
 
-# 📌 PS3 — EVERYDAY AI INNOVATOR (Simple feature) — Beginners ke liye
+# 📌 PS3 — EVERYDAY AI INNOVATOR (a simple feature) — for beginners
 
-**Topic:** Ek SIMPLE AI feature jo aam Indian ki rozmarra zindagi behtar kare.
+**Topic:** A SIMPLE AI feature that improves an ordinary Indian's everyday life.
 
 ## Step-by-step:
 
-### Step 1 — Ek specific insaan + pal choose karo
-Felix: broad mat socho. Example:
-> "Ek Tier-3 town ki student. English mein resume likhna mushkil. Achhi jobs miss kar deti hai."
+### Step 1 — Pick a specific person + moment
+Felix: don't think broad. Example:
+> "A Tier-3 town student. Finds writing an English resume hard. Misses good jobs."
 
-### Step 2 — Ek feature final karo (sirf ek!)
-**⭐ Best: "VoiceResume"** (apni bhasha mein bolo → AI English resume banaye + matching jobs pe auto-apply). Redrob ka "Resume Builder" coming-soon feature. Detail `REDROB_DEEP_DIVE_AND_IDEAS.md` mein.
+### Step 2 — Finalize one feature (just one!)
+**⭐ Best: "VoiceResume"** (speak in your language → AI makes an English resume + auto-applies to matching jobs). Redrob's "Resume Builder" Coming-Soon feature. Detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
-Doosre options: PrepPilot (multilingual interview coach), CareerPulse (career insights). (Career/hiring se juda idea hi rakhna — Redrob ke core se door wala avoid karo.)
+Other options: PrepPilot (multilingual interview coach), CareerPulse (career insights). (Keep it career/hiring-related — avoid ideas far from Redrob's core.)
 
-### Step 3 — Solution clear karo
-- Ek feature, ek kaam
-- AI ka role exactly kya (bol→text, translate, banana)
-- Simple rakho (jargon nahi)
+### Step 3 — Define the solution clearly
+- One feature, one job
+- Exactly what the AI does (speech→text, translate, generate)
+- Keep it simple (no jargon)
 
-### Step 4 — User journey (PS3 ka dil)
-Step-by-step screens dikhao:
+### Step 4 — User journey (the heart of PS3)
+Show step-by-step screens:
 ```
-1. User app khole (apni bhasha ka UI)
-2. Bole: "Resume banao"
-3. AI 5 simple sawaal pooche (bol ke jawab)
-4. AI resume banaye
-5. User ek tap mein download/share kare
+1. User opens the app (UI in their language)
+2. Says: "Make a resume"
+3. AI asks 5 simple questions (answer by voice)
+4. AI makes the resume
+5. User downloads/shares it in one tap
 ```
-- **Mockups (nakli app screens) banao** Figma/Canva se — yeh PS3 mein bahut weight rakhte hain
+- **Make mockups (fake app screens)** in Figma/Canva — these carry a lot of weight in PS3
 
 ### Step 5 — India + impact
-- Kitne log (crore-on vernacular users)
-- Real fayda (access, izzat, mauka)
+- How many people (crores of vernacular users)
+- The real benefit (access, dignity, opportunity)
 
-### Step 6 — Simple + clear rakho
-- Beginners clarity + realness pe judge hote hain, complexity pe nahi
-- Ek polished simple idea > ek confusing complex idea
+### Step 6 — Keep it simple + clear
+- Beginners are judged on clarity + realness, not complexity
+- One polished simple idea > one confusing complex idea
 
 ---
 ---
 
-## ✅ TRACK 2 FINAL CHECKLIST
-- [ ] PS clearly likha (slide 1/2)
-- [ ] EK specific insaan/problem (broad nahi)
-- [ ] Solution clear + AI-native
-- [ ] User journey step-by-step
-- [ ] Visuals/mockups daale
-- [ ] India-first angle (Hindi/chhote sheher/bharosa)
-- [ ] (PS2) growth + paisa ke numbers
-- [ ] (PS1) saaf architecture diagram
-- [ ] 10 slide se kam, ek consistent design
-- [ ] Redrob ke mission se connect
-- [ ] PDF export kiya, 28 June se pehle submit
+## 🎨 ADVANCED SECTION — Deck Craft (a good deck → a winning deck)
 
-## ⚠️ YEH GALTIYAN MAT KARNA
-1. **Broad problem** ("India ko AI chahiye") — specific bano
+## A. Slide-writing rules (on every slide)
+- **The 6-word rule:** the main line of each slide is no more than 6-8 words. Explain detail out loud, not on the slide.
+- **1 idea = 1 slide.** Two points on one slide = confusion.
+- **Use numbers, not adjectives.** Not "a very big market" — "6.3 crore MSMEs."
+- **Visual > text.** Every slide should have an image/diagram/chart.
+- **Consistent design:** one color theme, one font, same margins. Inconsistency = amateur.
+
+## B. The storytelling arc (make the deck a story)
+```
+Slides 1-3: TENSION (one person's problem — the judge should feel it)
+Slides 4-6: RELIEF (your solution — the "aha!")
+Slides 7-8: WHY YOU/WHY REDROB (why you, the India/Redrob fit)
+Slides 9-10: VISION (the big dream — inspire the judge)
+```
+> The best decks feel like an investor pitch — an emotional hook from the problem, then a clean solution, then a big vision.
+
+## C. How to make mockups/visuals (free tools)
+- **App screens:** Figma (free) or Canva templates → "app mockup"
+- **Architecture diagram:** Excalidraw (hand-drawn feel) or draw.io
+- **Charts:** Canva / Google Sheets → export as image
+- **Hero images:** Midjourney/DALL-E or Unsplash (free stock)
+- **AI deck (fastest):** Gamma.app — input your idea, it auto-builds, then polish
+
+## D. The "tech awareness" slide (a must for PS1, since judges are engineers)
+Show your stack on one slide (detail in `IDEAS_DEEP_PLUS_TECH_STACK.md`):
+> "GPT-4o reasoning · bge-m3 multilingual embeddings · Judge0 verification · served cost-efficiently on open models for India scale."
+This shows you're not only a thinker — you can build too.
+
+## E. Pitch delivery (if you have to present live — Grand Finale)
+- A hook in the first 15 seconds (one person's problem)
+- Speak slowly + clearly, each slide 30-45 sec
+- "So what?" after each point — state the impact
+- Confidence > perfection. Practice 3 times.
+- Be ready for Q&A: "How does this scale?", "How do you make money?", "What's in it for Redrob?"
+
+## F. Deck submission checklist
+- [ ] ≤10 slides
+- [ ] PDF format (not PPT)
+- [ ] A visual on every slide
+- [ ] One specific person/problem (slide 2)
+- [ ] A numbers slide (market/impact)
+- [ ] A Redrob-fit slide (slide 8)
+- [ ] A tech-awareness slide (PS1)
+- [ ] A user journey (mockups)
+- [ ] A strong closing line
+- [ ] File name: `[IdeaName]_IndiaRuns_[Team].pdf`
+- [ ] Spelling/grammar check (English judges)
+
+## G. 2 ready decks already exist
+- **`DECK_SkillProof_Track2_PS1.md`** — slide-by-slide content ready
+- **`DECK_OutreachIQ_Track2_PS1.md`** — slide-by-slide content ready
+> Put these straight into Gamma/Canva → PDF ready.
+
+## H. Common deck mistakes (that make a losing deck)
+1. An "Introduction"/"Agenda" on slide 1 — wasteful, start with the hook
+2. A wall of text — the judge won't read it
+3. Generic stock photos that say nothing
+4. Solution first, problem later — backwards. Problem first.
+5. No "ask"/vision — a flat ending
+6. Never even mentioning Redrob — connection missed
+
+---
+
+## ⚠️ AVOID THESE MISTAKES
+1. **A broad problem** ("India needs AI") — be specific
 2. **20+ slides** — clarity > quantity
-3. **Koi visual nahi** — India visual hai
-4. **Generic idea** jo India/Redrob se na jude
-5. **PS2 mein numbers nahi** — MBA judges numbers maangenge
-6. **Last minute** — Track 2 submission 3 June shuru, 28 June band
+3. **No visuals** — India is visual
+4. **A generic idea** unconnected to India/Redrob
+5. **No numbers in PS2** — MBA judges want unit economics
+6. **Last minute** — Track 2 submission opens 3 June, closes 28 June
 
 ## 🛠️ AI TOOLS (allowed + encouraged)
-- **Deck banane:** Gamma, Canva, Pitch, Beautiful.ai
+- **Building decks:** Gamma, Canva, Pitch, Beautiful.ai
 - **Content/research:** ChatGPT, Gemini, Claude, Redrob
 - **Mockups:** Figma, Uizard, Galileo AI
 - **Photos/visuals:** Midjourney, DALL-E
 
-> **Pro tip:** Gamma.app pe apna idea daalo, woh 2 minute mein pura deck bana dega. Phir tum usme apni kahani + numbers + mockups add karo. Time bachega.
-
-
----
----
-
-# 🎨 ADVANCED SECTION — Deck Craft (achha deck → jeetne wala deck)
-
-## A. Slide-writing ke rules (har slide pe)
-- **6-word rule:** har slide ki main line 6-8 shabd se zyada nahi. Detail bol ke samjhao, slide pe nahi.
-- **1 idea = 1 slide.** Do baatein ek slide pe = confusion.
-- **Number bolo, adjective nahi.** "Bahut bade market" nahi — "6.3 crore MSMEs".
-- **Visual > text.** Har slide pe ek image/diagram/chart ho.
-- **Consistent design:** ek color theme, ek font, same margins. Inconsistency = amateur.
-
-## B. Storytelling arc (deck ko ek kahani banao)
-```
-Slide 1-3: TENSION (ek insaan ka problem — judge ko feel ho)
-Slide 4-6: RELIEF (tumhara solution — "aha!")
-Slide 7-8: WHY YOU/WHY REDROB (yeh tum hi kyun, India/Redrob fit)
-Slide 9-10: VISION (bada sapna — judge ko inspire karo)
-```
-> Best decks investor pitch jaisi feel deti hain — problem se emotional hook, phir clean solution, phir bada vision.
-
-## C. Mockup/visual kaise banao (free tools)
-- **App screens:** Figma (free) ya Canva templates → "app mockup"
-- **Architecture diagram:** Excalidraw (hand-drawn feel) ya draw.io
-- **Charts:** Canva / Google Sheets → export image
-- **Hero images:** Midjourney/DALL-E ya Unsplash (free stock)
-- **AI deck (fastest):** Gamma.app — idea daalo, deck auto-bane, phir polish
-
-## D. "Tech awareness" slide (PS1 ke liye must, judge engineers hain)
-Ek slide mein apna stack dikhao (detail `IDEAS_DEEP_PLUS_TECH_STACK.md` mein):
-> "GPT-4o reasoning · bge-m3 multilingual embeddings · Judge0 verification · served cost-efficiently on open models for India scale."
-Yeh dikhata hai tum sirf sochne wale nahi, bana bhi sakte ho.
-
-## E. Pitch delivery (agar live present karna pade — Grand Finale)
-- Pehle 15 second mein hook (problem ka ek insaan)
-- Slow + clear bolo, har slide 30-45 sec
-- "So what?" har point ke baad — impact bolo
-- Confidence > perfection. Practice 3 baar.
-- Q&A ke liye taiyaar: "Yeh scale kaise hoga?", "Paisa kaise?", "Redrob ko kya fayda?"
-
-## F. Deck submission checklist
-- [ ] ≤10 slides
-- [ ] PDF format (PPT nahi)
-- [ ] Har slide pe visual
-- [ ] Ek specific person/problem (slide 2)
-- [ ] Numbers slide (market/impact)
-- [ ] Redrob-fit slide (slide 8)
-- [ ] Tech-awareness slide (PS1)
-- [ ] User journey (mockups)
-- [ ] Strong closing line
-- [ ] File naam: `[IdeaName]_IndiaRuns_[Team].pdf`
-- [ ] Spelling/grammar check (English judges)
-
-## G. 2 ready decks already bani hain
-- **`DECK_SkillProof_Track2_PS1.md`** — slide-by-slide content ready
-- **`DECK_OutreachIQ_Track2_PS1.md`** — slide-by-slide content ready
-> Inko seedha Gamma/Canva mein daalo → PDF taiyaar.
-
-## H. Common deck mistakes (jo loser deck banati hain)
-1. Slide 1 pe "Introduction" / "Agenda" — waste, seedha hook se shuru
-2. Wall of text — judge padhega nahi
-3. Generic stock photos jo kuch na bolein
-4. Solution pehle, problem baad mein — ulta. Problem pehle.
-5. Koi "ask"/vision nahi — flat end
-6. Redrob ka naam tak nahi liya — connection miss
+> **Pro tip:** Put your idea into Gamma.app and it builds a full deck in 2 minutes. Then add your story + numbers + mockups. Saves time.

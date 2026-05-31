@@ -1,367 +1,330 @@
-# 🥇 TRACK 1 — STEP-BY-STEP WINNING PLAN (Poora Detail)
+# 🥇 TRACK 1 — STEP-BY-STEP WINNING PLAN (Full Detail)
 ## "Intelligent Candidate Discovery" · Coding Track · ₹10 Lakh
 
-> **Yeh document kya hai?** Track 1 jeetne ka pura raasta — aaj se le ke final submission (28 June) tak. Har step simple bhasha mein, har technical shabd samjhaya hua.
+> **What is this document?** The full path to winning Track 1 — from today to the final submission (28 June). Every step in plain English, every technical term explained.
 >
-> **Goal:** Grand Champion (₹2L) ya Elite Builder (₹5L) banna. Yeh track **skill se jeetta hai** — judge ki marzi se nahi.
+> **Goal:** To become Grand Champion (₹2L) or an Elite Builder (₹5L). This track is **won on skill** — not on a judge's mood.
 
 ---
 
-## 📖 PEHLE — Zaroori shabd samajh lo (Glossary)
+## 📖 FIRST — Learn the key terms (Glossary)
 
-Yeh shabd baar-baar aayenge. Ek baar samajh lo, phir sab aasaan:
+These words appear often. Learn them once, then everything is easy:
 
-| Shabd | Simple matlab |
+| Term | Simple meaning |
 |---|---|
-| **Candidate** | Naukri dhoondhne wala insaan (jiska resume hai) |
-| **JD (Job Description)** | Naukri ka detail — kya skills/experience chahiye |
-| **Ranking** | Candidates ko order mein lagana — best (#1) se kam-fit tak |
-| **Keyword filter** | Sirf shabd match karna (purana, bewakoof tareeka) |
-| **Semantic** | Shabd ka **matlab** samajhna (smart tareeka) |
-| **Embedding** | Text ko numbers mein badalna taaki computer "matlab" compare kar sake |
-| **Bi-encoder** | Tezi se mota-moti matching (pehla filter) |
-| **Cross-encoder** | Dheere par gehra matching (final check) |
-| **Learning-to-Rank** | AI ko sikhana ki accha ranking kaise banaye |
-| **LambdaMART / LightGBM** | Ek popular tool jo ranking seekhta hai |
-| **NDCG / MAP / MRR** | Numbers jo batate hain tumhari ranking kitni achhi hai |
-| **Explainability** | Yeh batana ki system ne yeh decision **kyun** liya |
-| **EDA** | Data ko ghoor ke samajhna (banane se pehle) |
+| **Candidate** | A job seeker (the one with the resume) |
+| **JD (Job Description)** | The job's details — what skills/experience are needed |
+| **Ranking** | Putting candidates in order — best (#1) to less-fit |
+| **Keyword filter** | Just matching words (the old, dumb way) |
+| **Semantic** | Understanding the **meaning** of words (the smart way) |
+| **Embedding** | Turning text into numbers so a computer can compare "meaning" |
+| **Bi-encoder** | Fast, rough matching (the first filter) |
+| **Cross-encoder** | Slow but deep matching (the final check) |
+| **Learning-to-Rank** | Teaching the AI how to produce a good ranking |
+| **LambdaMART / LightGBM** | A popular tool that learns ranking |
+| **NDCG / MAP / MRR** | Numbers that tell you how good your ranking is |
+| **Explainability** | Saying **why** the system made a decision |
+| **EDA** | Studying the data closely (before building) |
 
 ---
 
-## 🎯 JEETNE KA MANTRA (yeh dil se yaad rakho)
+## 🎯 THE WINNING MANTRA (memorize this)
 
-> 90% teams sirf ek simple cheez banayengi: "text match karo, similarity nikalo, rank kar do." Bas.
+> 90% of teams will build one simple thing: "match the text, compute similarity, rank." That's it.
 >
-> **Tum 3 cheezein EXTRA karoge** jo tumhe winner banayegi:
-> 1. **Do-step system** (pehle tez filter, phir gehra check)
-> 2. **AI ko ranking sikhana** (Learning-to-Rank)
-> 3. **Har rank ke saath WAJAH dena** (explainability)
+> **You'll do 3 EXTRA things** that make you a winner:
+> 1. **A two-stage system** (first a fast filter, then a deep check)
+> 2. **Teach the AI to rank** (Learning-to-Rank)
+> 3. **Give a REASON with each rank** (explainability)
 >
-> Yahi 3 cheezein medal dilayengi.
+> These 3 things win the medal.
 
 ---
 
-## 📅 POORA TIMELINE (aaj → 28 June)
+## 📅 FULL TIMELINE (today → 28 June)
 
-| Phase | Kitne din | Kya karna |
+| Phase | Days | What to do |
 |---|---|---|
-| **Phase 0** | Abhi (dataset se pehle) | Setup + seekhna + practice |
-| **Phase 1** | Dataset aate hi, 2-3 din | Data ko ghoor ke samajhna (EDA) |
-| **Phase 2** | 4-5 din | Simple version banana (baseline) |
-| **Phase 3** | 5-7 din | Asli smart system (do-step + Learning-to-Rank) |
-| **Phase 4** | 3-4 din | Wajah dena (explainability) + India-edge |
-| **Phase 5** | 3-4 din | Testing + numbers + improvement |
-| **Phase 6** | 3 din | Document + repo + final file |
-| **Buffer** | 2 din | Extra time (kuch toot gaya toh) |
+| **Phase 0** | Now (before the dataset) | Setup + learning + practice |
+| **Phase 1** | When the dataset arrives, 2-3 days | Study the data closely (EDA) |
+| **Phase 2** | 4-5 days | Build a simple version (baseline) |
+| **Phase 3** | 5-7 days | The real smart system (two-stage + Learning-to-Rank) |
+| **Phase 4** | 3-4 days | Give reasons (explainability) + India-edge |
+| **Phase 5** | 3-4 days | Testing + numbers + improvement |
+| **Phase 6** | 3 days | Document + repo + final file |
+| **Buffer** | 2 days | Extra time (in case something breaks) |
 
 ---
 ---
 
-## 🔧 PHASE 0 — Setup & Taiyaari (dataset aane se PEHLE shuru karo)
+## 🔧 PHASE 0 — Setup & Prep (start BEFORE the dataset arrives)
 
-> Dataset ka intezaar mat karo. Yeh sab abhi ho sakta hai.
+> Don't wait for the dataset. All of this can be done now.
 
-### Step 0.1 — Team mein kaam baant lo (max 4 log)
-- **Person 1 (ML Lead):** main system (matching + ranking)
-- **Person 2 (Data):** data saaf karna + features banana
-- **Person 3 (Testing):** numbers nikalna + wajah likhna
+### Step 0.1 — Split the work in the team (max 4 people)
+- **Person 1 (ML Lead):** the main system (matching + ranking)
+- **Person 2 (Data):** cleaning the data + building features
+- **Person 3 (Testing):** computing numbers + writing the reasons
 - **Person 4 (Docs):** README + diagram + final packaging
 
-> Akele ho? Koi baat nahi — yeh roles ko alag-alag dino mein khud kar lo.
+> Working solo? No problem — just spread these roles across different days yourself.
 
-### Step 0.2 — Tools install karo
-- **Python** (version 3.10 ya upar)
-- Yeh libraries: `pandas`, `numpy`, `scikit-learn`, `lightgbm`, `sentence-transformers`, `rapidfuzz`, `matplotlib`
-- **GitHub** account + ek private repo banao
-- Folders banao: `data/`, `src/` (code), `notebooks/` (experiments), `outputs/` (results)
+### Step 0.2 — Install the tools
+- **Python** (version 3.10 or above)
+- These libraries: `pandas`, `numpy`, `scikit-learn`, `lightgbm`, `sentence-transformers`, `rapidfuzz`, `matplotlib`
+- A **GitHub** account + create a private repo
+- Make folders: `data/`, `src/` (code), `notebooks/` (experiments), `outputs/` (results)
 
-### Step 0.3 — Concepts seekho (jo nahi aate)
-YouTube/docs pe yeh 4 cheezein samajh lo (har ek 20-30 min):
-1. **Sentence embeddings** — text ko numbers mein kaise badalte hain
-2. **Bi-encoder vs cross-encoder** — tez filter vs gehra check
-3. **Ranking metrics (NDCG)** — ranking ki quality kaise naapte hain
-4. **LightGBM ranking** — ranking sikhane ka tool
+### Step 0.3 — Learn the concepts (the ones you don't know)
+On YouTube/docs, understand these 4 things (20-30 min each):
+1. **Sentence embeddings** — how to turn text into numbers
+2. **Bi-encoder vs cross-encoder** — fast filter vs deep check
+3. **Ranking metrics (NDCG)** — how to measure ranking quality
+4. **LightGBM ranking** — the tool that learns ranking
 
-### Step 0.4 — Practice: nakli data pe pura system chalao
-Dataset aane se pehle, **khud ka chhota fake data** banao (50 candidates, 5 jobs — Excel mein bhi chalega). Us pe pura system ek baar end-to-end chalao.
+### Step 0.4 — Practice: run the whole system on fake data
+Before the dataset arrives, make your **own small fake data** (50 candidates, 5 jobs — even in Excel). Run the whole system end-to-end on it once.
 
-**Fayda:** Jab asli dataset aayega, tum sirf file badloge aur sab chal jaayega — naya kuch nahi seekhna padega. Time bachega.
-
----
-
-## 🔍 PHASE 1 — Data ko Samajhna (EDA) — SABSE IMPORTANT PHASE
-
-> **Felix (Redrob CEO) ne bola:** *"Pehle dataset ke saath time bitao. Data ke signals tumhe architecture se zyada batayenge."*
-> Iska matlab — turant code mat likho. Pehle data ko detective ki tarah ghoor ke samjho.
-
-### Step 1.1 — Basic samajh
-Apne aap se yeh sawaal pooch ke jawab dhoondho:
-- Kitne candidates hain? Kitne jobs?
-- Har candidate ke baare mein kya-kya info hai? (skills, experience, titles, company, education, location)
-- **Behavioral signals kahan hain?** (yeh chhupe rehte hain — jaise last login, kitne apply kiye, reply rate, profile completeness). **👉 Yeh tumhara secret weapon hai — dhyaan se dhoondho.**
-- **Labels (sahi jawab) diye hain?** Matlab kya already bataya hai ki kaunsa candidate kis job ke liye achha hai? (graded 0-3, ya sirf haan/na, ya kuch nahi)
-
-### Step 1.2 — Data ki safai check karo
-- Kahan info missing hai? (kisi ka skill khaali? experience nahi likha?)
-- Skills kaise likhe hain — list mein? comma se? ya free text paragraph?
-- Koi candidate do baar toh nahi (duplicate)?
-- JD ka text saaf hai ya messy paragraph?
-
-### Step 1.3 — Plots (graph) banao
-Yeh graph banao taaki pattern dikhe:
-- Experience ka distribution (kitne fresher, kitne senior)
-- Sabse common skills kaunse
-- Location spread (metro vs chhote sheher)
-- Behavioral signals ka pattern + kya woh "achhe candidate" se jude hain?
-
-### Step 1.4 — 3-4 important baatein likho
-EDA se concrete observations nikalo jo aage kaam aayein. Jaise:
-- "Jo log jaldi reply karte hain, woh aksar achhe fit hote hain"
-- "30% candidates ke skills free-text mein hain → safai zaroori"
-- "Jobs zyaadatar metro mein hain par candidates chhote sheher se bhi"
-
-**📓 Output:** Ek notebook (`01_eda.ipynb`) with graphs + yeh baatein. Yeh baad mein document mein daaloge (clarity ke marks badhenge).
+**The benefit:** when the real dataset arrives, you just swap the file and everything works — nothing new to learn. You save time.
 
 ---
 
-## 📏 PHASE 2 — Simple Version Pehle (Baseline)
+## 🔍 PHASE 1 — Understand the Data (EDA) — THE MOST IMPORTANT PHASE
 
-> Pehle ek simple cheez banao jo "kaam karti hai." Phir use behtar karoge. Yeh "ek number" deta hai jisse comparison kar sako.
+> **Felix (Redrob CEO) said:** *"Spend time with the dataset first. The signals in the data will tell you more than any architecture decision."*
+> Meaning — don't rush to code. First study the data like a detective.
 
-### Step 2.1 — Keyword version (sabse simple = "dushman" jise harana hai)
-JD ke skills aur candidate ke skills ka **exact match** count karo → rank do. Yeh purana bewakoof tareeka hai. Iska NDCG@10 number note karo. **Tum ise beat karoge.**
+### Step 1.1 — Basic understanding
+Ask yourself these questions and find the answers:
+- How many candidates are there? How many jobs?
+- What info do you have about each candidate? (skills, experience, titles, company, education, location)
+- **Where are the behavioral signals?** (they're hidden — like last login, number of applications, response rate, profile completeness). **👉 This is your secret weapon — look for it carefully.**
+- **Are labels (correct answers) given?** i.e., does it already say which candidate is good for which job? (graded 0-3, or just yes/no, or nothing)
 
-### Step 2.2 — Semantic version (thoda smart)
-- JD ka text aur candidate ka profile **embeddings** mein badlo (matlab numbers mein)
-- Inki similarity nikalo → rank do
-- Iska NDCG@10 note karo → keyword se behtar hona chahiye
+### Step 1.2 — Check the data's cleanliness
+- Where is info missing? (someone's skills empty? experience not listed?)
+- How are skills written — as a list? comma-separated? or free-text?
+- Is any candidate duplicated?
+- Is the JD text clean or a messy paragraph?
 
-### Step 2.3 — Comparison table shuru karo
-| Tareeka | NDCG@10 | MAP | MRR |
+### Step 1.3 — Make plots (graphs)
+Make these graphs so patterns appear:
+- Distribution of experience (how many freshers, how many senior)
+- The most common skills
+- Location spread (metro vs small towns)
+- The pattern of behavioral signals + are they tied to "good candidates"?
+
+### Step 1.4 — Write down 3-4 important findings
+Pull concrete observations from EDA that will help later. For example:
+- "People who reply quickly are often good fits"
+- "30% of candidates have skills in free-text → cleaning needed"
+- "Jobs are mostly in metros, but candidates come from small towns too"
+
+**📓 Output:** A notebook (`01_eda.ipynb`) with graphs + these findings. You'll put this in the document later (boosts your clarity score).
+
+---
+
+## 📏 PHASE 2 — Simple Version First (Baseline)
+
+> First build a simple thing that "works." Then improve it. This gives you "a number" to compare against.
+
+### Step 2.1 — The keyword version (simplest = the "enemy" to beat)
+Count the **exact match** between the JD's skills and the candidate's skills → rank. This is the old, dumb way. Note its NDCG@10. **You'll beat this.**
+
+### Step 2.2 — The semantic version (a bit smarter)
+- Turn the JD text and candidate profile into **embeddings** (i.e., numbers)
+- Compute their similarity → rank
+- Note its NDCG@10 → it should be better than keyword
+
+### Step 2.3 — Start a comparison table
+| Method | NDCG@10 | MAP | MRR |
 |---|---|---|---|
 | Keyword | ... | ... | ... |
 | Semantic | ... | ... | ... |
 
-> Yeh table aage badhte rahega. Document mein jaayega — judges ko **numbers mein improvement** dikhega.
+> This table keeps growing. It goes in the document — the judges see the **improvement in numbers**.
 
 ---
 
-## 🏗️ PHASE 3 — Asli Smart System (Yahin Jeet Hoti Hai)
+## 🏗️ PHASE 3 — The Real Smart System (where you win)
 
-### Step 3.1 — Pehla step: Tez filter (Retrieval)
-- Embeddings se har job ke liye **top 100 candidates** tez se nikalo
-- Yeh hazaaron candidates ko 100 tak laata hai (manageable)
-- Bada data ho toh **FAISS** (ek fast search tool) use karo
+### Step 3.1 — Step one: a fast filter (Retrieval)
+- Use embeddings to quickly pull the **top 100 candidates** for each job
+- This brings thousands of candidates down to 100 (manageable)
+- For big data, use **FAISS** (a fast search tool)
 
-### Step 3.2 — Doosra step: Features banana (har job-candidate jodi ke liye)
-Yeh "features" banao (matlab har jodi ke baare mein numbers):
-1. **Semantic score** — matlab kitna milta hai
-2. **Cross-encoder score** — gehra match (optional par strong)
-3. **Skill overlap** — kitne skills match (short forms samajh ke: JS=JavaScript)
-4. **Experience fit** — candidate ka experience job ke hisaab se sahi hai?
-5. **Seniority match** — junior/senior level match karta hai?
-6. **Location fit** — same sheher? remote chalega?
-7. **Behavioral signals** — reply rate, profile completeness, last active, applications
-8. **Title similarity** — purane job titles JD se milte hain?
+### Step 3.2 — Step two: build features (for each job-candidate pair)
+Build these "features" (i.e., numbers describing each pair):
+1. **Semantic score** — how much the meaning matches
+2. **Cross-encoder score** — a deep match (optional but strong)
+3. **Skill overlap** — how many skills match (understanding short forms: JS=JavaScript)
+4. **Experience fit** — is the candidate's experience right for the job?
+5. **Seniority match** — does the junior/senior level match?
+6. **Location fit** — same city? remote okay?
+7. **Behavioral signals** — response rate, profile completeness, last active, applications
+8. **Title similarity** — do past job titles match the JD?
 
-### Step 3.3 — Teesra step: AI ko ranking SIKHAO (THE DIFFERENTIATOR)
-- **LightGBM** ka "lambdarank" mode use karo
-- Yeh AI ko sikhata hai ki upar wale features ko **kaise mila ke** best ranking banaye
-- Group = job_id (har job alag se rank hoti hai)
-- Train/test alag karo **job ke hisaab se** (ek job dono mein na ho — warna cheating ho jaayegi, ise "data leakage" kehte hain)
+### Step 3.3 — Step three: TEACH the AI to rank (THE DIFFERENTIATOR)
+- Use **LightGBM's** "lambdarank" mode
+- This teaches the AI **how to combine** the features above into the best ranking
+- Group = job_id (each job is ranked separately)
+- Split train/test **by job** (a job shouldn't be in both — otherwise it's cheating, called "data leakage")
 
-> **Yeh kyun jeetta hai:** Simple similarity sirf text match karti hai. Yeh AI **seekhta hai** ki kaunse signals (behaviour + skills + matlab) mil ke "best fit" banate hain — exactly jo Redrob chahta hai.
+> **Why this wins:** simple similarity only matches text. This AI **learns** which signals (behavior + skills + meaning) combine to make a "best fit" — exactly what Redrob wants.
 
-### Step 3.4 — Agar "sahi jawab" (labels) NAHI diye toh? (Plan B)
-Tension mat lo, do raaste:
-- **Raasta 1:** Khud rules se pseudo-labels banao (role match + skill coverage + experience + activity ko mila ke score do), phir us pe AI train karo
-- **Raasta 2:** Features ko logical weight de ke score banao (bina AI training ke)
-- Document mein **saaf likho** ki labels nahi the isliye yeh approach — judges ko honesty + reasoning pasand aayega
+### Step 3.4 — What if labels (correct answers) are NOT given? (Plan B)
+Don't panic, two paths:
+- **Path 1:** Create pseudo-labels from your own rules (combine role match + skill coverage + experience + activity into a score), then train the AI on that
+- **Path 2:** Build a score by logically weighting the features (without AI training)
+- In the document, **clearly state** that labels weren't given so you used this approach — judges respect honesty + reasoning
 
 ---
 
-## 💡 PHASE 4 — Wajah Dena (Explainability) + India-Edge
+## 💡 PHASE 4 — Give Reasons (Explainability) + India-Edge
 
-> Yeh phase judging criteria pe **direct hit** hai. Skip mat karna.
+> This phase is a **direct hit** on the judging criteria. Don't skip it.
 
-### Step 4.1 — Har candidate ke saath WAJAH (zaroori!)
-Har ranked candidate ke saath ek aasaan-samajh wali wajah do:
+### Step 4.1 — A REASON with each candidate (required!)
+Give an easy-to-understand reason with each ranked candidate:
 ```
 Rank #1 — Candidate A (Score 91%)
-  ✓ 7 mein se 6 zaroori skills hain
-  ✗ Sirf Kubernetes missing
-  ↑ Strong signals: 95% reply rate, 2 din pehle active, profile 100% complete
-  ✓ Experience: 6 saal (job ko 5+ chahiye tha) — senior level match
+  ✓ Has 6 of the 7 required skills
+  ✗ Only Kubernetes is missing
+  ↑ Strong signals: 95% response rate, active 2 days ago, profile 100% complete
+  ✓ Experience: 6 years (the job needed 5+) — senior-level match
 ```
-- **SHAP** ya feature importance use karo "kyun" justify karne ke liye
-- Yeh "explainability" criteria ko **literally** poora karta hai
+- Use **SHAP** or feature importance to justify the "why"
+- This **literally** satisfies the "explainability" criterion
 
-### Step 4.2 — India-Edge features (Redrob ko impress karega)
+### Step 4.2 — India-Edge features (will impress Redrob)
 1. **Skill short forms:** JS→JavaScript, ML→Machine Learning, k8s→Kubernetes
-2. **Chhote college fairness:** unknown college ko kam mat aanko (neutral rakho)
-3. **Hinglish samajh:** agar profile/JD mein Hindi+English mix hai, handle karo
-4. **Bias check:** dekho ki rank sirf college/location pe toh depend nahi kar raha (ethical hiring — Redrob ko bahut pasand aayega)
+2. **Fairness for small colleges:** don't undervalue unknown colleges (keep it neutral)
+3. **Hinglish understanding:** if a profile/JD mixes Hindi+English, handle it
+4. **Bias check:** verify the rank doesn't just depend on college/location (ethical hiring — Redrob will love this)
 
 ---
 
 ## 📊 PHASE 5 — Testing, Numbers & Improvement
 
-### Step 5.1 — Poore numbers nikalo
+### Step 5.1 — Compute the full numbers
 - NDCG@5, @10, @20
 - MAP, MRR, Precision@k, Recall@k
 
-### Step 5.2 — Final comparison table (yeh document mein jaayega)
-| Tareeka | NDCG@10 | MAP | MRR | P@10 |
+### Step 5.2 — The final comparison table (this goes in the document)
+| Method | NDCG@10 | MAP | MRR | P@10 |
 |---|---|---|---|---|
 | Keyword | ... | ... | ... | ... |
 | Semantic | ... | ... | ... | ... |
 | + Cross-encoder | ... | ... | ... | ... |
 | **+ Learning-to-Rank (final)** | **best** | **best** | **best** | **best** |
 
-> Yeh table dikhata hai ki tumne kadam-dar-kadam kitna improve kiya. Judges ko bahut pasand aata hai.
+> This table shows how much you improved step by step. Judges love it.
 
-### Step 5.3 — Galtiyan dekho (Error analysis)
-- Kahan system galat ho raha? Top pe galat candidate kyun aaya?
-- 2-3 aisi galtiyan document karo + kya improve kar sakte the
-- Yeh **maturity** dikhata hai → judges impress
+### Step 5.3 — Look at the mistakes (Error analysis)
+- Where is the system wrong? Why did a wrong candidate appear at the top?
+- Document 2-3 such mistakes + what you could improve
+- This shows **maturity** → judges are impressed
 
-### Step 5.4 — Tuning (settings adjust karo)
-- LightGBM ki settings (num_leaves, learning_rate) try karke best dhoondho
-- Top-100 ki jagah top-50 ya top-200 try karo
+### Step 5.4 — Tuning (adjust the settings)
+- Try LightGBM's settings (num_leaves, learning_rate) to find the best
+- Try top-50 or top-200 instead of top-100
 
 ---
 
-## 📝 PHASE 6 — Submission Packaging (Yahan Marks Bante Hain)
+## 📝 PHASE 6 — Submission Packaging (where marks are made)
 
-### Submit karne ki 3 cheezein (official):
-1. ✅ **GitHub repo** — poora code
-2. ✅ **Methodology doc / README** — explanation
-3. ✅ **Ranked output file** — sahi format mein
+### The 3 things to submit (official):
+1. ✅ **GitHub repo** — full code
+2. ✅ **Methodology doc / README** — the explanation
+3. ✅ **Ranked output file** — in the correct format
 
-### Step 6.1 — README/Document mein yeh sections rakho:
+### Step 6.1 — Put these sections in the README/Document:
 1. Problem & approach (1 paragraph)
-2. Architecture diagram (do-step + ranking + wajah)
-3. Data understanding (EDA ki key baatein)
-4. Features (list + kyun)
-5. Model: Learning-to-Rank (kyun yeh, kaise train kiya)
-6. Explainability (ek sample output dikhao)
+2. Architecture diagram (two-stage + ranking + reason)
+3. Data understanding (key EDA findings)
+4. Features (list + why)
+5. Model: Learning-to-Rank (why this, how trained)
+6. Explainability (show a sample output)
 7. India-edge handling
 8. Results: numbers + comparison table
-9. Galtiyan + limitations + aage kya improve hoga
-10. Kaise chalayein (install + commands — taaki judge khud chala sake)
+9. Mistakes + limitations + what to improve next
+10. How to run (install + commands — so a judge can run it themselves)
 
-### Step 6.2 — Repo saaf rakho (clarity = marks)
+### Step 6.2 — Keep the repo clean (clarity = marks)
 - Clean folders: `src/ data/ notebooks/ outputs/`
-- `requirements.txt` (libraries ki list)
-- Code mein comments
-- README mein ek architecture diagram (draw.io ya mermaid se)
-- Code modular ho (alag files: matching, features, ranking, wajah, testing)
+- `requirements.txt` (list of libraries)
+- Comments in the code
+- An architecture diagram in the README (from draw.io or mermaid)
+- Modular code (separate files: matching, features, ranking, reason, testing)
 
-### Step 6.3 — Output file (DHYAAN SE)
-- **EXACT format follow karo** jo dataset ke saath aayega (columns jaise job_id, candidate_id, rank)
-- Check karo: har job ke liye sahi number of candidates, sahi order mein
+### Step 6.3 — The output file (be careful)
+- **Follow the EXACT format** that comes with the dataset (columns like job_id, candidate_id, rank)
+- Check: the right number of candidates for each job, in the right order
 
-### Step 6.4 — Bonus: 2-minute demo video
-- Optional, par Grand Champion ke liye game-changer
-- Ek chhota video: input JD daalo → ranked list with wajah dikhao
-- Judges ko "wow" dega
-
----
-
-## ✅ FINAL CHECKLIST (submit se pehle tick karo)
-- [ ] Do-step system bana (tez filter + gehra check)
-- [ ] Learning-to-Rank (LightGBM) train kiya
-- [ ] Behavioral signals features mein daale (zyadatar teams yeh skip karti hain!)
-- [ ] Har candidate ke saath wajah di
-- [ ] Skill short forms + chhote college fairness
-- [ ] NDCG/MAP/MRR numbers nikale
-- [ ] Comparison table banaya (keyword → semantic → +LTR)
-- [ ] Galtiyan wala section
-- [ ] Saaf README + architecture diagram
-- [ ] Output file sahi format mein
-- [ ] Repo chal raha (install + run instructions)
-- [ ] (Bonus) demo video
+### Step 6.4 — Bonus: a 2-minute demo video
+- Optional, but a game-changer for Grand Champion
+- A short video: input a JD → show the ranked list with reasons
+- It gives the judges a "wow"
 
 ---
 
-## ⚠️ YEH GALTIYAN MAT KARNA
-1. **Sirf similarity pe rukna** — 90% teams yeh karengi. Tum Learning-to-Rank se aage niklo.
-2. **Behavioral signals ignore karna** — yeh wahi "hidden gems" hain jo problem maang raha hai.
-3. **Wajah (explainability) skip karna** — yeh ek poora judging criterion hai!
-4. **Output format galat** — exactly follow karo, warna disqualify ka risk.
-5. **README weak** — clarity = marks. Achha document = aasaan marks.
-6. **Last minute submission** — 28 June deadline, 2 din pehle ready rakho.
-7. **Data leakage** — train/test job ke hisaab se baanto, randomly nahi.
+## 🔬 ADVANCED SECTION — Deep Technical Detail (this makes the top 1%)
 
----
+> This section is for teams targeting Grand Champion (₹2L). The plan above makes you "good" — this makes you "the best."
 
-## 🚀 SHORT MEIN POORA RAASTA
-**Setup → Fake data pe practice → [Dataset aaya] → Data samjho (EDA) → Simple version → Do-step smart system → Learning-to-Rank → Wajah do → India-edge → Numbers + comparison → Galtiyan dekho → Document + repo → Output file → Submit (2 din pehle).**
+## A. Feature Engineering — exactly how each feature is built
 
-> **Sach:** Yeh sab tab final hoga jab dataset aayega. Abhi Phase 0 (setup + practice) kar sakte ho. Dataset mujhe do — main exact code aur features uske hisaab se ready kar dunga.
+These are the exact features that go into the LightGBM ranker. For each JD-candidate pair:
 
-
----
----
-
-# 🔬 ADVANCED SECTION — Deep Technical Detail (yeh top 1% banata hai)
-
-> Yeh section un teams ke liye hai jo Grand Champion (₹2L) target kar rahi hain. Upar wala plan "achha" banata hai — yeh "best" banata hai.
-
-## A. Feature Engineering — har feature exactly kaise banega
-
-Yeh woh exact features hain jo LightGBM ranker mein jaayenge. Har JD-candidate jodi ke liye:
-
-| Feature | Kaise calculate karo | Kyun matter karta hai |
+| Feature | How to calculate | Why it matters |
 |---|---|---|
-| `semantic_sim` | bge embedding(JD) · embedding(candidate) cosine | Matlab-level match |
+| `semantic_sim` | cosine of embedding(JD) · embedding(candidate) | Meaning-level match |
 | `cross_score` | cross-encoder(JD, candidate) | Deep contextual match |
 | `skill_overlap` | matched skills / required skills (fuzzy) | Core skill fit |
-| `skill_coverage_weighted` | important skills ko zyada weight | Sab skill barabar nahi |
+| `skill_coverage_weighted` | weight important skills more | Not all skills are equal |
 | `exp_gap` | candidate_exp − job_min_exp | Over/under-qualified |
 | `seniority_match` | level diff (junior/mid/senior/lead) | Role-level fit |
 | `title_sim` | embedding(current_title) · embedding(JD_title) | Role relevance |
-| `recency_score` | 1 / (1 + last_active_days) | Kitna active/available |
-| `response_rate` | direct (0-1) | Kitna engaged |
-| `profile_completeness` | direct (0-1) | Kitna serious |
+| `recency_score` | 1 / (1 + last_active_days) | How active/available |
+| `response_rate` | direct (0-1) | How engaged |
+| `profile_completeness` | direct (0-1) | How serious |
 | `application_intent` | applied to similar roles? (0/1) | Direct intent |
 | `location_fit` | same city / remote-ok (0/1) | Practical fit |
 | `hidden_gem_flag` | non-tier1 college + high skill match | Visibility angle |
 
-> **Pro tip:** Feature names khud explainable rakho — taaki SHAP output bhi readable ho aur README mein clean dikhe.
+> **Pro tip:** Keep feature names self-explanatory — so the SHAP output is also readable and looks clean in the README.
 
-## B. Handling missing data (real datasets gande hote hain)
-- Skills khaali → headline/title se infer karo (LLM ya keyword)
-- Experience NaN → median impute + ek `exp_missing` flag feature
-- Behavioral signals missing → 0 + flag (model khud seekh lega)
-- **Kabhi row drop mat karo** — flag banao. Missing-ness bhi ek signal hai.
+## B. Handling missing data (real datasets are messy)
+- Skills empty → infer from headline/title (LLM or keyword)
+- Experience NaN → median impute + an `exp_missing` flag feature
+- Behavioral signals missing → 0 + a flag (the model learns it itself)
+- **Never drop a row** — make a flag instead. Missing-ness is itself a signal.
 
-## C. Validation strategy (data leakage se bachna)
-- **GroupKFold by job_id** — ek job ke candidates kabhi train aur test dono mein na ho
-- 5-fold cross-validation → average NDCG report karo (ek number se zyada bharosemand)
-- Train pe overfit check: train NDCG vs val NDCG gap dekho
+## C. Validation strategy (avoiding data leakage)
+- **GroupKFold by job_id** — a job's candidates should never be in both train and test
+- 5-fold cross-validation → report the average NDCG (more reliable than one number)
+- Check overfitting: compare train NDCG vs validation NDCG gap
 
-## D. Cold-start problem (naya candidate, no history)
-- Behavioral signals na ho → sirf semantic + skill features pe rely karo
-- README mein yeh explicitly address karo — judge ko maturity dikhegi
+## D. Cold-start problem (a new candidate, no history)
+- If behavioral signals are absent → rely only on semantic + skill features
+- Address this explicitly in the README — it shows the judge maturity
 
-## E. Bias & fairness audit (Redrob ko bahut pasand aayega)
-- Check: kya rank college-tier ya location se correlate kar raha hai (jab nahi karna chahiye)?
-- Ek "fairness slide/section" banao: "Humne yeh check kiya, yeh paaya, yeh fix kiya"
-- Yeh Felix ki "visibility problem" philosophy ko directly hit karta hai
+## E. Bias & fairness audit (Redrob will love this)
+- Check: does the rank correlate with college-tier or location (when it shouldn't)?
+- Make a "fairness slide/section": "We checked this, found this, fixed this"
+- This directly hits Felix's "visibility problem" philosophy
 
-## F. Performance/scale (agar dataset bada hai)
-- FAISS index for retrieval (10k+ candidates ke liye must)
-- Embeddings ek baar compute karke cache karo (.npy file)
-- Batch processing for cross-encoder (GPU na ho toh top-50 hi rerank)
+## F. Performance/scale (if the dataset is big)
+- A FAISS index for retrieval (a must for 10k+ candidates)
+- Compute embeddings once and cache them (.npy file)
+- Batch processing for the cross-encoder (no GPU → only rerank the top-50)
 
-## G. README/methodology doc — exact winning structure
+## G. README/methodology doc — the exact winning structure
 ```
 # [Project Name] — Intelligent Candidate Discovery
-
-## 1. TL;DR (3 lines: kya banaya, kaise, result)
-## 2. Problem Understanding (keyword filter kyun fail)
+## 1. TL;DR (3 lines: what you built, how, the result)
+## 2. Problem Understanding (why keyword filters fail)
 ## 3. Data Insights (EDA — 4-5 key findings + 2 plots)
 ## 4. Architecture (diagram: retrieve → rerank → LTR → explain)
 ## 5. Feature Engineering (table + reasoning)
@@ -369,21 +332,28 @@ Yeh woh exact features hain jo LightGBM ranker mein jaayenge. Har JD-candidate j
 ## 7. Explainability (sample output with reasons)
 ## 8. India-Edge (multilingual, hidden-gem, fairness)
 ## 9. Results (metrics table + ablation + improvement %)
-## 10. Error Analysis (2-3 failure cases honestly)
+## 10. Error Analysis (2-3 failure cases, honestly)
 ## 11. Limitations & Future Work
 ## 12. How to Run (pip install + commands, reproducible)
 ```
 
-## H. Sabse common galti jo disqualify karwati hai
-1. **Output format galat** — dataset ke exact format (columns, order) ko 3 baar check karo
-2. **Code chalta nahi judge ke system pe** — requirements.txt pinned, clear run steps
-3. **Random train/test split** — job-wise karo warna inflated (fake) scores
+## H. The most common mistake that causes disqualification
+1. **Wrong output format** — check the dataset's exact format (columns, order) three times
+2. **Code doesn't run on the judge's system** — pinned requirements.txt, clear run steps
+3. **Random train/test split** — do it job-wise, or you'll get inflated (fake) scores
 
-## I. Time-boxing (agar time kam pad jaye — priority order)
-1. Working retrieval + baseline (MUST — kuch toh submit ho)
-2. LightGBM LambdaMART (differentiator)
-3. Explainability (judging criterion)
-4. README + output file (marks yahin)
-5. India-edge + demo (bonus, agar time bache)
+## I. Time-boxing (if you run short on time — priority order)
+1. Working retrieval + baseline (MUST — at least something submits)
+2. LightGBM LambdaMART (the differentiator)
+3. Explainability (a judging criterion)
+4. README + output file (this is where marks are)
+5. India-edge + demo (bonus, if time remains)
 
-> **Rule:** Pehle ek end-to-end "kaam karta hua" submission banao (chhota par poora), phir improve karo. Aadha-adhura perfect system se ek poora simple system behtar hai.
+> **Rule:** First build one end-to-end "working" submission (small but complete), then improve. A complete simple system beats a half-finished perfect one.
+
+---
+
+## 🚀 THE WHOLE PATH IN SHORT
+**Setup → practice on fake data → [dataset arrives] → understand data (EDA) → simple version → two-stage smart system → Learning-to-Rank → give reasons → India-edge → numbers + comparison → look at mistakes → document + repo → output file → submit (2 days early).**
+
+> **The truth:** All of this finalizes once the dataset arrives. For now you can do Phase 0 (setup + practice). Give me the dataset — I'll prepare the exact code and features around it.

@@ -1,52 +1,53 @@
 # 🎤 DECK — "OutreachIQ" (Track 2, PS1) — Slide-by-Slide Ready Content
 
-> **Yeh kaise use karna hai:** Gamma/Canva mein har slide ka content copy-paste karo. `[VISUAL: ...]` = wahan image/diagram. 10 slide, ready PDF.
+> **How to use this:** Copy-paste the content for each slide into Gamma/Canva. `[VISUAL: ...]` = an image/diagram there. 10 slides, a ready PDF.
 >
-> **Idea:** OutreachIQ — ek autonomous AI agent jo sales/outreach ka poora kaam khud kare (prospect dhoondho → research → personalized message → reply → meeting book).
-> **Kyun BOLD + smart:** Redrob ka aadha business sales/GTM hai (People Search, 700M profiles, "Redrob GTM"). 95% teams sirf "hiring" sochenge. Tum sales socho ge → judge turant samajh jaayega ki tum Redrob ko POORA samajhte ho. Bheed se alag.
+> **Idea:** OutreachIQ — an autonomous AI agent that does the entire sales/outreach job by itself (find prospects → research → personalized message → reply → book a meeting).
+> **Why it's BOLD + smart:** Half of Redrob's business is sales/GTM (People Search, 700M profiles, "Redrob GTM"). 95% of teams will only think about "hiring." Thinking about sales shows the judge you understand Redrob's FULL business. You stand out from the crowd.
 
 ---
 
 ## SLIDE 1 — TITLE
 ```
 OutreachIQ
-Aapka AI sales rep — jo sochta nahi, kaam karta hai.
+Your AI sales rep — it doesn't just think, it works.
 
 An autonomous agent that finds, researches, and reaches the right
 prospects — at the right time, in the right words.
 
-Team: [tumhara naam] · India Runs 2026 · Track 2 (PS1)
+Team: [your name] · India Runs 2026 · Track 2 (PS1)
 ```
-`[VISUAL: "OutreachIQ" bold + tagline. Icon: ek AI/robot + paper-plane (send). Clean dark background.]`
+`[VISUAL: "OutreachIQ" bold + tagline. Icon: an AI/robot + a paper-plane (send). Clean dark background.]`
 
 ---
 
-## SLIDE 2 — THE PROBLEM (specific kahani)
+## SLIDE 2 — THE PROBLEM (a specific story)
 ```
-Meet a sales rep at an early-stage startup. Roz subah:
-• 100 prospects manually dhoondhti hai
-• Har ek ko Google/LinkedIn pe research karti hai
-• 100 alag-alag emails likhti hai
+Meet a sales rep at an early-stage startup. Every morning:
+• Finds 100 prospects manually
+• Researches each one on Google/LinkedIn
+• Writes 100 different emails
 
-Result: 6 ghante kaam, 80% time research mein, 2% reply rate.
-Burnout. Aur deals phir bhi miss.
+The result: 6 hours of work, 80% of it on research, a 2% reply rate.
+Burnout. And deals still slip away.
 ```
-`[VISUAL: Thaki hui sales person + ghadi (clock) + 12 open browser tabs ka illustration.]`
+`[VISUAL: An illustration of a tired salesperson + a clock + 12 open browser tabs.]`
 
 ---
 
-## SLIDE 3 — KITNA BADA PROBLEM
+## SLIDE 3 — HOW BIG THE PROBLEM IS
 ```
-Yeh har sales team ka dard hai:
+This is every sales team's pain:
 
-• Sales reps apna 70% time bechne mein NAHI — research + admin mein lagate hain
-• Outreach "right person, wrong time/words" ki wajah se fail hota hai
-• India mein lakhs SMEs + startups — sabko sasta sales engine chahiye
-• Mehengi tools (foreign) India ke budget mein fit nahi
+• Sales reps spend 70% of their time NOT selling — on research + admin
+• Outreach fails because of "right person, wrong time/words"
+• Lakhs of SMEs + startups in India — all need a cheap sales engine
+• Expensive (foreign) tools don't fit India's budget
 
-Outbound effort se fail nahi hota — galat assumption scale karne se fail hota hai.
+Outbound doesn't fail from lack of effort — it fails from scaling
+the wrong assumption.
 ```
-`[VISUAL: Pie chart — "70% admin/research, 30% actual selling". Bold.]`
+`[VISUAL: A pie chart — "70% admin/research, 30% actual selling". Bold.]`
 
 ---
 
@@ -54,91 +55,91 @@ Outbound effort se fail nahi hota — galat assumption scale karne se fail hota 
 ```
 OutreachIQ — Autonomous Sales Agent
 
-Tum sirf goal do: "In jaise customers chahiye."
-Baaki sab agent khud kare:
-Prospect dhoondhe → research kare → personalized message likhe
-→ sahi waqt pe bheje → reply handle kare → meeting book kare.
+You just give a goal: "I want customers like this."
+The agent does everything else:
+Find prospects → research → write a personalized message
+→ send at the right time → handle replies → book the meeting.
 
-Tum bechte ho. AI baaki sab karta hai.
+You sell. The AI does the rest.
 ```
-`[VISUAL: 6-step circular flow with icons.]`
+`[VISUAL: A 6-step circular flow with icons.]`
 
 ---
 
-## SLIDE 5 — KAISE KAAM KARTA HAI (multi-agent architecture)
+## SLIDE 5 — HOW IT WORKS (multi-agent architecture)
 ```
-Andar 5 chhote AI agents, ek manager ke neeche:
+Inside: 5 small AI agents under one manager:
 
-1. Finder — intent signals se sahi prospects dhoondhe (700M profiles)
-2. Researcher — har prospect ki summary banaye
-3. Writer — personalized message (sahi tone, sahi bhasha)
-4. Timer — sabse achha waqt chune ke bheje
-5. Responder — reply samjhe, follow-up kare, meeting book kare
+1. Finder — finds the right prospects from intent signals (700M profiles)
+2. Researcher — builds a summary of each prospect
+3. Writer — a personalized message (right tone, right language)
+4. Timer — picks the best time to send
+5. Responder — reads replies, follows up, books meetings
 
-Human approval optional — tum control mein.
+Human approval optional — you stay in control.
 ```
-`[VISUAL: Manager agent upar, 5 agents niche — connected diagram. "Human approval" ka ek gate.]`
+`[VISUAL: Manager agent on top, 5 agents below — a connected diagram. A "human approval" gate.]`
 
 ---
 
 ## SLIDE 6 — USER JOURNEY
 ```
-Ek sales rep ka naya din OutreachIQ ke saath:
+A sales rep's new day with OutreachIQ:
 
-1. Subah: goal set kare ("SaaS founders, 10-50 employees")
-2. AI 100 prospects dhoondh ke research kar deta hai
-3. Rep 100 ready personalized drafts review kare (5 min)
-4. Approve → AI sahi waqt pe bhejta hai
-5. Replies aate hain → AI handle karke meetings book karta hai
-6. Rep sirf meetings mein jaati hai — bechne mein
+1. Morning: set a goal ("SaaS founders, 10-50 employees")
+2. The AI finds + researches 100 prospects
+3. The rep reviews 100 ready personalized drafts (5 min)
+4. Approve → the AI sends at the right time
+5. Replies come in → the AI handles them and books meetings
+6. The rep just shows up to meetings — to sell
 
-6 ghante ka kaam → 30 minute.
+6 hours of work → 30 minutes.
 ```
-`[VISUAL: Dashboard mockup — prospect list + draft messages + "12 meetings booked" counter. Canva.]`
+`[VISUAL: A dashboard mockup — prospect list + draft messages + a "12 meetings booked" counter. Canva.]`
 
 ---
 
-## SLIDE 7 — INDIA-FIRST + EXECUTION KYUN
+## SLIDE 7 — WHY INDIA-FIRST + EXECUTION
 ```
-Yeh Redrob ki soch ka dum hai:
+This is the soul of Redrob's thinking:
 
-⚡ "AI jawab nahi deta — KAAM karta hai" (execution, not chat)
-🌍 Multilingual outreach: prospect ki bhasha mein message
-💰 India-priced: Redrob ke saste LLM pe (foreign tools 10x mehenge)
-📊 700M profiles ka data — sahi log, sahi intent
+⚡ "AI doesn't answer — it WORKS" (execution, not chat)
+🌍 Multilingual outreach: a message in the prospect's language
+💰 India-priced: on Redrob's cheap LLM (foreign tools are 10x costlier)
+📊 Data from 700M profiles — the right people, the right intent
 
-Yeh ek "AI assistant" nahi — ek AI EMPLOYEE hai.
+This isn't an "AI assistant" — it's an AI EMPLOYEE.
 ```
-`[VISUAL: 4 icons + tagline "AI assistant → AI employee".]`
+`[VISUAL: 4 icons + the tagline "AI assistant → AI employee".]`
 
 ---
 
-## SLIDE 8 — REDROB KE LIYE FIT (yeh slide jeetati hai)
+## SLIDE 8 — THE REDROB FIT (this slide wins)
 ```
-OutreachIQ = Redrob ka sales engine, agentic ban gaya.
+OutreachIQ = Redrob's sales engine, made agentic.
 
-• Redrob ke paas already: People Search, Company Search, Redrob GTM
-• Yeh data ek autonomous agent ko de do = magic
-• Aadha Redrob business SALES hai (zyadatar log yeh bhool jaate hain)
-• B2B revenue: har sales team ek "AI rep" ke liye paisa degi
+• Redrob already has: People Search, Company Search, Redrob GTM
+• Give that data to an autonomous agent = magic
+• Half of Redrob's business is SALES (most people forget this)
+• B2B revenue: every sales team would pay for an "AI rep"
 
-Hum dikha rahe hain ki hum Redrob ka POORA business samajhte hain —
-sirf hiring nahi, sales bhi.
+We're showing that we understand Redrob's FULL business —
+not just hiring, but sales too.
 ```
 `[VISUAL: Redrob GTM/People Search products → arrow → "OutreachIQ (autonomous)".]`
 
 ---
 
-## SLIDE 9 — IMPACT + ABHI KYUN
+## SLIDE 9 — IMPACT + WHY NOW
 ```
 Impact:
-• Sales reps: research khatam, sirf bechna
-• SMEs/startups: bina badi sales team ke growth
-• Redrob: hiring + SALES dono mein #1
+• Sales reps: research is over, just selling
+• SMEs/startups: growth without a big sales team
+• Redrob: #1 in both hiring + SALES
 
-Abhi kyun? AI ka agla wave "chatbots" nahi —
-"systems jo kaam karte hain" hai. India isi mein step le raha hai.
-Redrob isi ke liye bana hai.
+Why now? AI's next wave isn't "chatbots" — it's
+"systems that do the work." India is stepping into exactly this.
+Redrob is built for it.
 ```
 `[VISUAL: Before/After — "Before: 6 hrs research" vs "After: 12 meetings booked".]`
 
@@ -148,58 +149,56 @@ Redrob isi ke liye bana hai.
 ```
 OutreachIQ
 
-Har sales team ko ek AI employee.
-Jo sochta nahi — kaam karta hai.
+An AI employee for every sales team.
+One that doesn't just think — it works.
 
-[Team naam] · #IndiaRuns
+[Team name] · #IndiaRuns
 ```
-`[VISUAL: Strong center line + OutreachIQ logo. Clean end.]`
+`[VISUAL: A strong centered line + the OutreachIQ logo. A clean end.]`
 
 ---
 
 ## 🎨 DESIGN TIPS
-- Theme: professional, sales-y (dark + bright accent jaise green/orange)
-- Slide 5 (multi-agent diagram) aur slide 6 (dashboard mockup) = "wow" slides, sabse zyada mehnat
-- Text kam, visual zyada
-- PDF naam: `OutreachIQ_IndiaRuns_[TeamName].pdf`
+- Theme: professional, sales-y (dark + a bright accent like green/orange)
+- Slide 5 (multi-agent diagram) and slide 6 (dashboard mockup) = the "wow" slides, put the most effort here
+- Little text, more visuals
+- PDF name: `OutreachIQ_IndiaRuns_[TeamName].pdf`
 
-## ⚖️ SkillProof vs OutreachIQ — kaunsa choose karun?
-- **SkillProof** = safe + strong (hiring, jo sab samajhte hain; aur Track 1 build se match karta hai → ek mehnat do entries)
-- **OutreachIQ** = bold + smart (sales, jo kam log sochenge → maximum "deep understanding" signal, par Track 1 se match nahi karta)
-- **Sabse safe winning move:** SkillProof (kyunki Track 1 + Track 2 + Track 3 teeno mein reuse hota hai). OutreachIQ tab choose karo jab sirf Track 2 pe focus ho aur bheed se hatke dikhna ho.
-
-
----
----
-
-# 🎙️ SPEAKER NOTES (har slide pe bolne ke liye)
-
-- **Slide 1:** "Hum [team]. OutreachIQ — ek AI jo sales ka kaam khud karta hai, sirf jawab nahi deta."
-- **Slide 2:** "Har sales rep ka din research mein jaata hai, bechne mein nahi."
-- **Slide 3:** "Reps apna 70% time admin mein lagate hain — yeh ek industry-wide problem hai."
-- **Slide 4:** "Tum sirf goal do, OutreachIQ baaki sab karta hai — find se meeting tak."
-- **Slide 5:** "Andar 5 agents ek manager ke neeche — har ek ka apna kaam."
-- **Slide 6:** "6 ghante ka kaam 30 minute mein — rep sirf meetings mein jaati hai."
-- **Slide 7:** "Yeh Redrob ki soch hai — AI jo kaam karta hai, multilingual, India-priced."
-- **Slide 8:** "Redrob ka aadha business sales hai. Yeh us data ko autonomous bana deta hai."
-- **Slide 9:** "Impact: reps free, SMEs grow, Redrob sales mein bhi #1."
-- **Slide 10:** "OutreachIQ — har team ko ek AI employee. Dhanyavaad."
+## ⚖️ SkillProof vs OutreachIQ — which to pick?
+- **SkillProof** = safe + strong (hiring, which everyone understands; and it matches the Track 1 build → one effort, two entries)
+- **OutreachIQ** = bold + smart (sales, which few will think of → maximum "deep understanding" signal, but it doesn't match Track 1)
+- **The safest winning move:** SkillProof (because it reuses across Track 1 + Track 2 + Track 3). Pick OutreachIQ when you're focused only on Track 2 and want to stand out from the crowd.
 
 ---
 
-# ❓ JUDGE Q&A PREP
+## 🎙️ SPEAKER NOTES (to say on each slide)
 
-| Sawaal | Jawab |
+- **Slide 1:** "We're [team]. OutreachIQ — an AI that does the sales work itself, not just answers."
+- **Slide 2:** "Every sales rep's day goes into research, not selling."
+- **Slide 3:** "Reps spend 70% of their time on admin — this is an industry-wide problem."
+- **Slide 4:** "You just give a goal; OutreachIQ does the rest — from find to meeting."
+- **Slide 5:** "Inside, 5 agents under one manager — each with its own job."
+- **Slide 6:** "6 hours of work in 30 minutes — the rep just shows up to meetings."
+- **Slide 7:** "This is Redrob's thinking — AI that works, multilingual, India-priced."
+- **Slide 8:** "Half of Redrob's business is sales. This makes that data autonomous."
+- **Slide 9:** "Impact: reps freed, SMEs grow, Redrob #1 in sales too."
+- **Slide 10:** "OutreachIQ — an AI employee for every team. Thank you."
+
+---
+
+## ❓ JUDGE Q&A PREP
+
+| Question | Answer |
 |---|---|
-| "Spam kaise rokoge?" | "Human approval gate + personalization + rate limits. Quality > volume." |
-| "Yeh Redrob se kaise jude?" | "Redrob ka People Search + GTM data is agent ka fuel hai." |
-| "Existing tools (Apollo etc.) se alag?" | "Woh data dete hain; hum autonomous execution dete hain — agent." |
-| "Cost?" | "Cheap open models pe; per-outreach cost negligible." |
-| "Multilingual kyun?" | "India ke prospects ko unki bhasha mein outreach = zyada reply." |
+| "How do you stop spam?" | "A human approval gate + personalization + rate limits. Quality > volume." |
+| "How does this connect to Redrob?" | "Redrob's People Search + GTM data is this agent's fuel." |
+| "How is it different from existing tools (Apollo etc.)?" | "They give data; we give autonomous execution — an agent." |
+| "Cost?" | "On cheap open models; per-outreach cost is negligible." |
+| "Why multilingual?" | "Reaching Indian prospects in their language = more replies." |
 
 ---
 
-# 💡 EXTRA — Kab OutreachIQ choose karo
-- Agar **sirf Track 2** pe focus hai aur bheed se hatke dikhna hai → OutreachIQ (bold, sales angle, kam log sochenge)
-- Agar Track 1 bhi kar rahe ho → SkillProof choose karo (Track 1 se reuse hota hai)
-- OutreachIQ ka strongest point: yeh dikhata hai tum Redrob ka **poora business** (sales bhi) samajhte ho — yeh "deep understanding" signal sabse powerful hai
+## 💡 EXTRA — When to pick OutreachIQ
+- If you're **focused only on Track 2** and want to stand out from the crowd → OutreachIQ (bold, the sales angle, few will think of it)
+- If you're also doing Track 1 → pick SkillProof (it reuses from Track 1)
+- OutreachIQ's strongest point: it shows you understand Redrob's **full business** (sales too) — this "deep understanding" signal is the most powerful one

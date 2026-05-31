@@ -1,218 +1,194 @@
-# 🎯 INDIA RUNS — MASTER STRATEGY (Sab Kuch Ek Jagah)
+# 🎯 INDIA RUNS — MASTER STRATEGY (Everything in One Place)
 
-> Yeh tumhara **main control room** hai. Yahan se poora hackathon samajh aayega — kya hai, kaise jeetna hai, kaunsi file kab padhni hai.
+> This is your **control room**. From here you'll understand the whole hackathon — what it is, how to win, and which file to read when.
 
 ---
 
-## 📋 INDEX — Kaunsi file mein kya hai?
+## 📋 INDEX — What's in each file?
 
-| File | Ismein kya milega | Kab padho |
+| File | What you'll find | When to read |
 |---|---|---|
-| **STRATEGY.md** (yeh file) | Poora overview + game plan | Sabse pehle |
-| **REDROB_DEEP_DIVE_AND_IDEAS.md** | ⭐ Redrob ki gehri samajh + SABSE STRONG ideas + judge psychology | Idea final karne se pehle (MOST IMPORTANT) |
-| **WINNING_PROBLEM_STATEMENTS.md** | Official topics + winning-vs-losing + self-check | Topic samajhne ke liye |
-| **CUSTOM_WINNING_IDEAS.md** | Extra ideas + PS2/PS3 deck outlines + decision tree | Aur options chahiye toh |
-| **IDEAS_DEEP_PLUS_TECH_STACK.md** | ⭐ Har idea ka best tech stack + 42-din roadmap + cost budget | Banane se pehle (tech decide karne ke liye) |
-| **TRACK1_EXECUTION_PLAN.md** | Coding track ka step-by-step + advanced technical detail | Track 1 banate waqt |
-| **TRACK2_EXECUTION_PLAN.md** | Deck banane ka plan + deck-craft + delivery | Track 2 karte waqt |
-| **TRACK3_EXECUTION_PLAN.md** | Social media plan + ready drafts + virality mechanics | Track 3 karte waqt |
-| **DECK_SkillProof_Track2_PS1.md** | SkillProof ka slide-by-slide ready content | Deck banate waqt |
-| **DECK_OutreachIQ_Track2_PS1.md** | OutreachIQ ka slide-by-slide ready content | Deck banate waqt |
+| **STRATEGY.md** (this file) | Full overview + game plan | First |
+| **REDROB_DEEP_DIVE_AND_IDEAS.md** | ⭐ Deep understanding of Redrob + the STRONGEST ideas + judge psychology | Before finalizing an idea (MOST IMPORTANT) |
+| **WINNING_PROBLEM_STATEMENTS.md** | Official topics + winning-vs-losing + self-check | To understand the topics |
+| **CUSTOM_WINNING_IDEAS.md** | Extra ideas + PS2/PS3 deck outlines + decision tree | If you want more options |
+| **IDEAS_DEEP_PLUS_TECH_STACK.md** | ⭐ Best tech stack per idea + 42-day roadmap + cost budget | Before building (to decide tech) |
+| **TRACK1_EXECUTION_PLAN.md** | Coding track step-by-step + advanced technical detail | While building Track 1 |
+| **TRACK2_EXECUTION_PLAN.md** | Deck-building plan + deck craft + delivery | While doing Track 2 |
+| **TRACK3_EXECUTION_PLAN.md** | Social media plan + ready drafts + virality mechanics | While doing Track 3 |
+| **DECK_SkillProof_Track2_PS1.md** | SkillProof's slide-by-slide ready content | While building the deck |
+| **DECK_OutreachIQ_Track2_PS1.md** | OutreachIQ's slide-by-slide ready content | While building the deck |
 
-> ⭐ **Reading order:** STRATEGY (yeh) → REDROB_DEEP_DIVE (best ideas + judge psychology) → IDEAS_DEEP_PLUS_TECH_STACK (stack) → apna track ka EXECUTION_PLAN → DECK file (agar Track 2).
+> ⭐ **Reading order:** STRATEGY (this) → REDROB_DEEP_DIVE (best ideas + judge psychology) → IDEAS_DEEP_PLUS_TECH_STACK (stack) → your track's EXECUTION_PLAN → the DECK file (if Track 2).
 
 ---
 
-## 🏆 HACKATHON KYA HAI? (Bilkul basic se)
+## 🏆 WHAT IS THE HACKATHON? (from the basics)
 
-**Naam:** India Runs
-**Kisne banaya:** Redrob AI (ek company) + Hack2skill (hackathon organize karne wali company)
-**Total inaam (prize):** ₹50 Lakh se zyada (cash)
-**Kitne din:** 42 din
-**Paisa lagta hai?** Nahi, bilkul FREE
-**Kaun participate kar sakta hai?** Koi bhi — student, coder, non-coder, MBA, designer, beginner. Koi degree ya background ki zaroorat nahi.
+**Name:** India Runs
+**Who made it:** Redrob AI (a company) + Hack2skill (a hackathon-organizing company)
+**Total prize:** ₹50 Lakh+ (cash)
+**Duration:** 42 days
+**Does it cost money?** No, completely FREE
+**Who can join?** Anyone — student, coder, non-coder, MBA, designer, beginner. No degree or background required.
 
-**Tagline:** *"Build what next India runs on"* — matlab "wo banao jis par aage chal ke India chalega."
+**Tagline:** *"Build what next India runs on."*
 
-### Redrob ka sapna kya hai? (Yeh samajhna ZAROORI hai)
-Redrob ek aisi company hai jo **"India ka apna AI Operating System"** banana chahti hai — ek hi jagah pe naukri (jobs), hiring, sales aur research, India ki bhasha mein, saste daam pe.
+### What is Redrob's dream? (this is ESSENTIAL to understand)
+Redrob is a company building **"India's own AI Operating System"** — bringing jobs, hiring, sales, and research into one place, in Indian languages, at an affordable price.
 
-Unki soch: *"Aaj kal ka AI (ChatGPT) America mein bana, $200/month, India ke hisaab se nahi. India ko apna sasta AI chahiye jo yahan ki bhasha aur reality samjhe."*
+Their thinking: *"Today's AI (like ChatGPT) was built in America, costs $200/month, and isn't designed for India. India needs its own affordable AI that understands the local languages and reality here."*
 
-**Redrob ke asli numbers (pitch/post mein use karna):** $14M funding (Korean investors), 700M+ profiles, 30+ bhasha (22 Indian aa rahi), apna LLM jo GPT-5 ka 87% kaam 0.5% cost pe karta hai, 2M+ waitlist, target Dec 2026 tak 1 crore users.
+**Redrob's real numbers (use these in your pitch/post):** $14M funding (Korean investors), 700M+ profiles, 30+ languages (22 Indian ones coming), their own LLM that does 87% of GPT-5's work at 0.5% of the cost, 2M+ waitlist, targeting 1 crore users by Dec 2026.
 
-> ### 🔑 SABSE BADA SECRET (deep research se nikla — yaad rakhna)
-> Judges **Redrob ke founders + engineers** hain. Unke dimaag mein kya hai, yeh samajh lo:
-> 1. **Track 1 (Candidate Discovery) literally Redrob ka apna product "Resume Ranker" hai.** Tumhe unke apne product se behtar banana hai.
-> 2. **Redrob ke paas ek "Coming Soon" features list hai** (Skill Tests, Interview Coach, Resume Builder, Market Pulse, Skills Leaderboard, Redrob Code, VC·PE Scout). Inme se koi banao/socho → seedha unke roadmap pe hit.
-> 3. **Felix (CEO) engineer nahi — wakeel + business mind hai.** Use clarity + real impact pasand, sirf fancy tech nahi.
-> 4. **Unka core belief:** *"Talent ki kami nahi, dikhne ki kami hai"* (visibility problem) + *"AI sirf jawab na de, kaam kare"* (execution).
+> ### 🔑 THE BIGGEST SECRET (from deep research — remember this)
+> The judges are **Redrob's founders + engineers.** Understand what's in their minds:
+> 1. **Track 1 (Candidate Discovery) is literally Redrob's own product, "Resume Ranker."** You must build something better than their own product.
+> 2. **Redrob has a "Coming Soon" features list** (Skill Tests, Interview Coach, Resume Builder, Market Pulse, Skills Leaderboard, Redrob Code, VC·PE Scout). Build/conceptualize one of these → you hit their roadmap directly.
+> 3. **Felix (CEO) is not an engineer — he's a lawyer + business mind.** He values clarity + real impact, not fancy tech.
+> 4. **Their core belief:** *"There's no shortage of talent, only of visibility"* (the visibility problem) + *"AI shouldn't just answer, it should work"* (execution).
 >
-> 👉 **Iska poora breakdown + sabse strong ideas `REDROB_DEEP_DIVE_AND_IDEAS.md` mein hai — woh sabse pehle padho.**
+> 👉 **The full breakdown + strongest ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md` — read that first.**
 
 ---
 
-## 🛣️ 3 TRACKS — Teen alag raaste (har koi apni pasand ka chunega)
+## 🛣️ 3 TRACKS — Three different paths (everyone picks their own)
 
-Hackathon mein 3 "tracks" hain. Track matlab ek category/raasta. Tum kisi ek mein ya teeno mein hissa le sakte ho.
+The hackathon has 3 "tracks." A track means a category/path. You can enter one or all three.
 
-### 🥇 TRACK 1 — Data & AI Challenge (CODING wala)
-- **Kya karna hai:** Ek AI system **banana** hai (code likhna padega)
-- **Kaam:** Ek system jo job ke liye best candidates dhoondh ke unhe rank kare (1st, 2nd, 3rd...)
-- **Kiske liye:** Jo log coding/AI/data jaante hain
-- **Inaam:** ₹10 Lakh
-- **Kyun best:** Yahan jeet **skill se** hoti hai (judge ki marzi se nahi). Yani sabse "fair" track.
+### 🥇 TRACK 1 — Data & AI Challenge (the CODING one)
+- **What to do:** Build an AI system (you have to write code)
+- **The task:** A system that finds the best candidates for a job and ranks them (1st, 2nd, 3rd...)
+- **For whom:** People who know coding/AI/data
+- **Prize:** ₹10 Lakh
+- **Why it's best:** Here you win **on skill** (not on a judge's mood). The fairest track.
 
-### 🥈 TRACK 2 — Ideathon (SOCHNE wala, coding nahi)
-- **Kya karna hai:** Ek idea ka **PDF presentation (deck)** banana hai — 10 slide tak
-- **Kaam:** Ek AI product ka idea socho aur use achhe se samjhao
-- **Kiske liye:** Sabke liye (MBA, students, designers, coders bhi)
-- **Inaam:** ₹30 Lakh (sabse bada pool!)
-- **3 sub-topics hain** (PS1, PS2, PS3) — ek choose karna hai
+### 🥈 TRACK 2 — Ideathon (the THINKING one, no coding)
+- **What to do:** Make a **PDF presentation (deck)** of an idea — up to 10 slides
+- **The task:** Think of an AI product idea and explain it well
+- **For whom:** Everyone (MBA, students, designers, even coders)
+- **Prize:** ₹30 Lakh (the biggest pool!)
+- **3 sub-topics** (PS1, PS2, PS3) — pick one
 
-### 🥉 TRACK 3 — Social Media Challenge (POST wala)
-- **Kya karna hai:** Ek social media post banana (Instagram/LinkedIn/X/YouTube)
-- **Kaam:** AI aur India pe apni sachhi raay post karo, hashtag **#IndiaRuns** ke saath
-- **Kiske liye:** Sabke liye (sabse easy)
-- **Inaam:** ₹10 Lakh (525+ winners — bahut log jeetenge!)
+### 🥉 TRACK 3 — Social Media Challenge (the POST one)
+- **What to do:** Make a social media post (Instagram/LinkedIn/X/YouTube)
+- **The task:** Post your honest opinion on AI and India, with the hashtag **#IndiaRuns**
+- **For whom:** Everyone (easiest)
+- **Prize:** ₹10 Lakh (525+ winners — many people will win!)
 
 ---
 
-## ⭐ GAME PLAN — Tumhe kya karna chahiye?
+## ⭐ GAME PLAN — What should you do?
 
-### Sabse important rule (yeh game change karta hai):
-> Tum **teeno tracks mein** hissa le sakte ho! Har track mein sirf **1 baar** submit kar sakte ho. Toh smart log teeno mein ghusenge.
+### The most important rule (this changes the game):
+> You can enter **all three tracks**! You can submit **only once** per track. So smart people enter all three.
 
-### Recommended plan (priority ke saath):
+### Recommended plan (with priority):
 
-| Priority | Track | Kyun | Kitni mehnat |
+| Priority | Track | Why | Effort |
 |---|---|---|---|
-| **#1 — MAIN FOCUS** | Track 1 (Coding) | Skill se jeet, sabse fair, Redrob ka core kaam | Zyada (80% energy) |
-| **#2 — FREE WIN** | Track 3 (Post) | 20 minute ka kaam, bahut winners | Kam (20% energy) |
-| **#3 — BONUS** | Track 2 (Deck) | Track 1 ka kaam hi deck bana do | Medium |
+| **#1 — MAIN FOCUS** | Track 1 (Coding) | Win on skill, fairest, Redrob's core business | High (80% energy) |
+| **#2 — FREE WIN** | Track 3 (Post) | 20 minutes of work, many winners | Low (20% energy) |
+| **#3 — BONUS** | Track 2 (Deck) | Just turn the Track 1 work into a deck | Medium |
 
-### 🎯 Sabse smart trick: "Ek mehnat, teen jagah submit"
-1. Track 1 mein AI recruiter **banao** (main kaam) — yeh Redrob ka "Resume Ranker" hai, ise behtar banao
-2. Usi ka idea ek PDF deck mein daal do → **Track 2 ho gaya**
-3. Usi ko banane ki kahani ek post mein daal do → **Track 3 ho gaya**
+### 🎯 The smartest trick: "One effort, three submissions"
+1. Build the AI recruiter in Track 1 (your main work) — this is Redrob's "Resume Ranker"; make it better
+2. Turn that idea into a PDF deck → **Track 2 done**
+3. Turn the story of building it into a post → **Track 3 done**
 
-> Matlab ek hi kaam se **teen entries**! Yeh sabse efficient jeetne ka raasta hai.
+> Meaning: three entries from one effort! The most efficient path to winning.
 >
-> ⭐ **Sabse strong single idea (deep-dive se): "SkillProof — AI Skill-Verification Engine"** — yeh Felix ki visibility-philosophy + Redrob ka coming-soon feature + multilingual + hiring, chaaron ek saath hit karta hai. Detail `REDROB_DEEP_DIVE_AND_IDEAS.md` mein.
+> ⭐ **The strongest single idea (from the deep-dive): "SkillProof — AI Skill-Verification Engine"** — it hits Felix's visibility philosophy + a Redrob Coming-Soon feature + multilingual + hiring, all at once. Detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
-**Agar tum coding NAHI jaante:**
-- **Track 2 (PS2 — business plan)** pe focus karo + **Track 3 (post)** kar lo. Dono mein coding nahi chahiye.
+**If you DON'T know how to code:**
+- Focus on **Track 2 (PS2 — business plan)** + do **Track 3 (post)**. Neither needs coding.
 
 ---
 
-## 📅 IMPORTANT DATES (Yeh screenshot kar lo / yaad rakho)
+## 📅 IMPORTANT DATES (screenshot/remember these)
 
-| Date | Kya hota hai | Kitna zaroori |
+| Date | What happens | How important |
 |---|---|---|
-| 19 May 2026 | Registration shuru + Track 1 shuru | — |
-| 24 May 2026 | Track 3 (social media) shuru | — |
-| 29 May 2026 | Intro session (ho gaya) | — |
-| 3 June 2026 | Track 2 (ideathon) shuru | — |
-| **4 June 2026** | ⚠️ **Track 3 submission BAND** | Sabse jaldi! |
-| 8 June 2026 | Track 3 shortlist + (intro mein bola "registration band") | Important |
-| **28 June 2026** | Registration band + **Track 1 & 2 submission BAND** | Bahut zaroori |
-| 3 July 2026 | Judging shuru | — |
-| **22 July 2026** | 🎉 Final result + Grand Finale (online) | Result din |
+| 19 May 2026 | Registration opens + Track 1 opens | — |
+| 24 May 2026 | Track 3 (social media) opens | — |
+| 29 May 2026 | Intro session (done) | — |
+| 3 June 2026 | Track 2 (ideathon) opens | — |
+| **4 June 2026** | ⚠️ **Track 3 submission CLOSES** | Earliest! |
+| 8 June 2026 | Track 3 shortlist + (intro said "registration closes") | Important |
+| **28 June 2026** | Registration closes + **Track 1 & 2 submission CLOSES** | Very important |
+| 3 July 2026 | Judging begins | — |
+| **22 July 2026** | 🎉 Final results + Grand Finale (online) | Results day |
 
-> ### ⚠️ EK CONFUSION (saaf batana zaroori hai)
-> Registration kab band hoga, iske 2 alag jawab mile:
-> - **Intro session mein Felix (CEO) ne bola:** 8 June
-> - **Official website pe likha hai:** 28 June
+> ### ⚠️ ONE CONFUSION (worth being honest about)
+> When does registration close? Two different answers came up:
+> - **In the intro session, Felix (CEO) said:** 8 June
+> - **The official website says:** 28 June
 >
-> **Inme se kaunsa sahi hai, yeh main 100% confirm nahi kar sakta.** Toh safe rehna:
-> **Jaldi se jaldi register kar lo** (intezaar mat karo). Aur Track 3 ke liye **4 June** ko pakki deadline maano.
-> Confirm karna ho toh email karo: **support@hack2skill.com**
+> **I can't confirm 100% which is correct.** So play it safe:
+> **Register as early as possible** (don't wait). And treat **4 June** as the hard deadline for Track 3.
+> To confirm, email: **support@hack2skill.com**
 
 ---
 
-## ✅ RULES (Pakki baatein — intro session se confirmed)
+## ✅ RULES (confirmed facts — from the intro session)
 
-- **Paisa:** Bilkul free, koi fee nahi
-- **Team:** Akela (solo) ya team — **max 4 log**
-- **Team kahin se bhi:** Alag-alag sheher/college ke log ek team bana sakte hain
-- **Multiple tracks:** Allowed (teeno mein jaa sakte ho)
-- **Submission:** Har track mein sirf **1 baar** submit (toh best wala daalna)
-- **AI tools use kar sakte ho?** HAAN — ChatGPT, Gemini, Claude, Redrob — sab allowed aur **encouraged** (yeh AI challenge hai, AI use karna toh point hi hai)
-- **Bhasha:** English best hai likhne ke liye, par Hindi/Hinglish/regional bhi chalega — "language ko barrier mat banao" (FAQ ne khud bola)
-- **Judges:** Redrob ke leaders, AI researchers, founders, senior engineers
+- **Cost:** Completely free, no fee
+- **Team:** Solo or a team — **max 4 people**
+- **Team from anywhere:** People from different cities/colleges can form one team
+- **Multiple tracks:** Allowed (you can enter all three)
+- **Submission:** Only **one** submission per track (so submit your best)
+- **Can you use AI tools?** YES — ChatGPT, Gemini, Claude, Redrob — all allowed and **encouraged** (it's an AI challenge; using AI is the whole point)
+- **Language:** English is best for writing, but Hindi/Hinglish/regional is fine — "don't let language be a barrier" (the FAQ said this itself)
+- **Judges:** Redrob's leaders, AI researchers, founders, senior engineers
 
-### 💎 Cash se bhi bada inaam (yeh samjho)
-Jo best submissions hongi, unhe Redrob **apne actual product mein use** kar sakta hai — **tumhe credit de ke + tumhari permission le ke.** Aur tumhe Redrob team ke saath **kaam karne / job ka mauka** mil sakta hai.
+### 💎 A prize bigger than cash (understand this)
+The best submissions can be **used by Redrob in their actual product** — with credit to you + your permission. And you could get a chance to **work with / get hired by** the Redrob team.
 
-> Matlab — yeh sirf paise ka game nahi. Yeh ek **career opportunity** bhi hai. Isliye serious effort lagana.
-
----
-
-## 🎯 JEETNE KE 5 GOLDEN RULES (har track pe lagao)
-
-1. **Redrob ke "Coming Soon" feature ko pakdo** — Skill Tests, Interview Coach, Resume Builder, Market Pulse, etc. Jo woh banana chahte hain, woh tum dikha do. (Jo unke paas already hai — People/Company Search — woh mat banao.)
-2. **Multilingual banao** (Hindi + regional) — yeh Redrob ki sabse badi strength + India-first proof.
-3. **"Visibility" angle daalo** — *"talent ki kami nahi, dikhne ki kami hai"* (Felix ki personal philosophy).
-4. **Execution dikhao** — *"AI jawab na de, kaam kare."* Real, working, clear.
-5. **Specific raho + time se pehle submit** — "India ko AI chahiye" nahi, "ek small-business owner ko yeh problem" bolo. 2 din pehle ready.
+> Meaning — this isn't just about money. It's a **career opportunity** too. So put in serious effort.
 
 ---
 
-## 🚦 ABHI KYA KARNA HAI? (Turant action list)
+## 🧠 DEEP — The real winning formula (understand this by heart)
 
-1. ✅ **Register confirm karo** (agar nahi kiya) — jaldi, date confusion hai
-2. 📥 **Track 1 dataset download karo** — Hack2skill dashboard / Discord / WhatsApp group se (registered logon ko milega)
-3. 📱 **Track 3 ka pehla post** banao — deadline 4 June, sabse jaldi (ready drafts `TRACK3_EXECUTION_PLAN.md` mein hain)
-4. 📝 **Track 2 deck** banana shuru karo (Canva/Gamma se)
-5. 💻 **Track 1 ka setup** karo (Python, GitHub) — dataset aane se pehle hi
+There will be 1000+ teams. The ones who reach the top will do **three things together**:
 
-> **Sach:** Dataset abhi tumhare paas nahi hai. Woh aate hi mujhe dena — main Track 1 ka exact code/plan uske hisaab se bana dunga.
+### 1. Understand Redrob (95% of teams skip this)
+The judges are from Redrob. They'll pick the team that works **with an understanding of their business.** Show that you know:
+- Redrob does **hiring + sales + cheap multilingual AI**
+- Their target: 1 crore users by Dec 2026
+- Their philosophy: "talent lacks visibility," "AI should work, not just answer"
+> Detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
-
----
----
-
-# 🧠 DEEP — Jeetne ka asli formula (yeh dil se samajh lo)
-
-Hackathon mein 1000+ teams hongi. Top pe woh aayenge jo **3 cheezein ek saath** karenge:
-
-### 1. Redrob ko samjho (95% teams yeh skip karti hain)
-Judges Redrob wale hain. Woh us team ko select karenge jo **unka business samajh ke** kaam kare. Tum dikhao ki tum jaante ho:
-- Redrob **hiring + sales + sasta multilingual AI** karta hai
-- Unka target: 1 crore users, Dec 2026
-- Unki philosophy: "talent dikhne ki kami", "AI kaam kare jawab nahi"
-> Detail `REDROB_DEEP_DIVE_AND_IDEAS.md` mein.
-
-### 2. Execution dikhao (idea kaafi nahi)
+### 2. Show execution (an idea isn't enough)
 - Track 1: working code + demo + metrics
-- Track 2: clear flow + mockup + numbers
-- Track 3: real authentic voice
-> "Idea sabke paas hai. Jo bana ke dikhaye, woh jeetता hai."
+- Track 2: a clear flow + mockup + numbers
+- Track 3: a real, authentic voice
+> "Everyone has ideas. The one who builds and shows it wins."
 
-### 3. India-angle clear rakho
-- Vernacular (22 bhasha), Tier-2/3, cost-aware
-- Yeh Redrob ki poori thesis hai
+### 3. Keep the India angle clear
+- Vernacular (22 languages), Tier-2/3, cost-aware
+- This is Redrob's entire thesis
 
 ---
 
-# 🎯 DEEP — Tumhare liye personalized plan (situation ke hisaab se)
+## 🎯 DEEP — Your personalized plan (by situation)
 
-**Agar strong coding team ho (best case):**
+**If you have a strong coding team (best case):**
 ```
 Track 1: FairRank (candidate ranking) — 80% energy, MAIN shot
-Track 2: SkillProof deck (Track 1 reuse) — 15% energy
-Track 3: Build-in-public post (journey) — 5% energy
-= Ek mehnat, teen entries, teeno strong
+Track 2: SkillProof deck (reuse Track 1) — 15% energy
+Track 3: Build-in-public post (the journey) — 5% energy
+= One effort, three entries, all three strong
 ```
 
-**Agar mixed team (kuch coder, kuch nahi):**
+**If you have a mixed team (some coders, some not):**
 ```
 Coders → Track 1 (FairRank)
-Business/design wale → Track 2 PS2 (Road to 10 Million) ya PS1 (SkillProof)
-Sab → Track 3 (apna-apna post)
+Business/design people → Track 2 PS2 (Road to 10 Million) or PS1 (SkillProof)
+Everyone → Track 3 (their own post)
 ```
 
-**Agar non-coder/solo beginner:**
+**If you're a non-coder / solo beginner:**
 ```
 Track 2 PS3 (VoiceResume) — simple, clear
 + Track 3 (post)
@@ -220,43 +196,55 @@ Track 2 PS3 (VoiceResume) — simple, clear
 
 ---
 
-# 📋 DEEP — Master Action Checklist (poora hackathon)
+## 📋 DEEP — Master Action Checklist (the whole hackathon)
 
-### Abhi (turant):
-- [ ] Register confirm (date confusion — jaldi karo)
-- [ ] Team finalize (max 4)
-- [ ] Redrob deep-dive padho (`REDROB_DEEP_DIVE_AND_IDEAS.md`)
-- [ ] Idea final karo (decision tree `CUSTOM_WINNING_IDEAS.md` mein)
-- [ ] Tech stack decide (`IDEAS_DEEP_PLUS_TECH_STACK.md`)
+### Now (immediately):
+- [ ] Confirm registration (date confusion — do it early)
+- [ ] Finalize the team (max 4)
+- [ ] Read the Redrob deep-dive (`REDROB_DEEP_DIVE_AND_IDEAS.md`)
+- [ ] Finalize the idea (decision tree in `CUSTOM_WINNING_IDEAS.md`)
+- [ ] Decide the tech stack (`IDEAS_DEEP_PLUS_TECH_STACK.md`)
 
-### Track 1 (agar coding):
-- [ ] Setup + dummy data pe practice (dataset se pehle)
-- [ ] Dataset download (dashboard/Discord)
+### Track 1 (if coding):
+- [ ] Setup + practice on dummy data (before the dataset)
+- [ ] Download the dataset (dashboard/Discord)
 - [ ] EDA → baseline → core → explainability → docs
 - [ ] Demo video + output file
-- [ ] Submit 2 din pehle
+- [ ] Submit 2 days early
 
 ### Track 2 (deck):
-- [ ] Idea + PS final
-- [ ] Deck banao (DECK file se content lo)
+- [ ] Finalize idea + PS
+- [ ] Build the deck (use content from the DECK file)
 - [ ] Mockups + numbers + Redrob-fit slide
-- [ ] PDF export + submit
+- [ ] Export PDF + submit
 
 ### Track 3 (post):
-- [ ] Angle choose (Hiring Heroes / Redrob Rulz)
-- [ ] Post banao (drafts `TRACK3` mein)
-- [ ] #IndiaRuns + golden-hour post
+- [ ] Choose an angle (Hiring Heroes / Redrob Rulz)
+- [ ] Write the post (drafts in `TRACK3`)
+- [ ] #IndiaRuns + post during golden hour
 - [ ] Submit before 4 June
 
 ---
 
-# ⚠️ DEEP — Top 7 mistakes jo prize se door karti hain
-1. Redrob ko samjhe bina random AI project banana
-2. Track 1 mein sirf cosine similarity (no LTR, no explainability)
-3. Track 2 mein broad problem + 20+ slides + no Redrob connection
-4. Track 3 mein generic "AI is future" post
-5. Output format/deadline miss karna
-6. Sirf idea, koi working demo/proof nahi
-7. India-angle (vernacular/cost) bhool jaana
+## ⚠️ DEEP — Top 7 mistakes that keep you away from a prize
+1. Building a random AI project without understanding Redrob
+2. In Track 1, only cosine similarity (no LTR, no explainability)
+3. In Track 2, a broad problem + 20+ slides + no Redrob connection
+4. In Track 3, a generic "AI is the future" post
+5. Missing the output format / deadline
+6. Just an idea, no working demo/proof
+7. Forgetting the India angle (vernacular/cost)
 
-> Yeh 7 avoid kar liye → tum automatically top 10% mein.
+> Avoid these 7 → you're automatically in the top 10%.
+
+---
+
+## 🚦 WHAT TO DO RIGHT NOW (immediate action list)
+
+1. ✅ **Confirm registration** (if not done) — quickly, there's date confusion
+2. 📥 **Download the Track 1 dataset** — from the Hack2skill dashboard / Discord / WhatsApp group (registered participants get it)
+3. 📱 **Make your first Track 3 post** — deadline 4 June, earliest (ready drafts in `TRACK3_EXECUTION_PLAN.md`)
+4. 📝 **Start building the Track 2 deck** (using Canva/Gamma)
+5. 💻 **Set up Track 1** (Python, GitHub) — even before the dataset arrives
+
+> **The truth:** You don't have the dataset yet. Give it to me the moment you do — I'll build the exact Track 1 code/plan around it.

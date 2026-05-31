@@ -1,53 +1,55 @@
 # 🎤 DECK — "SkillProof" (Track 2, PS1) — Slide-by-Slide Ready Content
 
-> **Yeh kaise use karna hai:** Gamma.app ya Canva kholo. Har slide ka neeche likha content seedha copy-paste karo. `[VISUAL: ...]` matlab wahan ek image/diagram daalna hai. Bas. 10 slide, ready PDF.
+> **How to use this:** Open Gamma.app or Canva. Copy-paste the content below for each slide directly. `[VISUAL: ...]` means put an image/diagram there. That's it — 10 slides, a ready PDF.
 >
-> **Idea:** SkillProof — ek AI jo resume ke "skill claims" ko live test se verify karta hai. Degree/college nahi, sirf hunar bolta hai. Multilingual.
-> **Kyun jeetega:** Redrob ke "Skill Tests" coming-soon feature + Felix ki "visibility problem" philosophy + multilingual — sab ek saath.
+> **Idea:** SkillProof — an AI that verifies a resume's "skill claims" with a live test. Not the degree/college, only skill speaks. Multilingual.
+> **Why it wins:** Redrob's "Skill Tests" Coming-Soon feature + Felix's "visibility problem" philosophy + multilingual — all at once.
 
 ---
 
 ## SLIDE 1 — TITLE
 ```
 SkillProof
-Degree nahi. Hunar bolta hai.
+Not the degree. Skill speaks.
 
 An AI engine that verifies what a resume claims — in any Indian language.
 
-Team: [tumhara naam] · India Runs 2026 · Track 2 (PS1)
+Team: [your name] · India Runs 2026 · Track 2 (PS1)
 ```
-`[VISUAL: Ek clean logo/text "SkillProof" + tagline. Background simple gradient. Ek chhota icon: green tick + magnifying glass.]`
+`[VISUAL: A clean logo/text "SkillProof" + tagline. Simple gradient background. A small icon: green tick + magnifying glass.]`
 
 ---
 
-## SLIDE 2 — THE PROBLEM (ek specific kahani se)
+## SLIDE 2 — THE PROBLEM (from a specific story)
 ```
 Meet a self-taught developer.
 
-Tier-3 town se. Real apps banaye hain.
-College "unknown" hai. Resume mein likha: "Expert in Python."
+From a Tier-3 town. Has built real apps.
+College is "unknown." On the resume: "Expert in Python."
 
-Recruiter ke paas 5,000 aise resume hain — sab "expert" likhte hain.
-Uski asli skill kisi ko dikhti hi nahi. Reject. Invisible.
+A recruiter has 5,000 such resumes — all say "expert."
+This developer's real skill is invisible. Rejected. Unseen.
 
-Sawaal: Kaun sach mein expert hai? Aur woh apna hunar kaise prove kare?
+The question: Who's actually an expert? And how does this
+developer prove their skill?
 ```
-`[VISUAL: Ek udaas candidate ka simple illustration + ek dher (pile) of resumes jisme sab pe "Expert" likha hai.]`
+`[VISUAL: A simple illustration of a discouraged candidate + a pile of resumes all stamped "Expert".]`
 
 ---
 
-## SLIDE 3 — KITNA BADA PROBLEM HAI
+## SLIDE 3 — HOW BIG THE PROBLEM IS
 ```
-Yeh ek dum bada problem hai:
+This is a massive problem:
 
-• Har saal 1.5 crore+ Indian graduate job market mein aate hain
-• Resume "skill claims" ka koi verification nahi — bas bharosa
-• Recruiters ka 60%+ time fake/inflated claims chhaant-ne mein jaata hai
-• Aur sabse bura: asli talent (Tier-2/3, self-taught) sirf "naam" na hone se chhoot jaata hai
+• 1.5 crore+ Indians enter the job market every year
+• Resume "skill claims" have no verification — just trust
+• Recruiters spend 60%+ of their time filtering fake/inflated claims
+• And worst: real talent (Tier-2/3, self-taught) gets dropped
+  just for not having a "name"
 
-"Talent ki kami nahi hai. Dikhne ki kami hai."
+"There's no shortage of talent. There's a shortage of visibility."
 ```
-`[VISUAL: 3 bade numbers (1.5 Cr, 60%, etc.) bold mein. Niche ek quote box mein last line.]`
+`[VISUAL: 3 big bold numbers (1.5 Cr, 60%, etc.). The last line in a quote box below.]`
 
 ---
 
@@ -55,90 +57,94 @@ Yeh ek dum bada problem hai:
 ```
 SkillProof — AI Skill-Verification Engine
 
-Resume padho → AI turant ek chhota, role-specific live test banaye
-→ candidate test de (apni bhasha mein) → AI ek "Verified Skill Score" de.
+Read the resume → AI instantly generates a short, role-specific
+live test → the candidate takes it (in their language) → AI gives
+a "Verified Skill Score."
 
-Ab hiring naam pe nahi — proof pe hoti hai.
+Now hiring is based on proof, not the name.
 ```
-`[VISUAL: 3-step simple flow icons: Resume 📄 → AI Test 🧪 → Verified Score ✅]`
+`[VISUAL: A 3-step simple flow with icons: Resume 📄 → AI Test 🧪 → Verified Score ✅]`
 
 ---
 
-## SLIDE 5 — KAISE KAAM KARTA HAI (architecture)
+## SLIDE 5 — HOW IT WORKS (architecture)
 ```
-Andar kya hota hai:
+What happens inside:
 
-1. Claim Extractor — resume se skills nikaale ("Python, SQL, React")
-2. Test Generator (AI) — har skill ke liye chhota practical task banaye
-3. Evaluator (AI) — candidate ka jawab parkhe, score de
-4. Score Engine — sab mila ke ek "Verified Skill Score" (0–100)
-5. Explainer — recruiter ko bataaye: kya verify hua, kya nahi
+1. Claim Extractor — pulls skills from the resume ("Python, SQL, React")
+2. Test Generator (AI) — a short practical task for each skill
+3. Evaluator (AI) — grades the candidate's answer, gives a score
+4. Score Engine — combines into a "Verified Skill Score" (0–100)
+5. Explainer — tells the recruiter what was verified, what wasn't
 
-Multilingual: test + feedback 22 Indian bhasha mein.
+Multilingual: tests + feedback in 22 Indian languages.
 ```
-`[VISUAL: Box-and-arrow diagram — 5 boxes left-to-right, last box se "Recruiter Dashboard" nikalta hua.]`
+`[VISUAL: A box-and-arrow diagram — 5 boxes left-to-right, the last box flowing into "Recruiter Dashboard".]`
 
 ---
 
-## SLIDE 6 — USER JOURNEY (do log: candidate + recruiter)
+## SLIDE 6 — USER JOURNEY (two people: candidate + recruiter)
 ```
 Candidate:
-1. Resume upload kare
-2. AI 3 chhote practical tasks de (Hindi mein agar chahe)
-3. 15 min mein complete kare
-4. "Verified: Python 88, SQL 76" badge mil jaaye
+1. Uploads resume
+2. AI gives 3 short practical tasks (in their language if they want)
+3. Completes them in 15 minutes
+4. Gets a "Verified: Python 88, SQL 76" badge
 
 Recruiter:
-1. Job post kare
-2. SkillProof verified candidates dikhaye, score ke saath
-3. Bina naam/college dekhe — sirf proven skill pe shortlist
+1. Posts a job
+2. Sees SkillProof-verified candidates, with scores
+3. Shortlists on proven skill — without seeing name/college
 ```
-`[VISUAL: Do columns — left "Candidate" phone mockup, right "Recruiter" dashboard mockup. Canva se banao.]`
+`[VISUAL: Two columns — left "Candidate" phone mockup, right "Recruiter" dashboard mockup. Make in Canva.]`
 
 ---
 
-## SLIDE 7 — INDIA-FIRST KYUN (yeh judge ko impress karega)
+## SLIDE 7 — WHY INDIA-FIRST (this impresses the judge)
 ```
-Yeh sirf ek tool nahi — India ka problem solve karta hai:
+This isn't just a tool — it solves India's problem:
 
-🌍 Multilingual: candidate apni bhasha mein test de (Hindi, Tamil, Telugu...)
-🏙️ Visibility: Tier-2/3 aur self-taught talent ab "naam" ke bina prove kar sakta hai
-💰 Sasta: Redrob ke India-priced AI pe chalta hai (GPT-5 ka 87% kaam, 0.5% cost)
-🤝 Bharosa (Trust): hiring ab claim pe nahi, proof pe
+🌍 Multilingual: the candidate takes the test in their language
+   (Hindi, Tamil, Telugu...)
+🏙️ Visibility: Tier-2/3 and self-taught talent can now prove
+   themselves without a "name"
+💰 Affordable: runs on Redrob's India-priced AI (87% of GPT-5
+   at 0.5% cost)
+🤝 Trust: hiring on proof, not on a claim
 
 "Built for how India actually works, hires, and grows."
 ```
-`[VISUAL: 4 icons with one-line each. India map outline background (halka).]`
+`[VISUAL: 4 icons, one line each. A faint India-map outline in the background.]`
 
 ---
 
-## SLIDE 8 — REDROB KE LIYE FIT (yeh slide jeetati hai)
+## SLIDE 8 — THE REDROB FIT (this slide wins)
 ```
-SkillProof = Redrob ka agla natural kadam.
+SkillProof = Redrob's natural next step.
 
-• Redrob ke paas already: Resume Ranker, People Search
-• Redrob "Coming Soon": Skill Tests + Skills Leaderboard ← SkillProof yahi hai
-• 700M profiles + verified scores = duniya ka sabse bharosemand talent pool
-• B2B revenue: recruiters "verified pool" ke liye paisa denge
+• Redrob already has: Resume Ranker, People Search
+• Redrob "Coming Soon": Skill Tests + Skills Leaderboard ← this is SkillProof
+• 700M profiles + verified scores = the world's most trusted talent pool
+• B2B revenue: recruiters pay for a "verified pool"
 
-Hum woh bana rahe hain jo Redrob already banana chahta hai.
+We're building what Redrob already wants to build.
 ```
-`[VISUAL: Redrob product list jisme "Skill Tests (Coming Soon)" highlighted, arrow se "SkillProof" tak.]`
+`[VISUAL: Redrob product list with "Skill Tests (Coming Soon)" highlighted, an arrow to "SkillProof".]`
 
 ---
 
-## SLIDE 9 — IMPACT + ABHI KYUN
+## SLIDE 9 — IMPACT + WHY NOW
 ```
 Impact:
-• Candidates: hunar dikhta hai, degree matter nahi karti
-• Recruiters: 60% screening time bacha, behtar hire
-• India: talent ka "visibility gap" band
+• Candidates: skill shows, the degree doesn't matter
+• Recruiters: 60% screening time saved, better hires
+• India: the talent "visibility gap" closes
 
-Abhi kyun? India ka AI moment yahi hai. 1.4 billion log,
-apni bhasha, apna proof. Yeh wahi "next India" hai jis par
-Redrob daav laga raha hai.
+Why now? This is India's AI moment. 1.4 billion people,
+their own languages, their own proof. This is the "next India"
+Redrob is betting on.
 ```
-`[VISUAL: Before/After split — "Before: Invisible talent" vs "After: Verified, hired".]`
+`[VISUAL: A before/after split — "Before: invisible talent" vs "After: verified, hired".]`
 
 ---
 
@@ -146,66 +152,64 @@ Redrob daav laga raha hai.
 ```
 SkillProof
 
-Ek duniya jahan tumhe naukri tumhare COLLEGE se nahi,
-tumhare HUNAR se milti hai.
+A world where you get a job not for your COLLEGE,
+but for your SKILL.
 
-Degree nahi. Hunar bolta hai.
+Not the degree. Skill speaks.
 
-[Team naam] · #IndiaRuns
+[Team name] · #IndiaRuns
 ```
-`[VISUAL: Strong single line center mein. SkillProof logo. Clean end slide.]`
+`[VISUAL: A strong single line centered. The SkillProof logo. A clean end slide.]`
 
 ---
 
-## 🎨 DESIGN TIPS (deck banate waqt)
-- Ek hi color theme (Redrob jaisa: clean, professional — blue/dark + ek accent color)
-- Har slide pe text kam, ek bada visual
-- Font consistent (Inter / Poppins jaise modern)
-- Slide 5 (architecture) aur slide 6 (mockups) pe sabse zyada mehnat — yeh "wow" slides hain
-- PDF export karo, file naam: `SkillProof_IndiaRuns_[TeamName].pdf`
+## 🎨 DESIGN TIPS (while building the deck)
+- One color theme (Redrob-like: clean, professional — blue/dark + one accent color)
+- Little text per slide, one big visual
+- A consistent font (modern, like Inter / Poppins)
+- Put the most effort into slide 5 (architecture) and slide 6 (mockups) — these are the "wow" slides
+- Export as PDF, file name: `SkillProof_IndiaRuns_[TeamName].pdf`
 
 ## 📝 NOTE
-- Persona ko ek role ki tarah rakha hai (naam nahi) — chaaho toh generic rakho
-- Numbers (1.5 Cr, 60%) ko ek baar quickly verify kar lena ya "approx" likh dena
-- Yeh deck Track 1 ke build se bhi match karta hai (dono SkillProof) → ek mehnat, do entries
-
-
----
----
-
-# 🎙️ SPEAKER NOTES (har slide pe bolne ke liye — agar live present karna ho)
-
-> Slide pe kam likho, yeh bol ke samjhao. Har slide ~30-45 sec.
-
-- **Slide 1:** "Hi, hum [team]. Humara idea hai SkillProof — ek AI jo batata hai ki resume ka 'expert' sach mein expert hai ya nahi."
-- **Slide 2:** "Yeh kahani har talented par 'unbranded' candidate ki hai — system use dekh nahi pata."
-- **Slide 3:** "Yeh chhota problem nahi — har saal crore-on graduates, aur recruiters ka aadha time isi mein jaata hai."
-- **Slide 4:** "Humara fix simple hai — claim ko live test se verify karo. Score do, label nahi."
-- **Slide 5:** "Andar 5 AI components hain — extract, generate, evaluate, score, explain."
-- **Slide 6:** "Candidate 15 min mein verify ho jata hai, recruiter ko sirf proven talent dikhta hai."
-- **Slide 7:** "Aur yeh India ke liye bana hai — apni bhasha mein test, Tier-3 talent ko visibility, sasta."
-- **Slide 8:** "Yeh exactly woh hai jo Redrob 'Skill Tests' ke naam se banana chahta hai. Hum woh prototype de rahe hain."
-- **Slide 9:** "Impact: candidates ko fair chance, recruiters ko time-saving, India ko visibility."
-- **Slide 10:** "SkillProof — naukri college se nahi, hunar se. Dhanyavaad."
+- The persona is kept as a role (no name) — keep it generic if you prefer
+- Quickly verify the numbers (1.5 Cr, 60%) once, or write "approx"
+- This deck also matches the Track 1 build (both SkillProof) → one effort, two entries
 
 ---
 
-# ❓ JUDGE Q&A PREP (yeh sawaal poochenge — jawab ready rakho)
+## 🎙️ SPEAKER NOTES (to say on each slide — if you present live)
 
-| Sawaal | Tumhara jawab |
+> Put little on the slide, explain this out loud. ~30-45 sec per slide.
+
+- **Slide 1:** "Hi, we're [team]. Our idea is SkillProof — an AI that tells you whether a resume's 'expert' is actually an expert."
+- **Slide 2:** "This is the story of every talented but 'unbranded' candidate — the system can't see them."
+- **Slide 3:** "This isn't a small problem — crores of graduates each year, and recruiters spend half their time on it."
+- **Slide 4:** "Our fix is simple — verify the claim with a live test. Give a score, not a label."
+- **Slide 5:** "Inside, there are 5 AI components — extract, generate, evaluate, score, explain."
+- **Slide 6:** "A candidate is verified in 15 minutes; the recruiter sees only proven talent."
+- **Slide 7:** "And it's built for India — tests in your language, visibility for Tier-3 talent, affordable."
+- **Slide 8:** "This is exactly what Redrob wants to build as 'Skill Tests.' We're handing them the prototype."
+- **Slide 9:** "Impact: a fair chance for candidates, time-saving for recruiters, visibility for India."
+- **Slide 10:** "SkillProof — a job for your skill, not your college. Thank you."
+
+---
+
+## ❓ JUDGE Q&A PREP (they'll ask these — keep answers ready)
+
+| Question | Your answer |
 |---|---|
-| "Yeh scale kaise karega?" | "Cost-efficient open models pe; ek test generate karna < ₹1 padta hai." |
-| "Cheating kaise rokoge?" | "Time-boxed tasks + LLM plagiarism check + optional proctoring." |
-| "Redrob ko kya fayda?" | "700M profiles + verified scores = duniya ka sabse bharosemand talent pool. B2B revenue." |
-| "Yeh existing tools se kaise alag?" | "HackerRank coding-only hai; hum har skill + multilingual + degree-independent." |
-| "Paisa kaise banega?" | "Recruiters verified-pool access ke liye subscription denge." |
-| "Bias kaise handle karoge?" | "Score sirf performance pe; naam/college hide; fairness audit." |
+| "How will this scale?" | "On cost-efficient open models; generating one test costs < ₹1." |
+| "How do you stop cheating?" | "Time-boxed tasks + an LLM plagiarism check + optional proctoring." |
+| "What's in it for Redrob?" | "700M profiles + verified scores = the most trusted talent pool. B2B revenue." |
+| "How is this different from existing tools?" | "HackerRank is coding-only; we cover every skill + multilingual + degree-independent." |
+| "How do you make money?" | "Recruiters subscribe for verified-pool access." |
+| "How do you handle bias?" | "Score on performance only; hide name/college; run a fairness audit." |
 
 ---
 
-# 🎨 EXTRA — Design palette suggestion (clean + professional)
-- Background: white ya very-dark navy
-- Accent: ek bright color (Redrob-ish blue/teal)
-- Font: Inter / Poppins (headings bold, body regular)
-- Icons: Lucide / Flaticon (consistent set)
-- Har slide pe niche chhota footer: "SkillProof · #IndiaRuns"
+## 🎨 EXTRA — Design palette suggestion (clean + professional)
+- Background: white or very-dark navy
+- Accent: one bright color (Redrob-ish blue/teal)
+- Font: Inter / Poppins (bold headings, regular body)
+- Icons: Lucide / Flaticon (a consistent set)
+- A small footer on each slide: "SkillProof · #IndiaRuns"

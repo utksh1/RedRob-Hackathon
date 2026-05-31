@@ -1,169 +1,166 @@
-# 🏆 OFFICIAL PROBLEM STATEMENTS — Poori Detail (Simple Bhasha)
+# 🏆 OFFICIAL PROBLEM STATEMENTS — Full Detail (Plain English)
 
-> **Yeh document kya hai?**
-> Hackathon ne jo **official topics** diye hain, woh sab yahan hain — har ek ko ekdum simple bhasha mein, poori detail ke saath samjhaya gaya.
+> **What is this document?**
+> Every **official topic** the hackathon gave, explained in plain English with full depth.
 >
-> **Yeh saari baatein OFFICIAL hain** (hackathon ki website + intro session se li gayi). Meri taraf se jo *ideas* hain, woh alag file `CUSTOM_WINNING_IDEAS.md` mein hain.
+> **Everything here is OFFICIAL** (from the hackathon website + the intro session). My own *ideas* are in separate files (`REDROB_DEEP_DIVE_AND_IDEAS.md` and `CUSTOM_WINNING_IDEAS.md`).
 
 ---
 
-## 📊 SAARE TOPICS EK NAZAR MEIN (Total kitne hain?)
+## 📊 ALL TOPICS AT A GLANCE (how many are there?)
 
-| Track | Topic | Coding chahiye? | Submit kya karna hai |
+| Track | Topic | Coding needed? | What to submit |
 |---|---|---|---|
-| **Track 1** | Intelligent Candidate Discovery | Haan | Code + output file + doc |
-| **Track 2 — PS1** | AI Systems Architect | Nahi | PDF deck |
-| **Track 2 — PS2** | AI Growth Strategist | Nahi | PDF deck |
-| **Track 2 — PS3** | Everyday AI Innovator | Nahi | PDF deck |
-| **Track 3** | Create the Buzz (social media) | Nahi | Ek public post |
+| **Track 1** | Intelligent Candidate Discovery | Yes | Code + output file + doc |
+| **Track 2 — PS1** | AI Systems Architect | No | PDF deck |
+| **Track 2 — PS2** | AI Growth Strategist | No | PDF deck |
+| **Track 2 — PS3** | Everyday AI Innovator | No | PDF deck |
+| **Track 3** | Create the Buzz (social media) | No | One public post |
 
-> **Total = 5 official topics** (1 + 3 + 1). **Inse zyada koi topic nahi hai.** Yeh main official page aur intro session dono se confirm kar chuka hoon.
+> **Total = 5 official topics** (1 + 3 + 1). **There are no more than these.** I confirmed this from both the official page and the intro session.
 
-> **Ek confusion clear karta hoon:** Website pe kahin "Problem statement 22" aur "Problem statement 3" likha hai. Yeh sirf internal numbering hai —
-> - "Problem statement 22" = Track 2 ka **PS2** (MBA wala)
-> - "Problem statement 3" = Track 2 ka **PS3** (beginners wala)
-> Koi naya/extra topic nahi hai.
+> **One confusion cleared:** the website mentions "Problem statement 22" and "Problem statement 3" in places. That's just internal numbering —
+> - "Problem statement 22" = Track 2's **PS2** (the MBA/business one)
+> - "Problem statement 3" = Track 2's **PS3** (the beginners one)
+> There is no new/extra topic.
 
 ---
 ---
 
 # 🥇 TRACK 1 — THE DATA & AI CHALLENGE
-## Topic ka naam: "Intelligent Candidate Discovery" (Samajhdaar candidate khoj)
-## Inaam: ₹10 Lakh
+## Topic: "Intelligent Candidate Discovery"
+## Prize: ₹10 Lakh
 
-### 🔴 Problem kya hai? (Simple bhasha mein)
+### 🔴 The problem (in plain English)
 
-Socho ek company mein naukri nikli. Us ek naukri ke liye **hazaaron log** apply karte hain. Ab company kaise pata kare ki in hazaaron mein se **best kaun hai?**
+Imagine a company posts a job. **Thousands of people** apply for that single role. How does the company figure out **who's the best** among them?
 
-Aaj kal computer **sirf shabd (words) match karta hai** — ise "keyword filter" kehte hain. Iska problem:
+Today, computers mostly just **match words** — this is called a "keyword filter." Its flaw:
 
-- Naukri mein likha: *"JavaScript aana chahiye"*
-- Computer sirf un resumes ko dikhata hai jisme exact "JavaScript" shabd ho
-- **Lekin** agar kisi ne resume mein "JS" likha (jo JavaScript ka hi short form hai), toh computer use **reject** kar deta hai — chahe woh banda perfect ho!
+- The job says: *"Must know JavaScript"*
+- The computer only shows resumes that contain the exact word "JavaScript"
+- **But** if someone wrote "JS" (which *is* JavaScript), the computer **rejects** them — even if they're perfect!
 
-Iska matlab — **bahut achhe log sirf isliye chhoot jaate hain** ki unhone "sahi shabd" use nahi kiya. Inhe problem statement mein **"hidden gems" (chhupe heere)** kaha gaya hai.
+This means **great people get dropped** simply because they didn't use the "right word." The problem statement calls these **"hidden gems."**
 
-### 🟢 Tumhe kya banana hai?
+### 🟢 What you have to build
 
-Ek **smart AI system** jo:
-1. Shabd ke peeche ka **matlab** samjhe (sirf shabd nahi)
-2. Har candidate ko ek **rank** de — best (#1) se le ke kam fit (#100) tak
-3. **Reason** bhi de ki yeh rank kyun diya (taaki insaan samajh paaye)
+A **smart AI system** that:
+1. Understands the **meaning** behind words (not just the words)
+2. Gives each candidate a **rank** — from best (#1) down to less-fit (#100)
+3. Also gives a **reason** for each rank (so a human can understand it)
 
-Iska official description: *"Ek AI brain for modern hiring"* — ek aisa dimaag jo keywords se aage jaa ke context samjhe, relevance predict kare, aur hazaaron profiles ko ek chhoti precise list mein badle.
+The official description: *"An AI brain for modern hiring"* — one that goes beyond keywords to understand context, predict relevance, and turn a massive talent pool into one precise, ranked shortlist.
 
-### 📥 Tumhe kya milega? (Input / Dataset)
+### 📥 What you get (input / dataset)
 
-Hackathon tumhe ek **dataset (data ki file)** dega jisme:
-- **Professional profiles** — logon ke resume/profile (LinkedIn jaisa)
-- **Career metadata** — unke purane job titles, companies, kitne saal kaam kiya, seniority
-- **Activity / behavioral signals** — log platform pe kya karte hain (kitna active, reply karte hain ya nahi, profile poora bhara hai ya nahi). **👉 Yeh sabse important hidden cheez hai — isi se tum baaki teams se aage niklo ge.**
-- **Job descriptions (JD)** — naukri ka poora detail (kya skills chahiye, kitna experience)
+The hackathon gives you a **dataset** containing:
+- **Professional profiles** — people's resumes/profiles (LinkedIn-style)
+- **Career metadata** — past job titles, companies, years worked, seniority
+- **Activity / behavioral signals** — what people do on the platform (how active they are, whether they reply, whether their profile is complete). **👉 This is the most important hidden thing — it's how you'll get ahead of other teams.**
+- **Job descriptions (JD)** — the full detail of the role (required skills, experience)
 
-> ⚠️ **Sach:** Yeh dataset abhi public nahi hai. Registered logon ko Hack2skill dashboard pe milega ("agle hafte" intro session mein bola gaya). Jab tumhe mile, mujhe dena — main exact uske hisaab se plan bana dunga.
+> ⚠️ **The truth:** This dataset isn't public yet. Registered participants get it on the Hack2skill dashboard ("next week," per the intro session). When you have it, give it to me — I'll tailor the plan to it exactly.
 
-### 📤 Output kya dena hai?
+### 📤 What to output
 
-Ek **ranked list file** — har job ke liye best candidates rank order mein (1, 2, 3...). Format hackathon dega ("predefined format"), usse **exactly** follow karna.
+A **ranked list file** — for each job, the best candidates in rank order (1, 2, 3...). The format is provided by the hackathon ("predefined format") — follow it **exactly**.
 
-### 📦 Submit kya karna hai? (3 cheezein zaroori)
+### 📦 What to submit (3 required things)
 
-1. **GitHub repository** — tumhara poora code (saaf-suthra, organized)
-2. **Methodology document / README** — ek likhit explanation: tumne kya approach use kiya, kyun, system kaise kaam karta hai
-3. **Ranked output file** — final answer file (sahi format mein)
+1. **GitHub repository** — your full code (clean, organized)
+2. **Methodology document / README** — a written explanation: what approach you used, why, and how the system works
+3. **Ranked output file** — the final answer file (in the correct format)
 
-### ⚖️ Judges kya dekhenge? (Judging criteria — OFFICIAL)
+### ⚖️ What judges look at (judging criteria — OFFICIAL)
 
-1. **Ranking quality** — tumhari list kitni sahi hai (sabse zaroori)
-2. **Methodology clarity** — tumhara document kitna clear hai
-3. **Explainability** — *kya ek insaan samajh paa raha hai ki system ne yeh decision kyun liya?*
+1. **Ranking quality** — how accurate your list is (most important)
+2. **Methodology clarity** — how clear your document is
+3. **Explainability** — *can a human understand why the system made each decision?*
 
-> **👉 Sabse bada tip (Felix, Redrob CEO, ne intro session mein bola):**
-> *"Pehle dataset ke saath time bitao, phir banana shuru karo. Data ke andar ke signals tumhe architecture se zyada batayenge."*
-> Matlab — turant code mat likhna. Pehle data ko ghoor ke samjho.
+> **👉 The biggest tip (from Felix, Redrob's CEO, in the intro session):**
+> *"Spend time with the dataset before you start building. The signals in the data will tell you more than any architecture decision."*
+> Meaning — don't rush to code. First study the data closely.
 
-### 🏅 Track 1 ke inaam (poori list)
+### 🏅 Track 1 prizes (full list)
 
-| Award (naam) | Inaam | Kitne jeetenge |
+| Award | Prize | Winners |
 |---|---|---|
 | Grand Champion | ₹2 Lakh | 1 |
 | Elite Builders | ₹5 Lakh | 5 |
 | Special Tech Awards | ₹2 Lakh | 50+ (flexible) |
 | Strong Performers | ₹1 Lakh | 10 |
 
-> **Note:** Iska detailed step-by-step banane ka plan `TRACK1_EXECUTION_PLAN.md` mein hai. Yahan sirf topic samjhaya gaya.
+> **Note:** The detailed step-by-step build plan is in `TRACK1_EXECUTION_PLAN.md`. This file just explains the topic.
 
 ---
 ---
 
 # 🥈 TRACK 2 — THE IDEATHON
-## Topic ka naam: "Creating the Future of AI" (AI ka future banao)
-## Inaam: ₹30 Lakh (sabse bada!)
+## Topic: "Creating the Future of AI"
+## Prize: ₹30 Lakh (the biggest pool!)
 
-### Yeh track kya hai? (Simple mein)
-Yahan **coding nahi** karni. Yahan tumhe ek **idea** sochna hai aur use ek **PDF presentation (deck)** mein samjhana hai — **10 slide tak** (zyada nahi).
+### What is this track? (in plain English)
+**No coding here.** You have to think of an **idea** and explain it in a **PDF presentation (deck)** — up to **10 slides** (no more).
 
-Is track mein **3 alag topics** hain (PS1, PS2, PS3). **Sirf ek choose karna hai** — jo tumhare hisaab se best ho.
+This track has **3 separate topics** (PS1, PS2, PS3). **You pick just one** — whichever fits you best.
 
-### Har deck mein yeh 5 cheezein honi chahiye:
-1. **Problem** — kya dikkat hai (ek **specific** insaan/situation se shuru karo)
-2. **Solution** — tumhara idea kya hai aur kaise kaam karta hai
-3. **User journey** — ek insaan ise kaise use karega (step by step)
-4. **Visuals** — drawing/mockup/screenshot (optional, par bahut help karta hai)
-5. **Impact** — India mein iska kya fayda
+### Every deck must have these 5 things:
+1. **Problem** — what's wrong (start from a **specific** person/situation)
+2. **Solution** — what your idea is and how it works
+3. **User journey** — how a person uses it (step by step)
+4. **Visuals** — drawings/mockups/screenshots (optional, but they help a lot)
+5. **Impact** — what good it does in India
 
-> **Felix ka tip:** *"Deck 10 slide se kam rakho. Clarity (saafgoi) hamesha quantity (zyada) se jeetti hai. Best pitch ek specific problem se shuru hota hai — ek insaan, ek pal, ek cheez jo zaroorat se zyada mushkil hai — phir uska fix dikhao."*
+> **Felix's tip:** *"Keep the deck under 10 slides. Clarity always beats quantity. The best pitch starts with one specific problem — one person, one moment, one thing harder than it should be — then shows the fix."*
 
 ---
 
 ## 📌 PS1 — THE AI SYSTEMS ARCHITECT: "Reimagining Work"
-### (Kaam ko naye sire se sochna)
 
-**Kiske liye:** Developers, engineers, system architects — woh log jo technical hain par yahan **sochna** chahte hain, code nahi karna.
+**Who it's for:** Developers, engineers, system architects — people who are technical but want to **think/design** here, not write code.
 
-**Topic (simple mein):** Ek **groundbreaking technical AI system** ka design socho jo kaam karne ka tareeka badal de. Jaise:
-- **Autonomous agents** — AI jo apne aap kaam kare (jaise ek robot-assistant jo khud decisions le)
-- **Super-smart search** — bahut behtar search system
-- **AI orchestration** — kayi AI mil ke kaam karein
-- **AI co-pilots** — AI jo insaan ke saath-saath kaam kare aur use bahut productive bana de
+**The topic (in plain English):** Design a **groundbreaking technical AI system** that changes the way work gets done. For example:
+- **Autonomous agents** — AI that does work on its own (like a robot-assistant that makes its own decisions)
+- **Super-smart search** — a much better search system
+- **AI orchestration** — multiple AIs working together
+- **AI co-pilots** — AI that works alongside a human and makes them far more productive
 
-**Submit:** Ek PDF deck jisme system ka design + kaise kaam karega (diagram ke saath).
+**Submit:** A PDF deck with the system design + how it works (with a diagram).
 
-> **Iske best ideas `REDROB_DEEP_DIVE_AND_IDEAS.md` mein hain** (jaise "SkillProof" — AI Skill-Verification, Redrob ke "Skill Tests" feature pe based; ya "OutreachIQ" — autonomous sales/GTM agent).
+> **Its best ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md`** (e.g., "SkillProof" — AI Skill-Verification, based on Redrob's "Skill Tests" feature; or "OutreachIQ" — an autonomous sales/GTM agent).
 
 ---
 
 ## 📌 PS2 — THE AI GROWTH STRATEGIST: "Making AI Go Viral"
-### (AI product ko famous kaise banayein)
 
-**Kiske liye:** MBA students, product managers, growth/marketing wale log. *(Website pe ise "Problem statement 22" bhi likha hai.)*
+**Who it's for:** MBA students, product managers, growth/marketing people. *(The website also calls this "Problem statement 22.")*
 
-**Topic (simple mein):** Ek revolutionary AI product ko India mein **explode (bahut bada)** kaise banaoge? Pura plan banao:
-- User pehli baar aaye se le ke uska **pakka fan** ban-ne tak ka journey
-- **Trust** (bharosa) kaise banayein
-- **Paisa** kaise kamayein (monetization)
-- **Viral** kaise ho (log dosto ko batayein)
+**The topic (in plain English):** How would you make a revolutionary AI product **explode (go huge)** in India? Build the full plan:
+- The journey from a user's first click to becoming a loyal fan
+- How to build **trust**
+- How to **make money** (monetization)
+- How it goes **viral** (people tell their friends)
 
-**Submit:** Ek PDF deck jisme growth/business plan ho (numbers ke saath — MBA wale numbers dekhte hain).
+**Submit:** A PDF deck with a growth/business plan (with numbers — MBA judges look for numbers).
 
-> **Iska SABSE POWERFUL idea `REDROB_DEEP_DIVE_AND_IDEAS.md` mein hai** — "Road to 10 Million" (Redrob ko 1 crore users tak le jaane ka B2C→B2B plan, unke apne target pe based).
+> **Its most powerful idea is in `REDROB_DEEP_DIVE_AND_IDEAS.md`** — "Road to 10 Million" (a plan to take Redrob to 1 crore users, based on their own target).
 
 ---
 
 ## 📌 PS3 — THE EVERYDAY AI INNOVATOR: "Life, Made Better"
-### (Rozmarra zindagi behtar banao)
 
-**Kiske liye:** Students, designers, creators, **first-time participants (beginners)**. Yeh topic **khaaskar beginners** ke liye banaya gaya hai.
+**Who it's for:** Students, designers, creators, **first-time participants (beginners)**. This topic was **specifically designed for beginners.**
 
-**Topic (simple mein):** Ek **SIMPLE** AI feature socho jo India mein kisi aam insaan ki **rozmarra zindagi** ko genuinely behtar kare. Complex nahi — bas real, clear, aur India ke hisaab se.
+**The topic (in plain English):** Think of a **SIMPLE** AI feature that genuinely improves the **everyday life** of an ordinary person in India. Not complex — just real, clear, and made for India.
 
-**Submit:** Ek PDF deck jisme ek simple AI feature ka idea + woh kaise kaam karega.
+**Submit:** A PDF deck with one simple AI feature idea + how it works.
 
-> **Best ideas `REDROB_DEEP_DIVE_AND_IDEAS.md` mein hain** (jaise "VoiceResume" — bol ke resume + auto-apply, Redrob ke "Resume Builder" feature pe based).
+> **Best ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md`** (e.g., "VoiceResume" — speak to build a resume + auto-apply, based on Redrob's "Resume Builder" feature).
 
-### 🏅 Track 2 ke inaam (poori list)
+### 🏅 Track 2 prizes (full list)
 
-| Award | Inaam | Kitne jeetenge |
+| Award | Prize | Winners |
 |---|---|---|
 | Track Champion | ₹2 Lakh | 1 |
 | Runner Ups | ₹2 Lakh | 2 |
@@ -176,42 +173,41 @@ Is track mein **3 alag topics** hain (PS1, PS2, PS3). **Sirf ek choose karna hai
 ---
 
 # 🥉 TRACK 3 — SOCIAL MEDIA CHALLENGE
-## Topic ka naam: "Create the Buzz" (Halchal machao)
-## Inaam: ₹10 Lakh · ⚠️ Sabse jaldi deadline (4 June)
+## Topic: "Create the Buzz"
+## Prize: ₹10 Lakh · ⚠️ Earliest deadline (4 June)
 
-### Yeh track kya hai? (Simple mein)
-Bas ek **social media post** banao jisme AI aur India ke baare mein apni **sachhi, original raay** ho. Hashtag **#IndiaRuns** zaroor lagao. Post **public** honi chahiye. Bas itna hi!
+### What is this track? (in plain English)
+Just make a **social media post** sharing your **honest, original opinion** about AI and India. Add the hashtag **#IndiaRuns**. The post must be **public**. That's it!
 
-> **Sabse easy track. 525+ log jeetenge. 20 minute ka kaam.**
+> **The easiest track. 525+ winners. ~20 minutes of work.**
 
-### Rules (zaroori, warna count nahi hogi):
-- Post **public** ho
-- Hashtag **#IndiaRuns** ho
-- Tum **registered** ho
-- Content **original** ho (apna banaya)
-- Koi bhi platform — LinkedIn / X (Twitter) / Instagram / YouTube / Medium / blog
+### Rules (required, or your entry won't count):
+- The post must be **public** (not private)
+- The hashtag **#IndiaRuns** must be present
+- You must be **registered**
+- The content must be **original** (made by you)
+- Any platform — LinkedIn / X (Twitter) / Instagram / YouTube / Medium / blog
 
-### Theme (7 mein se ek choose karo):
-| Theme | Matlab |
+### Themes (pick one of 7):
+| Theme | Meaning |
 |---|---|
-| The Next Big Thing | Aane wale coolest AI products |
-| **Hiring Heroes** ⭐ | AI naukri ko kaise badal raha hai |
-| AI in Your Day | Rozmarra ki AI cheezein |
-| **Redrob Rulz** ⭐ | Redrob platform ka cool use |
-| Level Up Your Life | AI se kaam aasaan |
-| The Creator Economy | AI aur creators |
-| Digital Dreams | Online career ka future |
+| The Next Big Thing | Coolest upcoming AI products |
+| **Hiring Heroes** ⭐ | How AI is changing jobs |
+| AI in Your Day | Everyday AI things |
+| **Redrob Rulz** ⭐ | A cool use of the Redrob platform |
+| Level Up Your Life | Making work easier with AI |
+| The Creator Economy | AI and creators |
+| Digital Dreams | The future of online careers |
 
-> ⭐ **Hiring Heroes** aur **Redrob Rulz** judges ko zyada pasand aayenge (Redrob se direct juda).
+> ⭐ Pick **"Hiring Heroes" or "Redrob Rulz"** — they connect directly to Redrob, so judges will like them more.
 
-### 👉 Sabse zaroori baat (Felix ne bola):
-*"Achhi soch (original thinking) mehengi video (production quality) se zyada important hai."*
-Matlab — ek simple par sachhi, dimaag wali baat zyada jeetegi, bajaye ek mehengi par khaali video ke.
-Aur: *"AI important hai"* — yeh koi raay nahi hai. Apni **asli, specific** raay do.
+### 👉 The most important point (Felix said this):
+*"Original thinking matters more than production quality."*
+Meaning — one simple but honest, thoughtful point beats one expensive but empty video. And: *"AI is important"* is **not** an opinion. Give your **real, specific** take.
 
-### 🏅 Track 3 ke inaam (525+ winners!)
+### 🏅 Track 3 prizes (525+ winners!)
 
-| Award | Inaam | Kitne jeetenge |
+| Award | Prize | Winners |
 |---|---|---|
 | Grand Winners | ₹1 Lakh | 5 |
 | Star Creators | ₹1.5 Lakh | 20 |
@@ -221,82 +217,81 @@ Aur: *"AI important hai"* — yeh koi raay nahi hai. Apni **asli, specific** raa
 | Recognition Pool | ₹1.5 Lakh | 150+ |
 | Surprise Drops | ₹50K | Flexible |
 
-> **Ready-to-post drafts (copy karke post karo) `TRACK3_EXECUTION_PLAN.md` mein hain.**
+> **Ready-to-post drafts are in `TRACK3_EXECUTION_PLAN.md`.**
 
 ---
 ---
 
-# ✅ SAB CONFIRM (Sach-sach)
+# 📐 ADVANCED — "Winning vs Losing" + How Scoring Really Works
 
-- **Official topics: sirf 5** (upar wale). Inse zyada kuch nahi.
-- Prizes, dates, rules — sab official source se verified.
-- **Track 1 dataset abhi nahi aaya** — yeh tumhare end pe pending hai.
-- **Registration date** pe halka confusion hai (8 June vs 28 June) — jaldi register karke safe raho.
-
-> Agla step: in topics ke andar **kya banana hai** — woh `CUSTOM_WINNING_IDEAS.md` mein ready hai. Aur **kaise banana hai** — woh teeno TRACK files mein step-by-step hai.
-
-
----
----
-
-# 📐 ADVANCED — Har PS ke liye "Winning vs Losing" + Scoring Samajh
-
-> Yeh section batata hai ki har topic mein **jeetne wali submission** vs **haarne wali submission** mein kya farak hota hai. Yeh padh ke tum apni submission ko self-check kar sakte ho.
+> This section shows the difference between a **winning** and a **losing** submission in each topic. Use it to self-check your own work.
 
 ## TRACK 1 — Candidate Discovery
 
-| Cheez | ❌ Haarne wali submission | ✅ Jeetne wali submission |
+| Aspect | ❌ Losing submission | ✅ Winning submission |
 |---|---|---|
-| Approach | Sirf cosine similarity | 2-stage retrieve→rerank + Learning-to-Rank |
-| Signals | Sirf skills/text | Behavioral signals bhi (activity, intent) |
-| Output | Sirf ranked list | List + per-candidate "kyun" |
-| India-edge | Kuch nahi | Multilingual + hidden-gem + fairness |
-| Proof | "Humne accha banaya" | NDCG/MAP table + ablation + error analysis |
-| Doc | 1-para README | Structured methodology + architecture diagram |
+| Approach | Just cosine similarity | 2-stage retrieve→rerank + Learning-to-Rank |
+| Signals | Only skills/text | Behavioral signals too (activity, intent) |
+| Output | Just a ranked list | List + a "why" for each candidate |
+| India-edge | Nothing | Multilingual + hidden-gem + fairness |
+| Proof | "We built it well" | NDCG/MAP table + ablation + error analysis |
+| Doc | 1-paragraph README | Structured methodology + architecture diagram |
 
-## TRACK 2 — Ideathon (sab PS)
+## TRACK 2 — Ideathon (all PS)
 
-| Cheez | ❌ Haarne wala deck | ✅ Jeetne wala deck |
+| Aspect | ❌ Losing deck | ✅ Winning deck |
 |---|---|---|
-| Problem | "India needs AI" (broad) | Ek specific person/moment |
-| Idea | Generic "AI chatbot for X" | Redrob ka coming-soon feature / GTM |
-| Slides | 20+ text-heavy | ≤10, visual, ek idea per slide |
-| Redrob fit | Naam tak nahi liya | Ek poora "Redrob fit" slide |
-| Business | Kuch nahi | Model + numbers (PS2 mein zaroori) |
-| Tech | Hawa mein | Ek tech-stack slide (PS1) |
+| Problem | "India needs AI" (broad) | One specific person/moment |
+| Idea | Generic "AI chatbot for X" | A Redrob Coming-Soon feature / GTM |
+| Slides | 20+ text-heavy | ≤10, visual, one idea per slide |
+| Redrob fit | Didn't even mention it | A full "Redrob fit" slide |
+| Business | Nothing | Model + numbers (required in PS2) |
+| Tech | Vague | A tech-stack slide (PS1) |
 | Visuals | Stock photos | Real mockups/diagrams |
 
 ## TRACK 3 — Social Media
 
-| Cheez | ❌ Haarne wala post | ✅ Jeetne wala post |
+| Aspect | ❌ Losing post | ✅ Winning post |
 |---|---|---|
-| Opinion | "AI is the future" (generic) | Ek bold, specific POV |
-| Hook | Boring pehli line | Scroll rokne wala hook |
-| Voice | AI-generated lifeless | Authentic, personal |
+| Opinion | "AI is the future" (generic) | A bold, specific point of view |
+| Hook | Boring first line | A scroll-stopping hook |
+| Voice | Lifeless AI-generated text | Authentic, personal |
 | Hashtag | #IndiaRuns missing | #IndiaRuns + 2-3 relevant |
-| Engagement | Koi CTA nahi | End mein sawaal + fast replies |
+| Engagement | No call to action | A question at the end + fast replies |
 | Theme | Random | Hiring Heroes / Redrob Rulz |
 
 ---
 
-# 🎯 SELF-CHECK: Submit karne se pehle yeh poocho
+# 🎯 SELF-CHECK: Ask these before submitting
 
-Har submission pe yeh 4 sawaal — agar chaaron "haan", tum top mein ho:
-1. **Kya yeh ek REAL, specific problem solve karta hai?** (broad nahi)
-2. **Kya yeh Redrob ke business (hiring/sales/cheap-multilingual-AI) se judta hai?**
-3. **Kya yeh KAAM karta dikhta hai?** (Track 1: demo/metrics; Track 2: clear flow; Track 3: real voice)
-4. **Kya India-angle clear hai?** (vernacular/Tier-2-3/cost)
+For every submission — if all four are "yes," you're in the top tier:
+1. **Does this solve a REAL, specific problem?** (not broad)
+2. **Does it connect to Redrob's business (hiring / sales / cheap-multilingual AI)?**
+3. **Does it look like it WORKS?** (Track 1: demo/metrics; Track 2: clear flow; Track 3: real voice)
+4. **Is the India angle clear?** (vernacular / Tier-2-3 / cost)
 
-> Agar koi bhi "nahi" hai — wahan kaam karo submit karne se pehle.
+> If any is "no" — fix that before submitting.
 
 ---
 
-# 📊 PRIZE STRATEGY — Effort kahan lagana (ROI ke hisaab se)
+# 📊 PRIZE STRATEGY — Where to spend effort (by ROI)
 
-| Track | Total prize | Winners | Tumhare jeetne ka chance | Effort | ROI |
+| Track | Total prize | Winners | Your chance of winning | Effort | ROI |
 |---|---|---|---|---|---|
-| Track 1 | ₹10L | ~66 | High (objective, kam competition) | High | ⭐⭐⭐⭐⭐ |
-| Track 3 | ₹10L | 525+ | High (bahut winners) | Low | ⭐⭐⭐⭐⭐ |
-| Track 2 | ₹30L | ~103 | Medium (subjective, zyada competition) | Medium | ⭐⭐⭐⭐ |
+| Track 1 | ₹10L | ~66 | High (objective, less competition) | High | ⭐⭐⭐⭐⭐ |
+| Track 3 | ₹10L | 525+ | High (many winners) | Low | ⭐⭐⭐⭐⭐ |
+| Track 2 | ₹30L | ~103 | Medium (subjective, more competition) | Medium | ⭐⭐⭐⭐ |
 
-> **Best ROI plan:** Track 1 (high effort, high chance) + Track 3 (low effort, high chance) zaroor karo. Track 2 agar time bache (Track 1 ka kaam reuse karke).
+> **Best ROI plan:** Definitely do Track 1 (high effort, high chance) + Track 3 (low effort, high chance). Do Track 2 if you have time left (by reusing the Track 1 work).
+
+---
+---
+
+# ✅ ALL CONFIRMED (the honest truth)
+
+- **Official topics: only 5** (the ones above). Nothing more.
+- Prizes, dates, rules — all verified from official sources.
+- **The Track 1 dataset hasn't arrived yet** — that's pending on your end.
+- **There's a minor confusion about the registration date** (8 June vs 28 June) — register early to be safe.
+
+> Next step: what to build inside these topics is ready in `REDROB_DEEP_DIVE_AND_IDEAS.md`. And how to build it is step-by-step in the three TRACK files.
