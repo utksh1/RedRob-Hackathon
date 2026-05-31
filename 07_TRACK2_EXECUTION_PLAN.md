@@ -66,7 +66,7 @@
 ## Step-by-step:
 
 ### Step 1 — Finalize the idea
-**⭐ Best (from the deep-dive): "SkillProof — AI Skill-Verification Engine"** — based on Redrob's "Skill Tests" Coming-Soon feature, it hits Felix's visibility-philosophy. Full detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
+**⭐ Best (from the deep-dive): "SkillProof — AI Skill-Verification Engine"** — based on Redrob's "Skill Tests" Coming-Soon feature, it hits Felix's visibility-philosophy. Full detail in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
 Other strong options (deep-dive):
 - **OutreachIQ** 🆕 — an autonomous sales/GTM agent (half of Redrob's business is sales; few people will think of this = you stand out)
@@ -180,7 +180,7 @@ Felix: don't think broad. Example:
 > "A Tier-3 town student. Finds writing an English resume hard. Misses good jobs."
 
 ### Step 2 — Finalize one feature (just one!)
-**⭐ Best: "VoiceResume"** (speak in your language → AI makes an English resume + auto-applies to matching jobs). Redrob's "Resume Builder" Coming-Soon feature. Detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
+**⭐ Best: "VoiceResume"** (speak in your language → AI makes an English resume + auto-applies to matching jobs). Redrob's "Resume Builder" Coming-Soon feature. Detail in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
 Other options: PrepPilot (multilingual interview coach), CareerPulse (career insights). (Keep it career/hiring-related — avoid ideas far from Redrob's core.)
 
@@ -237,7 +237,7 @@ Slides 9-10: VISION (the big dream — inspire the judge)
 - **AI deck (fastest):** Gamma.app — input your idea, it auto-builds, then polish
 
 ## D. The "tech awareness" slide (a must for PS1, since judges are engineers)
-Show your stack on one slide (detail in `IDEAS_DEEP_PLUS_TECH_STACK.md`):
+Show your stack on one slide (detail in `05_IDEAS_DEEP_PLUS_TECH_STACK.md`):
 > "GPT-4o reasoning · bge-m3 multilingual embeddings · Judge0 verification · served cost-efficiently on open models for India scale."
 This shows you're not only a thinker — you can build too.
 
@@ -262,8 +262,8 @@ This shows you're not only a thinker — you can build too.
 - [ ] Spelling/grammar check (English judges)
 
 ## G. 2 ready decks already exist
-- **`DECK_SkillProof_Track2_PS1.md`** — slide-by-slide content ready
-- **`DECK_OutreachIQ_Track2_PS1.md`** — slide-by-slide content ready
+- **`09_DECK_SkillProof_Track2_PS1.md`** — slide-by-slide content ready
+- **`10_DECK_OutreachIQ_Track2_PS1.md`** — slide-by-slide content ready
 > Put these straight into Gamma/Canva → PDF ready.
 
 ## H. Common deck mistakes (that make a losing deck)

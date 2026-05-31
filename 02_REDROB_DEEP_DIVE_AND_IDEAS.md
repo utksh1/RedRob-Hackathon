@@ -97,7 +97,7 @@ Track 1 = Redrob's own Resume Ranker. So you must build something **better + dif
 
 > 🧠 **Deep-understanding bonus (writing this impresses the judge):** In your methodology doc, write one line — *"This ranking engine isn't only for hiring; the same approach powers lead-ranking in Redrob's GTM / People Search."* This shows you understand Redrob's FULL business, not just hiring.
 
-> Full technical step-by-step is in `TRACK1_EXECUTION_PLAN.md`. This is just the winning positioning.
+> Full technical step-by-step is in `06_TRACK1_EXECUTION_PLAN.md`. This is just the winning positioning.
 
 ---
 
@@ -324,7 +324,7 @@ Best angles:
 3. **"I built a Resume Ranker at India Runs — here's why keyword filters break"** — build-in-public.
 4. **"27 tabs, 6 AI tools — that's not work, that's survival"** — the fragmentation problem (Redrob's line).
 
-> Ready-to-post drafts are in `TRACK3_EXECUTION_PLAN.md`. Add these angles there.
+> Ready-to-post drafts are in `08_TRACK3_EXECUTION_PLAN.md`. Add these angles there.
 
 ---
 ---

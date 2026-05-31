@@ -3,7 +3,7 @@
 > **What is this document?**
 > Every **official topic** the hackathon gave, explained in plain English with full depth.
 >
-> **Everything here is OFFICIAL** (from the hackathon website + the intro session). My own *ideas* are in separate files (`REDROB_DEEP_DIVE_AND_IDEAS.md` and `CUSTOM_WINNING_IDEAS.md`).
+> **Everything here is OFFICIAL** (from the hackathon website + the intro session). My own *ideas* are in separate files (`02_REDROB_DEEP_DIVE_AND_IDEAS.md` and `04_CUSTOM_WINNING_IDEAS.md`).
 
 ---
 
@@ -91,7 +91,7 @@ A **ranked list file** — for each job, the best candidates in rank order (1, 2
 | Special Tech Awards | ₹2 Lakh | 50+ (flexible) |
 | Strong Performers | ₹1 Lakh | 10 |
 
-> **Note:** The detailed step-by-step build plan is in `TRACK1_EXECUTION_PLAN.md`. This file just explains the topic.
+> **Note:** The detailed step-by-step build plan is in `06_TRACK1_EXECUTION_PLAN.md`. This file just explains the topic.
 
 ---
 ---
@@ -128,7 +128,7 @@ This track has **3 separate topics** (PS1, PS2, PS3). **You pick just one** — 
 
 **Submit:** A PDF deck with the system design + how it works (with a diagram).
 
-> **Its best ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md`** (e.g., "SkillProof" — AI Skill-Verification, based on Redrob's "Skill Tests" feature; or "OutreachIQ" — an autonomous sales/GTM agent).
+> **Its best ideas are in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`** (e.g., "SkillProof" — AI Skill-Verification, based on Redrob's "Skill Tests" feature; or "OutreachIQ" — an autonomous sales/GTM agent).
 
 ---
 
@@ -144,7 +144,7 @@ This track has **3 separate topics** (PS1, PS2, PS3). **You pick just one** — 
 
 **Submit:** A PDF deck with a growth/business plan (with numbers — MBA judges look for numbers).
 
-> **Its most powerful idea is in `REDROB_DEEP_DIVE_AND_IDEAS.md`** — "Road to 10 Million" (a plan to take Redrob to 1 crore users, based on their own target).
+> **Its most powerful idea is in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`** — "Road to 10 Million" (a plan to take Redrob to 1 crore users, based on their own target).
 
 ---
 
@@ -156,7 +156,7 @@ This track has **3 separate topics** (PS1, PS2, PS3). **You pick just one** — 
 
 **Submit:** A PDF deck with one simple AI feature idea + how it works.
 
-> **Best ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md`** (e.g., "VoiceResume" — speak to build a resume + auto-apply, based on Redrob's "Resume Builder" feature).
+> **Best ideas are in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`** (e.g., "VoiceResume" — speak to build a resume + auto-apply, based on Redrob's "Resume Builder" feature).
 
 ### 🏅 Track 2 prizes (full list)
 
@@ -217,7 +217,7 @@ Meaning — one simple but honest, thoughtful point beats one expensive but empt
 | Recognition Pool | ₹1.5 Lakh | 150+ |
 | Surprise Drops | ₹50K | Flexible |
 
-> **Ready-to-post drafts are in `TRACK3_EXECUTION_PLAN.md`.**
+> **Ready-to-post drafts are in `08_TRACK3_EXECUTION_PLAN.md`.**
 
 ---
 ---
@@ -294,4 +294,4 @@ For every submission — if all four are "yes," you're in the top tier:
 - **The Track 1 dataset hasn't arrived yet** — that's pending on your end.
 - **There's a minor confusion about the registration date** (8 June vs 28 June) — register early to be safe.
 
-> Next step: what to build inside these topics is ready in `REDROB_DEEP_DIVE_AND_IDEAS.md`. And how to build it is step-by-step in the three TRACK files.
+> Next step: what to build inside these topics is ready in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`. And how to build it is step-by-step in the three TRACK files.

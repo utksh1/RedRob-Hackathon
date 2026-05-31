@@ -1,7 +1,7 @@
 # 💡 CUSTOM WINNING IDEAS — Extra Options (Backup File)
 
 > ## ⚠️ READ THIS FIRST (important)
-> The **strongest, most up-to-date ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md` — read that first.**
+> The **strongest, most up-to-date ideas are in `02_REDROB_DEEP_DIVE_AND_IDEAS.md` — read that first.**
 > This file is a **backup / extra options** file. Each idea below uses the full detail structure:
 > **Objective → 👤 Story → 🎯 What to build → ⚙️ How it works → 🏆 Why it wins → 📊 What to show.**
 >
@@ -154,7 +154,7 @@ An AI assistant that works over WhatsApp. The owner just speaks in their own lan
 
 ### 💎 IDEA 3 — "SkillProof" (fake-resume catcher / skill verifier)
 > *(Redrob-style name: SkillProof.)*
-> ✅ **STILL STRONG** — this is the deep-dive's #1 idea. It matches Redrob's "Skill Tests" Coming-Soon feature. **The full upgraded version is in `REDROB_DEEP_DIVE_AND_IDEAS.md` under "SkillProof" — use that.**
+> ✅ **STILL STRONG** — this is the deep-dive's #1 idea. It matches Redrob's "Skill Tests" Coming-Soon feature. **The full upgraded version is in `02_REDROB_DEEP_DIVE_AND_IDEAS.md` under "SkillProof" — use that.**
 
 **Objective:** An AI that verifies whether a resume's skill claims are real, using a live test.
 
@@ -164,7 +164,7 @@ An AI assistant that works over WhatsApp. The owner just speaks in their own lan
 
 **🏆 Why it wins:** Trust is the most important part of hiring. Redrob needs this too (their "Skill Tests" feature).
 
-**📊 What to show:** see the full version in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
+**📊 What to show:** see the full version in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
 ---
 ---
@@ -304,7 +304,7 @@ Redrob **itself said** it wants 1 crore Indian users by December 2026. You hand 
 
 # 🥉 TRACK 3 — Social Media Post (ideas)
 
-> Full ready-to-post drafts are in `TRACK3_EXECUTION_PLAN.md`. Here are just the ideas + why they win.
+> Full ready-to-post drafts are in `08_TRACK3_EXECUTION_PLAN.md`. Here are just the ideas + why they win.
 
 ### IDEA 1 ⭐ — "What I built at the hackathon" (your own story)
 Post the story of what you're building in Track 1/2: *"I built an AI recruiter — here are 5 things I learned."*

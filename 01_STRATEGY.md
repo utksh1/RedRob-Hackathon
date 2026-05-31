@@ -8,18 +8,18 @@
 
 | File | What you'll find | When to read |
 |---|---|---|
-| **STRATEGY.md** (this file) | Full overview + game plan | First |
-| **REDROB_DEEP_DIVE_AND_IDEAS.md** | ⭐ Deep understanding of Redrob + the STRONGEST ideas + judge psychology | Before finalizing an idea (MOST IMPORTANT) |
-| **WINNING_PROBLEM_STATEMENTS.md** | Official topics + winning-vs-losing + self-check | To understand the topics |
-| **CUSTOM_WINNING_IDEAS.md** | Extra ideas + PS2/PS3 deck outlines + decision tree | If you want more options |
-| **IDEAS_DEEP_PLUS_TECH_STACK.md** | ⭐ Best tech stack per idea + 42-day roadmap + cost budget | Before building (to decide tech) |
-| **TRACK1_EXECUTION_PLAN.md** | Coding track step-by-step + advanced technical detail | While building Track 1 |
-| **TRACK2_EXECUTION_PLAN.md** | Deck-building plan + deck craft + delivery | While doing Track 2 |
-| **TRACK3_EXECUTION_PLAN.md** | Social media plan + ready drafts + virality mechanics | While doing Track 3 |
-| **DECK_SkillProof_Track2_PS1.md** | SkillProof's slide-by-slide ready content | While building the deck |
-| **DECK_OutreachIQ_Track2_PS1.md** | OutreachIQ's slide-by-slide ready content | While building the deck |
+| **01_STRATEGY.md** (this file) | Full overview + game plan | First |
+| **02_REDROB_DEEP_DIVE_AND_IDEAS.md** | ⭐ Deep understanding of Redrob + the STRONGEST ideas + judge psychology | Before finalizing an idea (MOST IMPORTANT) |
+| **03_WINNING_PROBLEM_STATEMENTS.md** | Official topics + winning-vs-losing + self-check | To understand the topics |
+| **04_CUSTOM_WINNING_IDEAS.md** | Extra ideas + PS2/PS3 deck outlines + decision tree | If you want more options |
+| **05_IDEAS_DEEP_PLUS_TECH_STACK.md** | ⭐ Best tech stack per idea + 42-day roadmap + cost budget | Before building (to decide tech) |
+| **06_TRACK1_EXECUTION_PLAN.md** | Coding track step-by-step + advanced technical detail | While building Track 1 |
+| **07_TRACK2_EXECUTION_PLAN.md** | Deck-building plan + deck craft + delivery | While doing Track 2 |
+| **08_TRACK3_EXECUTION_PLAN.md** | Social media plan + ready drafts + virality mechanics | While doing Track 3 |
+| **09_DECK_SkillProof_Track2_PS1.md** | SkillProof's slide-by-slide ready content | While building the deck |
+| **10_DECK_OutreachIQ_Track2_PS1.md** | OutreachIQ's slide-by-slide ready content | While building the deck |
 
-> ⭐ **Reading order:** STRATEGY (this) → REDROB_DEEP_DIVE (best ideas + judge psychology) → IDEAS_DEEP_PLUS_TECH_STACK (stack) → your track's EXECUTION_PLAN → the DECK file (if Track 2).
+> ⭐ **Reading order:** 01_STRATEGY (this) → 02_REDROB_DEEP_DIVE (best ideas + judge psychology) → 05_IDEAS_DEEP_PLUS_TECH_STACK (stack) → your track's EXECUTION_PLAN → the DECK file (if Track 2).
 
 ---
 
@@ -48,7 +48,7 @@ Their thinking: *"Today's AI (like ChatGPT) was built in America, costs $200/mon
 > 3. **Felix (CEO) is not an engineer — he's a lawyer + business mind.** He values clarity + real impact, not fancy tech.
 > 4. **Their core belief:** *"There's no shortage of talent, only of visibility"* (the visibility problem) + *"AI shouldn't just answer, it should work"* (execution).
 >
-> 👉 **The full breakdown + strongest ideas are in `REDROB_DEEP_DIVE_AND_IDEAS.md` — read that first.**
+> 👉 **The full breakdown + strongest ideas are in `02_REDROB_DEEP_DIVE_AND_IDEAS.md` — read that first.**
 
 ---
 
@@ -98,7 +98,7 @@ The hackathon has 3 "tracks." A track means a category/path. You can enter one o
 
 > Meaning: three entries from one effort! The most efficient path to winning.
 >
-> ⭐ **The strongest single idea (from the deep-dive): "SkillProof — AI Skill-Verification Engine"** — it hits Felix's visibility philosophy + a Redrob Coming-Soon feature + multilingual + hiring, all at once. Detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
+> ⭐ **The strongest single idea (from the deep-dive): "SkillProof — AI Skill-Verification Engine"** — it hits Felix's visibility philosophy + a Redrob Coming-Soon feature + multilingual + hiring, all at once. Detail in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
 **If you DON'T know how to code:**
 - Focus on **Track 2 (PS2 — business plan)** + do **Track 3 (post)**. Neither needs coding.
@@ -157,7 +157,7 @@ The judges are from Redrob. They'll pick the team that works **with an understan
 - Redrob does **hiring + sales + cheap multilingual AI**
 - Their target: 1 crore users by Dec 2026
 - Their philosophy: "talent lacks visibility," "AI should work, not just answer"
-> Detail in `REDROB_DEEP_DIVE_AND_IDEAS.md`.
+> Detail in `02_REDROB_DEEP_DIVE_AND_IDEAS.md`.
 
 ### 2. Show execution (an idea isn't enough)
 - Track 1: working code + demo + metrics
@@ -201,9 +201,9 @@ Track 2 PS3 (VoiceResume) — simple, clear
 ### Now (immediately):
 - [ ] Confirm registration (date confusion — do it early)
 - [ ] Finalize the team (max 4)
-- [ ] Read the Redrob deep-dive (`REDROB_DEEP_DIVE_AND_IDEAS.md`)
-- [ ] Finalize the idea (decision tree in `CUSTOM_WINNING_IDEAS.md`)
-- [ ] Decide the tech stack (`IDEAS_DEEP_PLUS_TECH_STACK.md`)
+- [ ] Read the Redrob deep-dive (`02_REDROB_DEEP_DIVE_AND_IDEAS.md`)
+- [ ] Finalize the idea (decision tree in `04_CUSTOM_WINNING_IDEAS.md`)
+- [ ] Decide the tech stack (`05_IDEAS_DEEP_PLUS_TECH_STACK.md`)
 
 ### Track 1 (if coding):
 - [ ] Setup + practice on dummy data (before the dataset)
@@ -220,7 +220,7 @@ Track 2 PS3 (VoiceResume) — simple, clear
 
 ### Track 3 (post):
 - [ ] Choose an angle (Hiring Heroes / Redrob Rulz)
-- [ ] Write the post (drafts in `TRACK3`)
+- [ ] Write the post (drafts in `08_TRACK3_EXECUTION_PLAN.md`)
 - [ ] #IndiaRuns + post during golden hour
 - [ ] Submit before 4 June
 
@@ -243,7 +243,7 @@ Track 2 PS3 (VoiceResume) — simple, clear
 
 1. ✅ **Confirm registration** (if not done) — quickly, there's date confusion
 2. 📥 **Download the Track 1 dataset** — from the Hack2skill dashboard / Discord / WhatsApp group (registered participants get it)
-3. 📱 **Make your first Track 3 post** — deadline 4 June, earliest (ready drafts in `TRACK3_EXECUTION_PLAN.md`)
+3. 📱 **Make your first Track 3 post** — deadline 4 June, earliest (ready drafts in `08_TRACK3_EXECUTION_PLAN.md`)
 4. 📝 **Start building the Track 2 deck** (using Canva/Gamma)
 5. 💻 **Set up Track 1** (Python, GitHub) — even before the dataset arrives
 
