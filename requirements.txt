@@ -1,0 +1,3 @@
+# RedRob Candidate Ranking System
+# Pure Python — no heavy ML frameworks needed.
+# The ranking uses rule-based + NLP heuristics within the 5-min CPU constraint.

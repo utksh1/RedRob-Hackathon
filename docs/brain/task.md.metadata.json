@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_TASK",
+  "summary": "Completed task tracker for the RedRob candidate ranking system. All items are done: project structure, honeypot detection, hard filters, scoring engine, ranker, pipeline, entry point, full dataset run, validation, and README.",
+  "updatedAt": "2026-06-03T10:07:56.563480900Z"
+}
