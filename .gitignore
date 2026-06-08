@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# Provided dataset (487 MB — not committed; download into this path to run)
+India_runs_data_and_ai_challenge/candidates.json
+India_runs_data_and_ai_challenge/candidates.jsonl
+India_runs_data_and_ai_challenge/candidates.jsonl.gz
+India_runs_data_and_ai_challenge/~$*
+
+# Intermediate ablation artifact (superseded by submission.csv)
+submission_phase1.csv
+
+# Phase-4 precomputed embeddings (regenerate via scripts/precompute_embeddings.py)
+*.npy
