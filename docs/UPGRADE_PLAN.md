@@ -4,7 +4,9 @@
 > "Mid" (rule-based keyword heuristics) to "Top" (semantic relevance + honest reasoning +
 > differentiated scoring + complete deliverables).
 >
-> **Status:** Planning only. Nothing here is implemented yet. This doc is the build spec.
+> **Status:** Phase 1 is mostly implemented. BM25/TF-IDF relevance, relevance-weighted
+> scoring, varied reasoning, README, metadata, and the full 100K dataset are present.
+> Remaining work is validation, diagnostics, and optional later experiments.
 >
 > **Read first:** [HONEST_ASSESSMENT.md](HONEST_ASSESSMENT.md) for the gap analysis,
 > [submission_spec_extracted.md](submission_spec_extracted.md) for the scoring rules,
@@ -30,6 +32,30 @@ This is the **"before"** column for the ablation table.
 
 Phase-1 targets: (a) widen spread well beyond **0.0613**; (b) replace the single reasoning
 template with genuinely varied, concern-bearing text. Artifact saved as `submission_baseline.csv`.
+
+---
+
+## Phase 1 validation — measured on the full 100K
+
+The upgraded BM25/TF-IDF relevance + varied-reasoning run completed successfully on the full
+`candidates.json` pool and regenerated `submission.csv`.
+
+| Metric | Phase 1 value |
+|---|---|
+| Runtime (full 100K, CPU) | **20.5 s** (budget 300 s) |
+| Honeypots detected / excluded | 96 / 96 |
+| Hard-filtered | 47,293 |
+| Scored | 52,611 |
+| Format valid | ✅ `validate_submission.py` passed |
+| **Score spread (rank1 − rank100)** | **0.0501** (0.9681 → 0.9180) |
+| Top-10 overlap vs baseline | 8 / 10 |
+| Top-10 promoted vs baseline | `CAND_0010257`, `CAND_0043860` |
+| Honeypots in final top-100 | 0 |
+| Reasoning variation | 100 unique strings; 88 punctuation skeletons |
+
+Note: the upgraded ranking improves semantic evidence and reasoning quality, but the top-100
+numeric spread is narrower than the baseline. Keep this as an honest diagnostic; do not stretch
+scores artificially unless the scoring spec explicitly rewards score calibration.
 
 ---
 
@@ -114,7 +140,7 @@ Load 100K candidates
    │
 [Stage 1] Honeypot detection            (KEEP as-is — already good, 96 caught)
    │
-[Stage 2] Hard filters                  (KEEP, soften pure-non-technical — see §3.4)
+[Stage 2] Hard filters                  (KEEP unchanged for Phase 1 — see §3.4)
    │
 [Stage 3] Feature extraction
    │   ├─ existing 6 axes (skills, career, behavioral, exp, education, logistics)
@@ -205,11 +231,12 @@ it 0.0.
   don't artificially stretch. The relevance axis naturally widens it because BM25 varies widely.
 - Sanity check post-run: top-100 score range should be noticeably wider than 0.06.
 
-### 3.4 Hard-filter softening (avoid dropping Tier-5s)
+### 3.4 Hard-filter softening (deferred)
 - `filter_pure_non_technical` ([hard_filters.py:70](../src/hard_filters.py#L70)) currently uses
-  keyword hits. Risk: it drops a genuine engineer with an odd title. **Mitigation:** only hard-drop
-  when title is negative **and** relevance (BM25) is in the bottom decile — i.e. let the relevance
-  signal rescue plain-language candidates rather than keyword counts alone.
+  keyword hits. Risk: it drops a genuine engineer with an odd title.
+- **Deferred for Phase 1:** relevance is currently computed after hard filters. Using relevance
+  inside hard filters would require moving relevance earlier or doing a second pass over rejected
+  profiles. Keep the existing hard filters unchanged until the upgraded Phase 1 run is measured.
 
 ---
 
@@ -288,7 +315,7 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 3. **Honeypots**: 0 detected-honeypots appear in top-100 (cross-check against Stage-1 set).
 4. **Trap resistance**: no negative-title keyword-stuffers in top-100; manually confirm a known
    plain-language candidate now ranks higher than before.
-5. **Spread**: top-100 score range materially wider than 0.06.
+5. **Spread**: top-100 score range measured against 0.0613 baseline; current Phase 1 is 0.0501.
 6. **Reasoning audit**: sample 10 rows → all distinct, all facts traceable to JSON, concerns
    present on weaker ranks, tone matches rank (mirror the exact Stage-4 checklist).
 7. **Ablation table** (for the deck): keyword-only vs +relevance vs +reasoning — show the
@@ -299,19 +326,19 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 ## 8. Sequenced task list (do in this order)
 
 **Phase 1 — Ranking quality (highest leverage)**
-1. [ ] Extract `JD_TEXT` constant into `src/jd_text.py` from the JD doc.
-2. [ ] Build `src/relevance.py`: tokenizer + corpus stats + BM25 + TF-IDF cosine (pure Python/numpy).
-3. [ ] Wire `relevance` into `score_candidate` + rebalance `WEIGHTS`; rank-normalize the signal.
-4. [ ] Soften `filter_pure_non_technical` to use relevance bottom-decile as the gate.
-5. [ ] Re-run on the sample (50) for correctness, then full set when present; check budget + spread.
+1. [x] Extract `JD_TEXT` constant into `src/jd_text.py` from the JD doc.
+2. [x] Build `src/relevance.py`: tokenizer + corpus stats + BM25 + TF-IDF cosine.
+3. [x] Wire `relevance` into `score_candidate` + rebalance `WEIGHTS`; normalize the signal.
+4. [x] Re-run on the sample (50) for correctness, then full set; check budget + spread.
+5. [x] Defer hard-filter softening until after Phase 1 diagnostics.
 
 **Phase 2 — Reasoning (Stage-4 win)**
-6. [ ] Rewrite `generate_reasoning`: strength/concern rule engine + deterministic frame variation.
-7. [ ] Run the §7.6 reasoning audit.
+6. [x] Rewrite `generate_reasoning`: strength/concern rule engine + deterministic frame variation.
+7. [x] Run the §7.6 reasoning audit.
 
 **Phase 3 — Deliverables (gates)**
-8. [ ] Run `validate_submission.py`; fix format.
-9. [ ] Write `submission_metadata.yaml`.
+8. [x] Run `validate_submission.py`; fix format.
+9. [x] Write `submission_metadata.yaml`.
 10. [ ] Build + deploy the Streamlit sandbox.
 11. [ ] Push to GitHub with a real commit history.
 12. [ ] Produce the PDF methodology deck + update README.
@@ -322,15 +349,12 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 
 ---
 
-## 9. Open items to confirm before building
+## 9. Open items
 
-- [ ] **Full dataset presence.** `India_runs_data_and_ai_challenge/` currently shows only
-  `sample_candidates.json` (50 candidates) and `sample_submission.csv` — the 100K
-  `candidates.jsonl(.gz)` was not found in the last listing. Confirm where the full file is, or
-  develop against the 50-sample and run the full set on the machine that has it. **(Blocker for a
-  real end-to-end run; not a blocker for writing the code.)**
-- [ ] **Dependency policy.** Confirm we keep Track A pure-Python (recommended) vs. allow
-  `scikit-learn`/`lightgbm`. Affects §3.1 and §4.
+- [x] **Full dataset presence.** `India_runs_data_and_ai_challenge/candidates.json` is present
+  and contains the full 100K pool as line-delimited JSON despite the `.json` extension.
+- [x] **Dependency policy.** Phase 1 keeps Track A pure-Python at rank time. Optional embedding
+  artifacts are supported only if precomputed and present; no hosted calls are used.
 - [ ] **Submission identity.** Team name, contacts, GitHub repo, sandbox platform — needed for
   `submission_metadata.yaml` (§6).
 - [ ] **`REFERENCE_DATE`** is hard-coded to 2026-06-01 ([config.py:13](../src/config.py#L13));

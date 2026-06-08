@@ -140,11 +140,21 @@ class RelevanceScorer:
         self._idf: dict[str, float] = {}
         self._bm25_norm: dict[str, float] = {}
         self._tfidf_norm: dict[str, float] = {}
+        self._emb_norm: dict[str, float] = {}
+        self._has_embeddings: bool = False
         self._relevance: dict[str, float] = {}
         self._raw: dict[str, tuple[float, float]] = {}  # id -> (bm25_raw, tfidf_raw)
 
     # ── Fit ──────────────────────────────────────────────
-    def fit(self, candidates: list[dict]) -> "RelevanceScorer":
+    def fit(self, candidates: list[dict], embedding_cos: dict[str, float] | None = None) -> "RelevanceScorer":
+        """
+        Build corpus stats and score every candidate.
+
+        embedding_cos (optional): {candidate_id: cosine(jd, candidate)} precomputed
+        offline from sentence embeddings (see scripts/precompute_embeddings.py). When
+        present, it becomes a third relevance signal blended with BM25 + TF-IDF. When
+        absent (the default, zero-dependency path), relevance is BM25 + TF-IDF only.
+        """
         # Pass 1: tokenize every doc, accumulate document frequencies + lengths.
         for cand in candidates:
             cid = cand["candidate_id"]
@@ -206,11 +216,25 @@ class RelevanceScorer:
         self._bm25_norm = self._normalize(raw_bm25)
         self._tfidf_norm = self._normalize(raw_tfidf)
 
-        for cid in self._ids:
-            self._relevance[cid] = (
-                self.bm25_weight * self._bm25_norm[cid]
-                + (1.0 - self.bm25_weight) * self._tfidf_norm[cid]
-            )
+        # Optional third signal: sentence-embedding cosine (precomputed offline).
+        if embedding_cos:
+            self._has_embeddings = True
+            self._emb_norm = self._normalize(embedding_cos)
+            # Re-balance: embeddings carry real semantic signal, so give the three
+            # signals 0.4 / 0.2 / 0.4 (lexical-BM25 / lexical-TFIDF / dense).
+            for cid in self._ids:
+                self._relevance[cid] = (
+                    0.4 * self._bm25_norm[cid]
+                    + 0.2 * self._tfidf_norm[cid]
+                    + 0.4 * self._emb_norm.get(cid, 0.0)
+                )
+        else:
+            self._has_embeddings = False
+            for cid in self._ids:
+                self._relevance[cid] = (
+                    self.bm25_weight * self._bm25_norm[cid]
+                    + (1.0 - self.bm25_weight) * self._tfidf_norm[cid]
+                )
         return self
 
     @staticmethod

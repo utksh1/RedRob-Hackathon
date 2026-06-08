@@ -52,6 +52,25 @@ def _fmt_years(years: float) -> str:
     return f"{years:.1f}"
 
 
+def _rotate(values: list[str], seed: int, limit: int = 3) -> list[str]:
+    """Deterministically rotate evidence so repeated high-level profiles do not read identical."""
+    if not values:
+        return []
+    start = seed % len(values)
+    rotated = values[start:] + values[:start]
+    return rotated[:limit]
+
+
+def _sentence_list(values: list[str]) -> str:
+    if not values:
+        return ""
+    if len(values) == 1:
+        return values[0]
+    if len(values) == 2:
+        return f"{values[0]} and {values[1]}"
+    return f"{', '.join(values[:-1])}, and {values[-1]}"
+
+
 # ── Classify the candidate's most relevant work from career descriptions ──
 # Each entry: (keywords, short work phrase, JD requirement it evidences)
 _WORK_KINDS = [
@@ -132,6 +151,8 @@ def _extract(candidate: dict, scores: dict) -> dict:
     # Tenure (title-chaser check).
     avg_tenure = (sum(r.get("duration_months", 0) for r in career) / len(career)) if career else None
     has_consulting_stint = any(_is_consulting(r.get("company", "")) for r in career)
+    relevance = scores.get("relevance", 0.0)
+    availability = scores.get("availability_mult", 1.0)
 
     # ── Strengths ── (phrased to avoid repeating facts already in the frame:
     # the frame names title/years/company, so strengths don't restate them)
@@ -142,10 +163,14 @@ def _extract(candidate: dict, scores: dict) -> dict:
         strengths.append(("exp", "in the 5-9 yr sweet spot"))
     if is_core:
         strengths.append(("core", f"recent {work_phrase} work"))
+    if relevance >= 0.9:
+        strengths.append(("rel", f"high JD text relevance ({relevance:.2f})"))
     if resp >= 0.7:
         strengths.append(("resp", f"responsive to recruiters ({resp:.0%})"))
     if notice is not None and notice <= 30:
         strengths.append(("notice", f"short {notice}-day notice"))
+    if availability >= 0.95:
+        strengths.append(("avail", "strong availability signals"))
     if github >= 50:
         strengths.append(("git", f"active GitHub ({github:.0f})"))
     if rel_skills:
@@ -159,6 +184,8 @@ def _extract(candidate: dict, scores: dict) -> dict:
         concerns.append(f"{_fmt_years(years)} yrs — above the JD's band")
     if not is_core:
         concerns.append(f"work is {work_phrase}, not core retrieval/ranking")
+    if relevance < 0.75:
+        concerns.append(f"lower JD text match ({relevance:.2f})")
     if company_type == "consulting":
         concerns.append(f"currently at a services firm ({company})")
     elif has_consulting_stint:
@@ -181,7 +208,7 @@ def _extract(candidate: dict, scores: dict) -> dict:
         "years": years, "location": location, "country": country,
         "work_phrase": work_phrase, "jd_conn": jd_conn, "is_core": is_core,
         "rel_skills": rel_skills, "resp": resp, "notice": notice,
-        "strengths": strengths, "concerns": concerns,
+        "strengths": strengths, "concerns": concerns, "relevance": relevance,
     }
 
 
@@ -210,8 +237,9 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
         band = "low"
         n_conc = 2   # lower ranks: lead with the hedge
 
-    strong_str = "; ".join(strengths[:3]) if strengths else f"{f['work_phrase']} background"
-    conc_str = "; ".join(concerns[:n_conc])
+    chosen_strengths = _rotate(strengths, seed, limit=3)
+    strong_str = _sentence_list(chosen_strengths) if chosen_strengths else f"{f['work_phrase']} background"
+    conc_str = _sentence_list(_rotate(concerns, seed // 7, limit=n_conc))
     core = f["is_core"]
     jd = f["jd_conn"]
     # Enthusiasm must reflect actual evidence, not just rank position — otherwise a weak
@@ -226,18 +254,20 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
         if strong_fit:
             frames = [
                 f"{title} at {company}, {years} yrs ({loc}): {strong_str}"
-                + (f" — matches {jd}." if core else "."),
-                f"Strong fit — {title}, {years} yrs at {company}; {strong_str}."
-                + (f" Evidences {jd}." if core else ""),
-                f"{title} ({years} yrs, {loc}). {strong_str}"
-                + (f"; aligned with {jd}." if core else "."),
+                + (f" - matches {jd}." if core else "."),
+                f"Strong fit: {years}-yr {title} from {company}. Evidence: {strong_str}."
+                + (f" JD link: {jd}." if core else ""),
+                f"{title} ({years} yrs, {loc}) stands out for {strong_str}"
+                + (f"; this supports {jd}." if core else "."),
+                f"Ranked high for {strong_str}. Current role: {title} at {company}, {years} yrs"
+                + (f"; clear fit for {jd}." if core else "."),
             ]
         else:
             # Top of this pool, but evidence is thin — keep it measured, not glowing.
             frames = [
                 f"{title}, {years} yrs at {company} ({loc}): {strong_str}.",
-                f"{title} ({years} yrs at {company}); {strong_str}.",
-                f"{title} in {loc}, {years} yrs. {strong_str}.",
+                f"Measured top-pool pick: {title} ({years} yrs at {company}); {strong_str}.",
+                f"{title} in {loc}, {years} yrs. Main evidence: {strong_str}.",
             ]
         out = frames[seed % len(frames)]
         if conc_str:
@@ -247,8 +277,10 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
             f"{title}, {years} yrs at {company} ({f['company_type']}); {strong_str}."
             + (f" Fits {jd}." if core else ""),
             f"{years}-yr {title} at {company}: {strong_str}"
-            + (f" — relevant to {jd}." if core else "."),
+            + (f" - relevant to {jd}." if core else "."),
             f"{title} in {loc}, {years} yrs. Strengths: {strong_str}.",
+            f"Balanced pick: {strong_str}. Profile context: {title} at {company}, {years} yrs.",
+            f"Useful fit for this JD because of {strong_str}; currently {title} at {company}.",
         ]
         out = frames[seed % len(frames)]
         if conc_str:
@@ -256,8 +288,10 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
     else:  # low band — lead with the hedge, measured tone
         lead = [
             f"Adjacent fit: {title}, {years} yrs at {company}.",
-            f"Included as a borderline pick — {title} ({years} yrs, {loc}).",
+            f"Included as a borderline pick: {title} ({years} yrs, {loc}).",
             f"{title} at {company}, {years} yrs; below the top tier.",
+            f"Lower-ranked but still relevant: {title}, {years} yrs at {company}.",
+            f"Back-half selection from {loc}: {title} with {years} yrs.",
         ]
         out = lead[seed % len(lead)]
         if strengths:

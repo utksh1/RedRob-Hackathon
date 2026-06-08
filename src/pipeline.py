@@ -8,10 +8,9 @@ Stage 4: Composite Ranking   → combine scores and sort
 Stage 5: Top-100 + Reasoning → produce final CSV output
 """
 
+import sys
 import json
 import time
-import sys
-from typing import TextIO
 
 from src.honeypot_detector import detect_honeypot
 from src.hard_filters import apply_hard_filters
@@ -29,18 +28,74 @@ def _log(msg: str) -> None:
 _log.start_time = time.time()
 
 
+# Default offline-artifact paths (produced by scripts/precompute_embeddings.py).
+# Absent by default → the optional dense signal is simply skipped.
+_EMB_MATRIX = "embeddings.npy"
+_EMB_IDS = "embedding_ids.json"
+_EMB_JD = "jd_vector.npy"
+
+
+def _load_embedding_cosines(candidates: list[dict], verbose: bool) -> dict[str, float] | None:
+    """
+    Load precomputed sentence-embedding cosines for the given candidates, if the offline
+    artifact exists. Returns {candidate_id: cosine(jd, candidate)} or None.
+
+    numpy is imported lazily and only when the artifact is present, so the default
+    (no-embeddings) ranking path keeps zero runtime dependencies. Embeddings and the JD
+    vector are assumed L2-normalized at save time, so cosine = dot product.
+    """
+    import os
+
+    if not (os.path.exists(_EMB_MATRIX) and os.path.exists(_EMB_IDS) and os.path.exists(_EMB_JD)):
+        return None
+    try:
+        import numpy as np
+        ids = json.load(open(_EMB_IDS, encoding="utf-8"))
+        matrix = np.load(_EMB_MATRIX)      # (N, d), L2-normalized
+        jd_vec = np.load(_EMB_JD)          # (d,), L2-normalized
+        row_of = {cid: i for i, cid in enumerate(ids)}
+        cos: dict[str, float] = {}
+        for c in candidates:
+            i = row_of.get(c["candidate_id"])
+            if i is not None:
+                cos[c["candidate_id"]] = float(matrix[i] @ jd_vec)
+        if verbose:
+            _log(f"  → Loaded embedding cosines for {len(cos)} candidates")
+        return cos or None
+    except Exception as e:  # any failure → fall back to lexical-only, never crash ranking
+        if verbose:
+            _log(f"  → Embedding artifact present but unreadable ({e}); using BM25+TF-IDF only")
+        return None
+
+
 def load_candidates(filepath: str) -> list[dict]:
     """
-    Load candidates from a JSONL file.
-    Handles both plain .jsonl and gzipped .jsonl.gz files.
+    Load candidates from either:
+      - JSONL / newline-delimited JSON, including the full candidates.json file
+      - a regular JSON array, including sample_candidates.json
+
+    Handles both plain and gzipped files.
     """
     import gzip
 
-    candidates = []
     opener = gzip.open if filepath.endswith(".gz") else open
     kwargs = {"mode": "rt", "encoding": "utf-8"}
 
     with opener(filepath, **kwargs) as f:
+        first = f.read(1)
+        while first and first.isspace():
+            first = f.read(1)
+        if not first:
+            return []
+
+        f.seek(0)
+        if first == "[":
+            data = json.load(f)
+            if not isinstance(data, list):
+                raise ValueError(f"Expected a JSON array in {filepath}")
+            return data
+
+        candidates = []
         for line in f:
             line = line.strip()
             if line:
@@ -125,10 +180,17 @@ def run_pipeline(
     # before per-candidate scoring.
     if verbose:
         _log("  → Building relevance index (BM25 + TF-IDF)...")
-    relevance_scorer = RelevanceScorer(JD_TEXT).fit(filtered)
+
+    # Optional dense signal: load precomputed sentence-embedding cosines if the offline
+    # artifact is present (scripts/precompute_embeddings.py). Absent by default → the
+    # ranker runs pure-stdlib BM25+TF-IDF, no numpy, no network.
+    embedding_cos = _load_embedding_cosines(filtered, verbose)
+
+    relevance_scorer = RelevanceScorer(JD_TEXT).fit(filtered, embedding_cos=embedding_cos)
     relevance_map = relevance_scorer.relevance_scores()
     if verbose:
-        _log(f"  → Relevance computed for {len(relevance_map)} candidates")
+        mode = "BM25+TF-IDF+embeddings" if embedding_cos else "BM25+TF-IDF"
+        _log(f"  → Relevance computed for {len(relevance_map)} candidates ({mode})")
 
     scored = []
     for i, candidate in enumerate(filtered):
