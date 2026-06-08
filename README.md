@@ -114,16 +114,10 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 │       └── pipeline.py
 ├── frontend/
 │   └── app.py                  # Streamlit sandbox/demo
-├── models/
-│   └── README.md               # Optional model/artifact location
-├── doc1/
-│   └── docs/
-│       ├── planning/           # Upgrade plan, tech stack, assessments
-│       ├── deck/               # Track 1 methodology deck draft
-│       ├── extracted/          # Extracted challenge/JD/reference docs
-│       └── archive/            # Older strategy notes and generated planning history
-├── tools/
-│   └── analysis/               # Local diagnostic scripts
+├── docs/
+│   ├── planning/               # Upgrade plan, tech stack, assessments
+│   ├── deck/                   # Track 1 methodology deck draft
+│   └── extracted/              # Extracted challenge/JD/reference docs
 ├── submission.csv              # Output
 ├── submission_baseline.csv     # Keyword-only baseline (ablation reference)
 ├── requirements.txt            # No external dependencies

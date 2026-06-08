@@ -3,7 +3,7 @@ JD_TEXT — the Senior AI Engineer job description as a single query string.
 
 This is the *query* for the relevance scorer (backend/src/relevance.py). It is the full
 signal-bearing text of the JD (job_description.docx, see
-doc1/docs/extracted/job_description_extracted.md), lightly condensed to the parts that describe
+docs/extracted/job_description_extracted.md), lightly condensed to the parts that describe
 what the role actually needs — so BM25/TF-IDF reward candidates whose own free-text
 (summary + career descriptions) overlaps the role's real language, not a fixed
 keyword list.

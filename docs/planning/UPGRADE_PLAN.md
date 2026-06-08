@@ -7,7 +7,7 @@
 > **Status:** Phase 2 precision pass is implemented and validated. The ranker now has
 > BM25/TF-IDF relevance, precision subfeatures, conservative hard-filter rescue, a
 > top-300 precision reranker, varied reasoning, regenerated `submission.csv`, GitHub PR,
-> and the reorganized `backend/`, `frontend/`, `models/`, `doc1/docs/` project layout.
+> and the reorganized `backend/`, `frontend/`, `docs/` project layout.
 > Remaining work is mostly submission packaging: team metadata, sandbox deployment URL,
 > and final PDF deck export.
 >
@@ -385,7 +385,7 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 11. [x] Regenerate and validate `submission.csv`.
 
 **Phase 4 — Submission deliverables**
-12. [x] Reorganize project into `backend/`, `frontend/`, `models/`, `doc1/docs/`.
+12. [x] Reorganize project into `backend/`, `frontend/`, `docs/`.
 13. [x] Push to GitHub PR with real commit history.
 14. [x] Update README, tech stack, methodology deck draft, and metadata summary.
 15. [ ] Fill team/contact fields in `submission_metadata.yaml`.
