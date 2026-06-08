@@ -17,5 +17,8 @@ India_runs_data_and_ai_challenge/~$*
 # Intermediate ablation artifact (superseded by submission.csv)
 submission_phase1.csv
 
+# Offline LLM labeling output (regenerate via src/claude_client.py)
+pseudo_labels.jsonl
+
 # Phase-4 precomputed embeddings (regenerate via scripts/precompute_embeddings.py)
 *.npy
