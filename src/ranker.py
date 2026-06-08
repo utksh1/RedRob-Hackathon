@@ -214,22 +214,34 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
     conc_str = "; ".join(concerns[:n_conc])
     core = f["is_core"]
     jd = f["jd_conn"]
+    # Enthusiasm must reflect actual evidence, not just rank position — otherwise a weak
+    # candidate that floats into a high rank (small pool) gets glowing text. Only lead with
+    # "Strong fit" when there's real signal: core retrieval/ranking work, or ≥2 strengths.
+    strong_fit = core or len(strengths) >= 2
 
     # A few structural frames; choose by seed so adjacent rows differ. The JD-connection
     # tail is only added when the candidate is core (otherwise the concern already states
     # the gap, so we don't say it twice).
     if band == "top":
-        frames = [
-            f"{title} at {company}, {years} yrs ({loc}): {strong_str}"
-            + (f" — matches {jd}." if core else "."),
-            f"Strong fit — {title}, {years} yrs at {company}; {strong_str}."
-            + (f" Evidences {jd}." if core else ""),
-            f"{title} ({years} yrs, {loc}). {strong_str}"
-            + (f"; aligned with {jd}." if core else "."),
-        ]
+        if strong_fit:
+            frames = [
+                f"{title} at {company}, {years} yrs ({loc}): {strong_str}"
+                + (f" — matches {jd}." if core else "."),
+                f"Strong fit — {title}, {years} yrs at {company}; {strong_str}."
+                + (f" Evidences {jd}." if core else ""),
+                f"{title} ({years} yrs, {loc}). {strong_str}"
+                + (f"; aligned with {jd}." if core else "."),
+            ]
+        else:
+            # Top of this pool, but evidence is thin — keep it measured, not glowing.
+            frames = [
+                f"{title}, {years} yrs at {company} ({loc}): {strong_str}.",
+                f"{title} ({years} yrs at {company}); {strong_str}.",
+                f"{title} in {loc}, {years} yrs. {strong_str}.",
+            ]
         out = frames[seed % len(frames)]
         if conc_str:
-            out += f" Minor flag: {conc_str}."
+            out += f" Note: {conc_str}."
     elif band == "mid":
         frames = [
             f"{title}, {years} yrs at {company} ({f['company_type']}); {strong_str}."
