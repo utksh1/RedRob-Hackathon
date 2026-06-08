@@ -117,7 +117,13 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 ├── models/
 │   └── README.md               # Optional model/artifact location
 ├── doc1/
-│   └── docs/                   # Project docs, deck, extracted specs
+│   └── docs/
+│       ├── planning/           # Upgrade plan, tech stack, assessments
+│       ├── deck/               # Track 1 methodology deck draft
+│       ├── extracted/          # Extracted challenge/JD/reference docs
+│       └── archive/            # Older strategy notes and generated planning history
+├── tools/
+│   └── analysis/               # Local diagnostic scripts
 ├── submission.csv              # Output
 ├── submission_baseline.csv     # Keyword-only baseline (ablation reference)
 ├── requirements.txt            # No external dependencies

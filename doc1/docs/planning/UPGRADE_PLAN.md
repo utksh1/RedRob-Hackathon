@@ -4,9 +4,12 @@
 > "Mid" (rule-based keyword heuristics) to "Top" (semantic relevance + honest reasoning +
 > differentiated scoring + complete deliverables).
 >
-> **Status:** Phase 1 is mostly implemented. BM25/TF-IDF relevance, relevance-weighted
-> scoring, varied reasoning, README, metadata, and the full 100K dataset are present.
-> Remaining work is validation, diagnostics, and optional later experiments.
+> **Status:** Phase 2 precision pass is implemented and validated. The ranker now has
+> BM25/TF-IDF relevance, precision subfeatures, conservative hard-filter rescue, a
+> top-300 precision reranker, varied reasoning, regenerated `submission.csv`, GitHub PR,
+> and the reorganized `backend/`, `frontend/`, `models/`, `doc1/docs/` project layout.
+> Remaining work is mostly submission packaging: team metadata, sandbox deployment URL,
+> and final PDF deck export.
 >
 > **Read first:** [HONEST_ASSESSMENT.md](HONEST_ASSESSMENT.md) for the gap analysis,
 > [submission_spec_extracted.md](submission_spec_extracted.md) for the scoring rules,
@@ -56,6 +59,40 @@ The upgraded BM25/TF-IDF relevance + varied-reasoning run completed successfully
 Note: the upgraded ranking improves semantic evidence and reasoning quality, but the top-100
 numeric spread is narrower than the baseline. Keep this as an honest diagnostic; do not stretch
 scores artificially unless the scoring spec explicitly rewards score calibration.
+
+---
+
+## Phase 2 precision pass — measured on the full 100K
+
+The current submitted ranking path is **FitRank v1 + precision reranker**. It keeps the
+interpretable BM25/TF-IDF and structured scoring backbone, then adds transparent precision
+features and reranks only the top 300 candidates.
+
+| Metric | Phase 2 value |
+|---|---|
+| Runtime (full 100K, CPU) | **42.7 s** (budget 300 s) |
+| Honeypots detected / excluded | 96 / 96 |
+| Hard-filtered | 47,293 |
+| Scored | 52,611 |
+| Format valid | ✅ `validate_submission.py` passed |
+| **Score spread (rank1 − rank100)** | **0.0990** (0.9990 → 0.9000) |
+| Top-10 overlap vs baseline | 4 / 10 |
+| Honeypots in final top-100 | 0 |
+| Reasoning variation | 100 unique strings; 100 punctuation skeletons |
+
+Implemented precision signals:
+
+- Separate **vector/semantic search** from generic search.
+- Separate **production retrieval/ranking** from toy/demo RAG.
+- Reward evaluation evidence: **NDCG, MRR, MAP, A/B tests, offline/online evaluation**.
+- Reward production/deployment evidence: **real users, latency, monitoring, index refresh,
+  embedding drift, quality regression**.
+- Penalize **toy/demo RAG** and **CV/speech-only** profiles when they lack retrieval/ranking depth.
+- Add conservative rescue for odd-title candidates only when strong retrieval/ranking evidence exists.
+
+Current tradeoff: runtime increased from 13.7 s baseline to 42.7 s, still only ~14% of the
+5-minute budget. The added time buys a more precise top-10/top-50 ordering, which matters most
+because the scoring metric heavily weights NDCG@10 and NDCG@50.
 
 ---
 
@@ -144,11 +181,14 @@ Load 100K candidates
    │
 [Stage 3] Feature extraction
    │   ├─ existing 6 axes (skills, career, behavioral, exp, education, logistics)
-   │   └─ NEW: relevance axis  ◄── BM25(JD, profile_text) + TFIDF cosine [+ embedding cosine]
+   │   └─ relevance + precision features
+   │       ├─ BM25(JD, profile_text) + TFIDF cosine [+ optional embedding cosine]
+   │       ├─ vector/search/evaluation/production hits
+   │       └─ toy-RAG and CV/speech-only risk flags
    │
 [Stage 4] Scoring & ranking
-   │   ├─ Phase 1: transparent weighted blend incl. relevance (ship this first)
-   │   └─ Phase 2 (optional): LightGBM LambdaMART rerank on pseudo-labels
+   │   ├─ weighted blend incl. relevance and precision bonus/penalty
+   │   └─ top-300 precision rerank (implemented)
    │
 [Stage 5] Reasoning generation          (REWRITE — varied + honest concerns)
    │
@@ -231,16 +271,17 @@ it 0.0.
   don't artificially stretch. The relevance axis naturally widens it because BM25 varies widely.
 - Sanity check post-run: top-100 score range should be noticeably wider than 0.06.
 
-### 3.4 Hard-filter softening (deferred)
+### 3.4 Hard-filter rescue (implemented conservatively)
 - `filter_pure_non_technical` ([hard_filters.py:70](../../backend/src/hard_filters.py#L70)) currently uses
   keyword hits. Risk: it drops a genuine engineer with an odd title.
-- **Deferred for Phase 1:** relevance is currently computed after hard filters. Using relevance
-  inside hard filters would require moving relevance earlier or doing a second pass over rejected
-  profiles. Keep the existing hard filters unchanged until the upgraded Phase 1 run is measured.
+- Current implementation runs a cheap lexical rescue check before this hard filter rejects a
+  negative-title profile. It rescues only candidates with multiple core retrieval/ranking hits,
+  strong production/evaluation support, and low toy/CV-only risk. Entire-career consulting,
+  impossible location, and zero-experience filters remain hard disqualifiers.
 
 ---
 
-## 4. Optional Phase 2 — Learning-to-Rank (LambdaMART)
+## 4. Optional future ceiling — Learning-to-Rank (LambdaMART)
 
 > Higher ceiling, higher risk. Only after Phase 1 ships and is validated. Requires `lightgbm`.
 
@@ -315,7 +356,7 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 3. **Honeypots**: 0 detected-honeypots appear in top-100 (cross-check against Stage-1 set).
 4. **Trap resistance**: no negative-title keyword-stuffers in top-100; manually confirm a known
    plain-language candidate now ranks higher than before.
-5. **Spread**: top-100 score range measured against 0.0613 baseline; current Phase 1 is 0.0501.
+5. **Spread**: top-100 score range measured against 0.0613 baseline; current Phase 2 is 0.0990.
 6. **Reasoning audit**: sample 10 rows → all distinct, all facts traceable to JSON, concerns
    present on weaker ranks, tone matches rank (mirror the exact Stage-4 checklist).
 7. **Ablation table** (for the deck): keyword-only vs +relevance vs +reasoning — show the
@@ -325,27 +366,38 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 
 ## 8. Sequenced task list (do in this order)
 
-**Phase 1 — Ranking quality (highest leverage)**
+**Phase 1 — Ranking quality**
 1. [x] Extract `JD_TEXT` constant into `backend/src/jd_text.py` from the JD doc.
 2. [x] Build `backend/src/relevance.py`: tokenizer + corpus stats + BM25 + TF-IDF cosine.
 3. [x] Wire `relevance` into `score_candidate` + rebalance `WEIGHTS`; normalize the signal.
 4. [x] Re-run on the sample (50) for correctness, then full set; check budget + spread.
-5. [x] Defer hard-filter softening until after Phase 1 diagnostics.
+5. [x] Add conservative hard-filter rescue for strong retrieval/ranking evidence.
 
 **Phase 2 — Reasoning (Stage-4 win)**
 6. [x] Rewrite `generate_reasoning`: strength/concern rule engine + deterministic frame variation.
 7. [x] Run the §7.6 reasoning audit.
 
-**Phase 3 — Deliverables (gates)**
-8. [x] Run `validate_submission.py`; fix format.
-9. [x] Write `submission_metadata.yaml`.
-10. [ ] Build + deploy the Streamlit sandbox.
-11. [ ] Push to GitHub with a real commit history.
-12. [ ] Produce the PDF methodology deck + update README.
+**Phase 3 — Precision pass**
+8. [x] Add relevance subfeatures: BM25 norm, TF-IDF norm, core JD hits, vector hits,
+   evaluation hits, production hits, toy-RAG risk, CV/speech-only risk.
+9. [x] Add precision bonus/penalty into `score_candidate`.
+10. [x] Add top-300 soft reranker focused on production retrieval, vector search, and evaluation.
+11. [x] Regenerate and validate `submission.csv`.
 
-**Phase 4 — Optional ceiling**
-13. [ ] (If time) Pre-computed `bge-small` embeddings as a 3rd relevance signal (Track B).
-14. [ ] (If time) LambdaMART rerank on pseudo-labels (§4), only if it beats Phase 1 on sanity checks.
+**Phase 4 — Submission deliverables**
+12. [x] Reorganize project into `backend/`, `frontend/`, `models/`, `doc1/docs/`.
+13. [x] Push to GitHub PR with real commit history.
+14. [x] Update README, tech stack, methodology deck draft, and metadata summary.
+15. [ ] Fill team/contact fields in `submission_metadata.yaml`.
+16. [ ] Deploy Streamlit sandbox and add `sandbox_demo_link`.
+17. [ ] Export final PDF methodology deck.
+
+**Phase 5 — Optional extra tuning**
+18. [ ] Generate `top100_audit.csv` and `top300_audit.csv`.
+19. [ ] Manually audit false positives/false negatives in top 150.
+20. [ ] Tune top-300 reranker weights only if audit shows clear errors.
+21. [ ] (If time) Pre-computed `bge-small` embeddings as a 3rd relevance signal.
+22. [ ] (If time) LambdaMART rerank on pseudo-labels (§4), only if it beats Phase 2 sanity checks.
 
 ---
 
@@ -355,8 +407,9 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
   and contains the full 100K pool as line-delimited JSON despite the `.json` extension.
 - [x] **Dependency policy.** Phase 1 keeps Track A pure-Python at rank time. Optional embedding
   artifacts are supported only if precomputed and present; no hosted calls are used.
-- [ ] **Submission identity.** Team name, contacts, GitHub repo, sandbox platform — needed for
-  `submission_metadata.yaml` (§6).
+- [ ] **Submission identity.** Team name, contacts, and sandbox URL still need user input in
+  `submission_metadata.yaml`.
+- [x] **GitHub PR.** Current PR: `https://github.com/Shivam990q/RedRob-Hackathon/pull/1`.
 - [ ] **`REFERENCE_DATE`** is hard-coded to 2026-06-01 ([config.py:13](../../backend/src/config.py#L13));
   confirm it matches the dataset's "now" so recency math is correct.
 - [ ] **Registration/deadline** confusion (8 vs 28 June) noted in strategy docs — confirm the real
@@ -374,3 +427,6 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
   reasoning, which are robust, over clever weight-fiddling.
 - **Reproducibility is a hard gate.** Any artifact `rank.py` needs (embeddings, indexes) must be in
   the repo or produced by a documented script; the rank step must run clean, offline, ≤5 min.
+- **Further tuning should be evidence-led.** The current reranker makes a large top-10 change.
+  Do not keep adjusting weights blindly; generate audit CSVs, inspect the candidates, and only
+  change weights for clear false-positive/false-negative patterns.
