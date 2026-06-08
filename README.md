@@ -2,84 +2,120 @@
 
 ## Overview
 
-A rule-based multi-dimensional candidate ranking system for the **Senior AI Engineer (Founding Team)** role at Redrob AI. Processes 100,000 candidate profiles and produces a ranked top-100 list with reasoning.
+A CPU-only, dependency-light candidate ranking system for the **Senior AI Engineer
+(Founding Team)** role at Redrob AI. It processes 100,000 candidate profiles and produces
+a ranked top-100 list with per-candidate reasoning, in ~20 seconds.
+
+The system's core idea: the JD explicitly warns that *"the right answer is not find
+candidates whose skills section contains the most AI keywords — that's a trap."* So
+ranking is driven by a **BM25 + TF-IDF relevance match of the full job description against
+each candidate's free-text career history** — rewarding people who *describe* real
+retrieval/ranking work in plain language, not those who merely list buzzwords.
 
 ## Quick Start
 
 ```bash
-# No external dependencies required — runs on pure Python 3.10+
-python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.jsonl --out ./submission.csv
+# Pure Python 3.10+ (standard library only — no pip install needed)
+python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.json --out ./submission.csv
+
+# Validate the output against the submission spec
+python validate_submission.py --submission submission.csv \
+    --candidates ./India_runs_data_and_ai_challenge/candidates.json
 ```
 
-**Performance:** ~36 seconds on a standard machine (well within the 5-minute budget).
+**Performance:** ~20 seconds on a standard machine (6.8% of the 5-minute budget).
 
 ## Architecture
 
 ### 5-Stage Pipeline
 
 ```
-Stage 1: Honeypot Detection  → Flag ~96 impossible profiles (impossible timelines, fake expertise)
-Stage 2: Hard Filters        → Eliminate ~47K disqualified candidates (wrong career, wrong location)
-Stage 3: Multi-Dim Scoring   → Score remaining ~53K candidates on 6 axes
-Stage 4: Composite Ranking   → Weighted combination with availability gating
-Stage 5: Top-100 + Reasoning → Generate human-readable reasoning per candidate
+Stage 1: Honeypot Detection  → flag ~96 impossible profiles (impossible timelines, fake expertise)
+Stage 2: Hard Filters        → eliminate ~47K disqualified candidates (wrong career, wrong location)
+Stage 3: Relevance + Scoring → BM25/TF-IDF JD match + 6 structured axes for ~53K candidates
+Stage 4: Composite Ranking   → weighted combination with availability gating
+Stage 5: Top-100 + Reasoning → varied, concern-aware reasoning per candidate
 ```
 
-### Scoring Axes (6 dimensions)
+### Scoring Axes (7 dimensions)
 
 | Axis | Weight | What it measures |
 |---|---|---|
-| **Career Quality** | 30% | Product vs consulting, title relevance, description keyword analysis |
-| **Skills Relevance** | 25% | Tier-1/Tier-2 skill match with keyword-stuffer detection |
-| **Behavioral Signals** | 20% | Platform activity, response rates, engagement, verification |
-| **Experience Fit** | 15% | Gaussian fit to 5-9 year sweet spot |
-| **Education** | 5% | Institution tier, field relevance |
-| **Logistics** | 5% | Location, notice period, salary alignment, work mode |
+| **Relevance (BM25 + TF-IDF)** | 30% | Free-text match of the full JD against the candidate's summary + career descriptions |
+| **Career Quality** | 22% | Product vs consulting, title relevance, description analysis |
+| **Skills Relevance** | 16% | Tier-1/Tier-2 skill match with keyword-stuffer detection |
+| **Behavioral Signals** | 14% | Platform activity, response rates, engagement, verification |
+| **Experience Fit** | 12% | Gaussian fit to the 5-9 year sweet spot |
+| **Education** | 3% | Institution tier, field relevance |
+| **Logistics** | 3% | Location, notice period, salary alignment, work mode |
 
-An **availability multiplier** (0.3–1.0) gates the entire score — unreachable candidates are penalized regardless of qualifications.
+An **availability multiplier** (0.3–1.0) gates the entire score — unreachable candidates
+(stale profiles, low response rates) are penalized regardless of qualifications, per the
+JD's explicit instruction.
 
 ### Key Design Decisions
 
-1. **Career descriptions > Skills lists**: The JD explicitly warns that keyword-stuffed skills lists are traps. Our system weights description analysis (35% of career score) over skill names.
+1. **Relevance over keywords**: The JD warns that keyword-stuffed skills lists are traps.
+   The relevance axis scores the *meaning overlap* between the JD and a candidate's own
+   description text via BM25 + TF-IDF — surfacing "plain-language" candidates who describe
+   real ranking/retrieval work without the buzzwords, and demoting adjacent ML (sentiment,
+   fraud, CV-only) that merely shares keywords.
 
-2. **Keyword-stuffer detection**: Candidates with non-technical titles (HR Manager, Accountant) but high AI skill counts are penalized unless their career descriptions contain genuine ML/AI work.
+2. **No hosted models, no network**: BM25 + TF-IDF are implemented in pure Python, so the
+   ranking step is fully reproducible inside a clean CPU-only container — satisfying the
+   spec's Stage-3 reproduction constraints (no GPU, no API calls, ≤5 min).
 
-3. **No ML models needed**: The JD is specific enough to encode as rules. This avoids the complexity of embedding models and keeps the system within the CPU-only, 5-minute constraint with zero dependencies.
+3. **Honest, varied reasoning**: Each reasoning cites concrete facts from the profile,
+   names the JD requirement evidenced, and surfaces real concerns (long notice, inactivity,
+   off-core work). Structure and tone scale with rank — directly targeting the Stage-4
+   manual-review checks.
 
-4. **Behavioral gating**: A "perfect-on-paper" candidate who hasn't logged in for 6 months with a 5% response rate is effectively unavailable. The availability multiplier ensures these candidates drop in ranking.
+4. **Behavioral gating**: A "perfect-on-paper" candidate who hasn't logged in for months
+   with a 5% response rate is effectively unavailable; the availability multiplier drops them.
+
+## Ablation
+
+We **cannot** compute true NDCG locally — the ground truth is hidden until results close.
+So this ablation reports the measurable proxies: how much the ranking changed and the
+reasoning-quality signals the Stage-4 reviewer checks.
+
+| Variant | Top-100 vs baseline | Score spread | Reasoning |
+|---|---|---|---|
+| Keyword-only (baseline) | — | 0.0613 | 1 template, 0 concerns |
+| + Relevance (BM25/TF-IDF) | **18 of 100 changed** | 0.0501 | (unchanged) |
+| + Reasoning rewrite | (same ranking) | 0.0501 | **0 duplicates, 84 structures, 80/100 surface a concern** |
+
+What the 18-candidate churn did: relevance **promoted** profiles describing
+*"owned the ranking layer for an e-commerce search product"*, *"semantic search over 500K
+documents"*, *"RAG chatbot"*, *"personalization infrastructure"*, and **demoted** profiles
+describing *"sentiment analysis / document classification"*, *"fraud detection"*, and
+*"computer vision for image moderation"* (the JD explicitly disfavors CV-only). That is the
+"read between the lines" distinction the JD asks for.
+
+> Note on score spread: NDCG ignores score magnitude (only order matters), so spread is a
+> diagnostic, not a goal. It narrows slightly because the final top-100 all saturate the
+> relevance axis. The meaningful change is the ranking churn, not the number range.
 
 ## Project Structure
 
 ```
 ├── rank.py                     # Entry point — CLI interface
+├── validate_submission.py      # Local replica of the spec format validator
+├── submission_metadata.yaml    # Portal metadata (team fields are TODO)
 ├── src/
-│   ├── __init__.py
-│   ├── config.py               # All tunable constants
+│   ├── config.py               # All tunable constants + weights
+│   ├── jd_text.py              # The JD as the relevance query
+│   ├── relevance.py            # BM25 + TF-IDF JD-relevance scorer (pure Python)
 │   ├── honeypot_detector.py    # Stage 1: impossible profile detection
 │   ├── hard_filters.py         # Stage 2: JD-based disqualification
-│   ├── scorers.py              # Stage 3: 6-axis scoring engine
+│   ├── scorers.py              # Stage 3: 7-axis scoring engine
 │   ├── ranker.py               # Stage 4-5: ranking + reasoning
 │   └── pipeline.py             # Orchestrates all stages
 ├── submission.csv              # Output
+├── submission_baseline.csv     # Keyword-only baseline (ablation reference)
 ├── requirements.txt            # No external dependencies
 └── India_runs_data_and_ai_challenge/
-    ├── candidates.jsonl        # 100K candidate pool (487 MB)
-    ├── candidate_schema.json
-    ├── sample_candidates.json
-    ├── sample_submission.csv
-    ├── job_description.docx
-    ├── submission_spec.docx
-    └── redrob_signals_doc.docx
-```
-
-## Reproduction
-
-```bash
-# Single command to reproduce the submission CSV
-python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.jsonl --out ./submission.csv
-
-# With verbose output disabled
-python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.jsonl --out ./submission.csv --quiet
+    └── candidates.json         # 100K candidate pool (487 MB, not committed)
 ```
 
 ## Compute Environment
@@ -91,36 +127,36 @@ python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.jsonl 
 
 ## AI Tools Used
 
-Declared honestly per hackathon rules. AI tools were used as development assistants for:
-- Code scaffolding and architecture design
-- JD analysis and feature extraction
-- All engineering decisions, tuning, and system design were human-directed.
+Declared honestly per hackathon rules. Claude (Claude Code) was used as a development
+assistant for code scaffolding, JD analysis, and documentation. All engineering decisions,
+the relevance design, tuning, and system architecture were human-directed.
 
 ## Results Summary
 
 | Metric | Value |
 |---|---|
 | Total candidates | 100,000 |
-| Honeypots detected | 96 |
+| Honeypots detected / excluded from top-100 | 96 / 96 |
 | Hard-filtered | 47,293 |
 | Scored | 52,611 |
 | Output | 100 candidates |
-| Execution time | 36s |
-| Score range | 0.8929 – 0.9542 |
+| Execution time | ~20s |
+| Score range | 0.9180 – 0.9681 |
 
 ### Top-10 Preview
 
 | Rank | Title | Company | Years | Score |
 |---|---|---|---|---|
-| 1 | Senior ML Engineer | Zomato | 7.2 | 0.9542 |
-| 2 | Senior NLP Engineer | Niramai | 7.8 | 0.9518 |
-| 3 | ML Engineer | Glance | 6.4 | 0.9495 |
-| 4 | Applied ML Engineer | Dream11 | 6.7 | 0.9459 |
-| 5 | Lead AI Engineer | Razorpay | 6.7 | 0.9443 |
-| 6 | Senior AI Engineer | Apple | 5.9 | 0.9417 |
-| 7 | NLP Engineer | Aganitha | 6.6 | 0.9386 |
-| 8 | Senior ML Engineer | Genpact AI | 6.1 | 0.9378 |
-| 9 | Senior AI Engineer | Netflix | 7.8 | 0.9369 |
-| 10 | Staff ML Engineer | Yellow.ai | 8.6 | 0.9326 |
+| 1 | Senior Machine Learning Engineer | Zomato | 7.2 | 0.9681 |
+| 2 | Senior NLP Engineer | Niramai | 7.8 | 0.9664 |
+| 3 | Applied ML Engineer | Dream11 | 6.7 | 0.9636 |
+| 4 | Lead AI Engineer | Razorpay | 6.7 | 0.9620 |
+| 5 | Senior AI Engineer | Apple | 5.9 | 0.9589 |
+| 6 | NLP Engineer | Aganitha | 6.6 | 0.9572 |
+| 7 | Senior AI Engineer | Netflix | 7.8 | 0.9566 |
+| 8 | Senior Machine Learning Engineer | Genpact AI | 6.1 | 0.9564 |
+| 9 | Senior Data Scientist | Google | 6.5 | 0.9530 |
+| 10 | Junior ML Engineer | Aganitha | 6.1 | 0.9530 |
 
-All top-100 candidates are ML/AI engineers at product companies with relevant experience, zero honeypots, and strong behavioral signals.
+All top-100 candidates are ML/AI engineers at product companies with relevant experience,
+zero honeypots, and strong behavioral signals.
