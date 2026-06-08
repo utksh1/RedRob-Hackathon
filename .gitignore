@@ -4,21 +4,54 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
+*.whl
+*.egg
+
+# Cache / tooling
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Notebooks
+.ipynb_checkpoints
+
+# Streamlit
+.streamlit/secrets.toml
 
 # OS
 .DS_Store
+Thumbs.db
+*.orig
 
-# Provided dataset (487 MB — not committed; download into this path to run)
+# Data
 India_runs_data_and_ai_challenge/candidates.json
 India_runs_data_and_ai_challenge/candidates.jsonl
 India_runs_data_and_ai_challenge/candidates.jsonl.gz
 India_runs_data_and_ai_challenge/~$*
 
-# Intermediate ablation artifact (superseded by submission.csv)
+# Regenerated / optional outputs
 submission_phase1.csv
-
-# Offline LLM labeling output (regenerate via src/claude_client.py)
 pseudo_labels.jsonl
-
-# Phase-4 precomputed embeddings (regenerate via scripts/precompute_embeddings.py)
 *.npy
+
+# Local configs / credentials
+*.env
+.env.*
+*.secret
+*.key
+
+# Experimental / temp
+experiments/
+logs/
+checkpoints/
+data/dump/
+dist/
+build/

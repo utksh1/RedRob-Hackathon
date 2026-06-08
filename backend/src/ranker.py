@@ -1,15 +1,4 @@
-"""
-Ranker — sorts scored candidates and generates reasoning strings.
-
-Produces the final top-100 CSV output with:
-  candidate_id, rank, score, reasoning
-
-The reasoning generator is a small rule engine: it extracts real facts from each
-profile, detects genuine strengths and honest concerns, names the JD requirement the
-candidate actually evidences, and composes 1-2 sentences whose structure and tone vary
-by rank band. This targets the Stage-4 manual-review checks (specific facts, JD
-connection, honest concerns, no hallucination, variation, rank-consistency).
-"""
+"""Candidate ranking and per-candidate reasoning."""
 
 from datetime import date, datetime
 
@@ -23,7 +12,6 @@ from backend.src.config import (
 
 
 def _skill_match(name: str, keyword_set: set[str]) -> bool:
-    """Check if a skill name matches any keyword in the set."""
     name_lower = name.lower().strip()
     for kw in keyword_set:
         if kw in name_lower or name_lower in kw:
@@ -71,8 +59,6 @@ def _sentence_list(values: list[str]) -> str:
     return f"{', '.join(values[:-1])}, and {values[-1]}"
 
 
-# ── Classify the candidate's most relevant work from career descriptions ──
-# Each entry: (keywords, short work phrase, JD requirement it evidences)
 _WORK_KINDS = [
     (("vector search", "semantic search", "embedding search", "vector database",
       "faiss", "milvus", "pinecone", "weaviate", "qdrant"),
@@ -104,10 +90,6 @@ _WORK_KINDS = [
 
 
 def _classify_work(career: list[dict]) -> tuple[str, str, bool]:
-    """
-    Return (work_phrase, jd_connection, is_core). Inspect the most recent role first,
-    then fall back to the full history. is_core = matches retrieval/ranking/recsys.
-    """
     recent_text = career[0].get("description", "").lower() if career else ""
     all_text = " ".join(r.get("description", "").lower() for r in career)
 
@@ -124,7 +106,6 @@ def _classify_work(career: list[dict]) -> tuple[str, str, bool]:
 
 
 def _extract(candidate: dict, scores: dict) -> dict:
-    """Pull the concrete facts and fire strength/concern flags from the profile."""
     profile = candidate.get("profile", {})
     signals = candidate.get("redrob_signals", {})
     career = candidate.get("career_history", [])
@@ -138,7 +119,6 @@ def _extract(candidate: dict, scores: dict) -> dict:
     company_type = "consulting" if _is_consulting(company) else "product"
     work_phrase, jd_conn, is_core = _classify_work(career)
 
-    # Named skills actually present (real, no hallucination).
     rel_skills = []
     for s in candidate.get("skills", []):
         nm = s.get("name", "")
@@ -146,11 +126,9 @@ def _extract(candidate: dict, scores: dict) -> dict:
             rel_skills.append(nm)
         elif _skill_match(nm, SKILLS_TIER2) and len(rel_skills) < 6:
             rel_skills.append(nm)
-    # de-dup preserving order
     seen = set()
     rel_skills = [x for x in rel_skills if not (x.lower() in seen or seen.add(x.lower()))]
 
-    # Behavioral signal values.
     resp = signals.get("recruiter_response_rate", 0.0)
     notice = signals.get("notice_period_days", None)
     github = signals.get("github_activity_score", -1)
@@ -158,14 +136,11 @@ def _extract(candidate: dict, scores: dict) -> dict:
     last_active = _parse_date(signals.get("last_active_date"))
     days_inactive = (REFERENCE_DATE - last_active).days if last_active else None
 
-    # Tenure (title-chaser check).
     avg_tenure = (sum(r.get("duration_months", 0) for r in career) / len(career)) if career else None
     has_consulting_stint = any(_is_consulting(r.get("company", "")) for r in career)
     relevance = scores.get("relevance", 0.0)
     availability = scores.get("availability_mult", 1.0)
 
-    # ── Strengths ── (phrased to avoid repeating facts already in the frame:
-    # the frame names title/years/company, so strengths don't restate them)
     strengths = []
     if company_type == "product":
         strengths.append(("product", "product-company background"))
@@ -192,7 +167,6 @@ def _extract(candidate: dict, scores: dict) -> dict:
     if rel_skills:
         strengths.append(("skills", "named " + ", ".join(rel_skills[:3])))
 
-    # ── Honest concerns ──
     concerns = []
     if years and years < 4:
         concerns.append(f"only {_fmt_years(years)} yrs experience")
@@ -233,43 +207,32 @@ def _extract(candidate: dict, scores: dict) -> dict:
 
 
 def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
-    """
-    Compose a 1-2 sentence, data-grounded reasoning. Structure and tone vary by rank
-    band; concerns are surfaced honestly. Every claim traces to the candidate's JSON.
-    """
+    """Compose a short, data-grounded reasoning string."""
     f = _extract(candidate, scores)
     title, company, years = f["title"], f["company"], _fmt_years(f["years"])
     strengths = [p for _, p in f["strengths"]]
     concerns = f["concerns"]
 
     loc = f["location"] or f["country"] or "location n/a"
-    # Deterministic structural variation (no Math.random needed).
     seed = int("".join(ch for ch in candidate["candidate_id"] if ch.isdigit()) or "0")
 
-    # ── Rank band controls tone + how many concerns to surface ──
     if rank <= 10:
         band = "top"
-        n_conc = 1   # top picks: surface at most one real concern
+        n_conc = 1
     elif rank <= 50:
         band = "mid"
         n_conc = 2
     else:
         band = "low"
-        n_conc = 2   # lower ranks: lead with the hedge
+        n_conc = 2
 
     chosen_strengths = _rotate(strengths, seed, limit=3)
     strong_str = _sentence_list(chosen_strengths) if chosen_strengths else f"{f['work_phrase']} background"
     conc_str = _sentence_list(_rotate(concerns, seed // 7, limit=n_conc))
     core = f["is_core"]
     jd = f["jd_conn"]
-    # Enthusiasm must reflect actual evidence, not just rank position — otherwise a weak
-    # candidate that floats into a high rank (small pool) gets glowing text. Only lead with
-    # "Strong fit" when there's real signal: core retrieval/ranking work, or ≥2 strengths.
     strong_fit = core or len(strengths) >= 2
 
-    # A few structural frames; choose by seed so adjacent rows differ. The JD-connection
-    # tail is only added when the candidate is core (otherwise the concern already states
-    # the gap, so we don't say it twice).
     if band == "top":
         if strong_fit:
             frames = [
@@ -283,7 +246,6 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
                 + (f"; clear fit for {jd}." if core else "."),
             ]
         else:
-            # Top of this pool, but evidence is thin — keep it measured, not glowing.
             frames = [
                 f"{title}, {years} yrs at {company} ({loc}): {strong_str}.",
                 f"Measured top-pool pick: {title} ({years} yrs at {company}); {strong_str}.",
@@ -305,7 +267,7 @@ def generate_reasoning(candidate: dict, scores: dict, rank: int = 50) -> str:
         out = frames[seed % len(frames)]
         if conc_str:
             out += f" Concerns: {conc_str}."
-    else:  # low band — lead with the hedge, measured tone
+    else:
         lead = [
             f"Adjacent fit: {title}, {years} yrs at {company}.",
             f"Included as a borderline pick: {title} ({years} yrs, {loc}).",
@@ -326,25 +288,12 @@ def rank_candidates(
     scored_candidates: list[tuple[dict, dict]],
     top_n: int = 100,
 ) -> list[dict]:
-    """
-    Sort candidates by final score (descending) and produce the top-N output.
-
-    Args:
-        scored_candidates: list of (candidate, scores_dict) tuples
-        top_n: number of candidates to return
-
-    Returns:
-        list of dicts with: candidate_id, rank, score, reasoning
-    """
-    # First pass: sort by final_score; tie-break by candidate_id ascending.
+    """Sort scored candidates and produce the top-N output."""
     sorted_candidates = sorted(
         scored_candidates,
         key=lambda x: (-x[1]["final_score"], x[0]["candidate_id"]),
     )
 
-    # Second-stage precision rerank over the top 300 only. This preserves the broad
-    # calibrated score from Stage 3 while improving NDCG-sensitive top ordering for
-    # production retrieval/ranking, vector-search, and evaluation evidence.
     rerank_window = sorted_candidates[:300]
     tail = sorted_candidates[300:]
 

@@ -15,7 +15,7 @@ retrieval/ranking work in plain language, not those who merely list buzzwords.
 ## Quick Start
 
 ```bash
-# Pure Python 3.10+ (standard library only — no pip install needed)
+# Ranking path: Python 3.10+, no network, CPU only
 python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.json --out ./submission.csv
 
 # Validate the output against the submission spec
@@ -120,17 +120,18 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 │   └── extracted/              # Extracted challenge/JD/reference docs
 ├── submission.csv              # Output
 ├── submission_baseline.csv     # Keyword-only baseline (ablation reference)
-├── requirements.txt            # No external dependencies
+├── requirements.txt            # Streamlit sandbox dependency
 └── India_runs_data_and_ai_challenge/
     └── candidates.json         # 100K candidate pool (487 MB, not committed)
 ```
 
 ## Compute Environment
 
-- Python 3.10+ (standard library only, no pip install needed)
+- Python 3.10+
 - Any machine with ≥4 GB RAM
 - CPU only — no GPU required
 - No network access during ranking
+- Streamlit is only needed for the optional frontend sandbox
 
 ## AI Tools Used
 

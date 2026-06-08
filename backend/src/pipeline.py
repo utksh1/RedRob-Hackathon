@@ -1,12 +1,4 @@
-"""
-Pipeline Orchestrator — runs the 5-stage ranking pipeline.
-
-Stage 1: Honeypot Detection  → flag ~80 impossible profiles
-Stage 2: Hard Filters        → eliminate disqualified candidates
-Stage 3: Multi-Dim Scoring   → score all remaining candidates on 6 axes
-Stage 4: Composite Ranking   → combine scores and sort
-Stage 5: Top-100 + Reasoning → produce final CSV output
-"""
+"""Ranking pipeline orchestration."""
 
 import sys
 import json
@@ -21,29 +13,19 @@ from backend.src.jd_text import JD_TEXT
 
 
 def _log(msg: str) -> None:
-    """Print a timestamped log message."""
     elapsed = time.time() - _log.start_time
     print(f"  [{elapsed:6.1f}s] {msg}", file=sys.stderr)
 
 _log.start_time = time.time()
 
 
-# Default offline-artifact paths (produced by scripts/precompute_embeddings.py).
-# Absent by default → the optional dense signal is simply skipped.
 _EMB_MATRIX = "embeddings.npy"
 _EMB_IDS = "embedding_ids.json"
 _EMB_JD = "jd_vector.npy"
 
 
 def _load_embedding_cosines(candidates: list[dict], verbose: bool) -> dict[str, float] | None:
-    """
-    Load precomputed sentence-embedding cosines for the given candidates, if the offline
-    artifact exists. Returns {candidate_id: cosine(jd, candidate)} or None.
-
-    numpy is imported lazily and only when the artifact is present, so the default
-    (no-embeddings) ranking path keeps zero runtime dependencies. Embeddings and the JD
-    vector are assumed L2-normalized at save time, so cosine = dot product.
-    """
+    """Load optional precomputed embedding cosines when local artifacts exist."""
     import os
 
     if not (os.path.exists(_EMB_MATRIX) and os.path.exists(_EMB_IDS) and os.path.exists(_EMB_JD)):
@@ -51,8 +33,8 @@ def _load_embedding_cosines(candidates: list[dict], verbose: bool) -> dict[str, 
     try:
         import numpy as np
         ids = json.load(open(_EMB_IDS, encoding="utf-8"))
-        matrix = np.load(_EMB_MATRIX)      # (N, d), L2-normalized
-        jd_vec = np.load(_EMB_JD)          # (d,), L2-normalized
+        matrix = np.load(_EMB_MATRIX)
+        jd_vec = np.load(_EMB_JD)
         row_of = {cid: i for i, cid in enumerate(ids)}
         cos: dict[str, float] = {}
         for c in candidates:
@@ -62,7 +44,7 @@ def _load_embedding_cosines(candidates: list[dict], verbose: bool) -> dict[str, 
         if verbose:
             _log(f"  → Loaded embedding cosines for {len(cos)} candidates")
         return cos or None
-    except Exception as e:  # any failure → fall back to lexical-only, never crash ranking
+    except Exception as e:
         if verbose:
             _log(f"  → Embedding artifact present but unreadable ({e}); using BM25+TF-IDF only")
         return None
@@ -109,17 +91,7 @@ def run_pipeline(
     top_n: int = 100,
     verbose: bool = True,
 ) -> tuple[list[dict], dict]:
-    """
-    Run the full 5-stage pipeline.
-
-    Args:
-        candidates: list of candidate dicts
-        top_n: number of top candidates to output
-        verbose: whether to print progress
-
-    Returns:
-        (results: list[dict], stats: dict)
-    """
+    """Run the ranking pipeline and return results plus run stats."""
     _log.start_time = time.time()
     stats = {
         "total_candidates": len(candidates),
@@ -131,9 +103,6 @@ def run_pipeline(
     if verbose:
         _log(f"Starting pipeline with {len(candidates)} candidates")
 
-    # ───────────────────────────────────
-    # Stage 1: Honeypot Detection
-    # ───────────────────────────────────
     if verbose:
         _log("Stage 1: Honeypot detection...")
 
@@ -147,12 +116,8 @@ def run_pipeline(
     if verbose:
         _log(f"  → Detected {len(honeypot_ids)} honeypots")
 
-    # Remove honeypots
     remaining = [c for c in candidates if c["candidate_id"] not in honeypot_ids]
 
-    # ───────────────────────────────────
-    # Stage 2: Hard Filters
-    # ───────────────────────────────────
     if verbose:
         _log("Stage 2: Hard filters...")
 
@@ -169,21 +134,12 @@ def run_pipeline(
     if verbose:
         _log(f"  → Filtered out {rejected_count} candidates, {len(filtered)} remaining")
 
-    # ───────────────────────────────────
-    # Stage 3: Multi-Dimensional Scoring
-    # ───────────────────────────────────
     if verbose:
         _log(f"Stage 3: Scoring {len(filtered)} candidates...")
 
-    # 3a. Build the relevance index (BM25 + TF-IDF of the JD vs each profile).
-    # This needs corpus-level statistics, so it runs once over the whole filtered set
-    # before per-candidate scoring.
     if verbose:
         _log("  → Building relevance index (BM25 + TF-IDF)...")
 
-    # Optional dense signal: load precomputed sentence-embedding cosines if the offline
-    # artifact is present (scripts/precompute_embeddings.py). Absent by default → the
-    # ranker runs pure-stdlib BM25+TF-IDF, no numpy, no network.
     embedding_cos = _load_embedding_cosines(filtered, verbose)
 
     relevance_scorer = RelevanceScorer(JD_TEXT).fit(filtered, embedding_cos=embedding_cos)
@@ -207,9 +163,6 @@ def run_pipeline(
     if verbose:
         _log(f"  → Scoring complete")
 
-    # ───────────────────────────────────
-    # Stage 4 & 5: Ranking + Reasoning
-    # ───────────────────────────────────
     if verbose:
         _log("Stage 4-5: Ranking and reasoning generation...")
 
@@ -218,7 +171,6 @@ def run_pipeline(
     if verbose:
         _log(f"  → Top {len(results)} candidates selected")
 
-        # Print summary of top 10
         _log("  ─── Top 10 Preview ───")
         for r in results[:10]:
             _log(f"  #{r['rank']:3d}  {r['candidate_id']}  "
