@@ -15,13 +15,17 @@ REFERENCE_DATE = date(2026, 6, 1)
 # ──────────────────────────────────────────────
 # Composite scoring weights (must sum to 1.0)
 # ──────────────────────────────────────────────
+# `relevance` is the BM25 + TF-IDF JD-match axis (src/relevance.py). It carries the
+# free-text semantic signal, so career/skills are down-weighted from the keyword-only
+# baseline to avoid double-counting keyword presence.
 WEIGHTS = {
-    "skills":      0.25,
-    "career":      0.30,
-    "behavioral":  0.20,
-    "experience":  0.15,
-    "education":   0.05,
-    "logistics":   0.05,
+    "relevance":   0.30,
+    "career":      0.22,
+    "skills":      0.16,
+    "behavioral":  0.14,
+    "experience":  0.12,
+    "education":   0.03,
+    "logistics":   0.03,
 }
 
 # ──────────────────────────────────────────────

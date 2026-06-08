@@ -17,6 +17,8 @@ from src.honeypot_detector import detect_honeypot
 from src.hard_filters import apply_hard_filters
 from src.scorers import score_candidate
 from src.ranker import rank_candidates
+from src.relevance import RelevanceScorer
+from src.jd_text import JD_TEXT
 
 
 def _log(msg: str) -> None:
@@ -118,9 +120,20 @@ def run_pipeline(
     if verbose:
         _log(f"Stage 3: Scoring {len(filtered)} candidates...")
 
+    # 3a. Build the relevance index (BM25 + TF-IDF of the JD vs each profile).
+    # This needs corpus-level statistics, so it runs once over the whole filtered set
+    # before per-candidate scoring.
+    if verbose:
+        _log("  → Building relevance index (BM25 + TF-IDF)...")
+    relevance_scorer = RelevanceScorer(JD_TEXT).fit(filtered)
+    relevance_map = relevance_scorer.relevance_scores()
+    if verbose:
+        _log(f"  → Relevance computed for {len(relevance_map)} candidates")
+
     scored = []
     for i, candidate in enumerate(filtered):
-        scores = score_candidate(candidate)
+        rel = relevance_map.get(candidate["candidate_id"], 0.0)
+        scores = score_candidate(candidate, relevance=rel)
         scored.append((candidate, scores))
 
         if verbose and (i + 1) % 10000 == 0:

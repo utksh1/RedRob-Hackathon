@@ -613,9 +613,15 @@ def score_logistics(candidate: dict) -> float:
 # Composite scorer
 # ─────────────────────────────────────────────────────────
 
-def score_candidate(candidate: dict) -> dict:
+def score_candidate(candidate: dict, relevance: float = 0.0) -> dict:
     """
-    Compute all 6 axis scores and the weighted composite for a candidate.
+    Compute all axis scores and the weighted composite for a candidate.
+
+    Args:
+        candidate: the candidate record.
+        relevance: the BM25 + TF-IDF JD-match score in [0, 1], precomputed across the
+            whole scored population by src.relevance.RelevanceScorer. Passed in (rather
+            than computed here) because it needs corpus-level statistics.
 
     Returns a dict with individual axis scores, availability multiplier,
     and final composite score.
@@ -631,8 +637,9 @@ def score_candidate(candidate: dict) -> dict:
 
     availability = compute_availability_multiplier(candidate)
 
-    # Weighted composite
+    # Weighted composite (relevance is the free-text JD-match axis)
     raw_composite = (
+        relevance * WEIGHTS["relevance"] +
         skills * WEIGHTS["skills"] +
         career * WEIGHTS["career"] +
         behavioral * WEIGHTS["behavioral"] +
@@ -644,6 +651,7 @@ def score_candidate(candidate: dict) -> dict:
     final_score = raw_composite * availability
 
     return {
+        "relevance": round(relevance, 4),
         "skills": round(skills, 4),
         "career": round(career, 4),
         "behavioral": round(behavioral, 4),
