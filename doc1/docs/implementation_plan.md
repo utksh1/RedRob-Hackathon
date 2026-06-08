@@ -156,22 +156,22 @@ Main ranking script — single-command entry point:
 python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.jsonl --out ./submission.csv
 ```
 
-#### [NEW] [src/pipeline.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/pipeline.py)
+#### [NEW] [backend/src/pipeline.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/pipeline.py)
 Orchestrates the 5-stage pipeline.
 
-#### [NEW] [src/honeypot_detector.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/honeypot_detector.py)
+#### [NEW] [backend/src/honeypot_detector.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/honeypot_detector.py)
 Detects ~80 honeypot candidates with impossible profiles.
 
-#### [NEW] [src/hard_filters.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/hard_filters.py)
+#### [NEW] [backend/src/hard_filters.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/hard_filters.py)
 Eliminates explicitly disqualified candidates per JD.
 
-#### [NEW] [src/scorers.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/scorers.py)
+#### [NEW] [backend/src/scorers.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/scorers.py)
 Six scoring axes: skills, career, behavioral, experience, education, logistics.
 
-#### [NEW] [src/ranker.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/ranker.py)
+#### [NEW] [backend/src/ranker.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/ranker.py)
 Combines scores, sorts, produces top-100 with reasoning.
 
-#### [NEW] [src/config.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/config.py)
+#### [NEW] [backend/src/config.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/config.py)
 All tunable constants (weights, thresholds, keyword lists, company lists).
 
 #### [NEW] [requirements.txt](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/requirements.txt)

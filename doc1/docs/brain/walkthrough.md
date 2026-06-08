@@ -9,12 +9,12 @@ A **pure-Python multi-dimensional candidate ranking system** for the RedRob Hack
 | File | Purpose |
 |---|---|
 | [rank.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/rank.py) | CLI entry point with self-validation |
-| [src/config.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/config.py) | All tunable constants (skills taxonomy, title classifications, keyword sets, weights, thresholds) |
-| [src/honeypot_detector.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/honeypot_detector.py) | 6-check honeypot detection (expert-zero-duration, career-date mismatches, timeline conflicts, assessment contradictions, impossible education, too-many-experts) |
-| [src/hard_filters.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/hard_filters.py) | JD-based disqualification (all-consulting career, impossible location, zero experience, non-technical keyword stuffers) |
-| [src/scorers.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/scorers.py) | 6-axis scoring engine + availability multiplier |
-| [src/ranker.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/ranker.py) | Ranking + reasoning generation |
-| [src/pipeline.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/src/pipeline.py) | 5-stage pipeline orchestrator |
+| [backend/src/config.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/config.py) | All tunable constants (skills taxonomy, title classifications, keyword sets, weights, thresholds) |
+| [backend/src/honeypot_detector.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/honeypot_detector.py) | 6-check honeypot detection (expert-zero-duration, career-date mismatches, timeline conflicts, assessment contradictions, impossible education, too-many-experts) |
+| [backend/src/hard_filters.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/hard_filters.py) | JD-based disqualification (all-consulting career, impossible location, zero experience, non-technical keyword stuffers) |
+| [backend/src/scorers.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/scorers.py) | 6-axis scoring engine + availability multiplier |
+| [backend/src/ranker.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/ranker.py) | Ranking + reasoning generation |
+| [backend/src/pipeline.py](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/backend/src/pipeline.py) | 5-stage pipeline orchestrator |
 | [README.md](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/README.md) | Comprehensive documentation for Stage 3 reproduction |
 | [submission.csv](file:///c:/Users/Rose/Videos/FUTURE/RedRob%20Hackathon/submission.csv) | Final output |
 

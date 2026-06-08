@@ -133,7 +133,7 @@ RedRob Hackathon/
 ├── submission.csv                   ← Current output (needs rerun after fixes)
 ├── requirements.txt                 ← Dependencies
 ├── README.md                        ← Documentation
-├── src/
+├── backend/src/
 │   ├── __init__.py
 │   ├── config.py                    ← All constants & taxonomies
 │   ├── honeypot_detector.py         ← Stage 1: fake profile detection
@@ -141,7 +141,7 @@ RedRob Hackathon/
 │   ├── scorers.py                   ← Stage 3: 6-axis scoring engine
 │   ├── ranker.py                    ← Stage 4-5: ranking + reasoning
 │   └── pipeline.py                  ← Orchestrator
-├── docs/
+├── doc1/docs/
 │   ├── HONEST_ASSESSMENT.md         ← This file
 │   ├── implementation_plan.md       ← Original design blueprint
 │   ├── walkthrough.md               ← What was built & results

@@ -4,7 +4,7 @@
 
 A CPU-only, dependency-light candidate ranking system for the **Senior AI Engineer
 (Founding Team)** role at Redrob AI. It processes 100,000 candidate profiles and produces
-a ranked top-100 list with per-candidate reasoning, in ~20 seconds.
+a ranked top-100 list with per-candidate reasoning, in under a minute.
 
 The system's core idea: the JD explicitly warns that *"the right answer is not find
 candidates whose skills section contains the most AI keywords — that's a trap."* So
@@ -23,7 +23,7 @@ python validate_submission.py --submission submission.csv \
     --candidates ./India_runs_data_and_ai_challenge/candidates.json
 ```
 
-**Performance:** ~20 seconds on a standard machine (6.8% of the 5-minute budget).
+**Performance:** ~43 seconds on a standard machine (well inside the 5-minute budget).
 
 ## Architecture
 
@@ -83,7 +83,7 @@ reasoning-quality signals the Stage-4 reviewer checks.
 |---|---|---|---|
 | Keyword-only (baseline) | — | 0.0613 | 1 template, 0 concerns |
 | + Relevance (BM25/TF-IDF) | **18 of 100 changed** | 0.0501 | (unchanged) |
-| + Reasoning rewrite | (same ranking) | 0.0501 | **0 duplicates, 84 structures, 80/100 surface a concern** |
+| + Precision reranker + reasoning | 4/10 top-10 baseline overlap | 0.0990 | **100 unique, 100 structures, 68/100 surface a concern term** |
 
 What the 18-candidate churn did: relevance **promoted** profiles describing
 *"owned the ranking layer for an e-commerce search product"*, *"semantic search over 500K
@@ -102,15 +102,22 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 ├── rank.py                     # Entry point — CLI interface
 ├── validate_submission.py      # Local replica of the spec format validator
 ├── submission_metadata.yaml    # Portal metadata (team fields are TODO)
-├── src/
-│   ├── config.py               # All tunable constants + weights
-│   ├── jd_text.py              # The JD as the relevance query
-│   ├── relevance.py            # BM25 + TF-IDF JD-relevance scorer (pure Python)
-│   ├── honeypot_detector.py    # Stage 1: impossible profile detection
-│   ├── hard_filters.py         # Stage 2: JD-based disqualification
-│   ├── scorers.py              # Stage 3: 7-axis scoring engine
-│   ├── ranker.py               # Stage 4-5: ranking + reasoning
-│   └── pipeline.py             # Orchestrates all stages
+├── backend/
+│   └── src/
+│       ├── config.py           # All tunable constants + weights
+│       ├── jd_text.py          # The JD as the relevance query
+│       ├── relevance.py        # BM25 + TF-IDF JD-relevance scorer
+│       ├── honeypot_detector.py
+│       ├── hard_filters.py
+│       ├── scorers.py
+│       ├── ranker.py
+│       └── pipeline.py
+├── frontend/
+│   └── app.py                  # Streamlit sandbox/demo
+├── models/
+│   └── README.md               # Optional model/artifact location
+├── doc1/
+│   └── docs/                   # Project docs, deck, extracted specs
 ├── submission.csv              # Output
 ├── submission_baseline.csv     # Keyword-only baseline (ablation reference)
 ├── requirements.txt            # No external dependencies
@@ -140,8 +147,8 @@ the relevance design, tuning, and system architecture were human-directed.
 | Hard-filtered | 47,293 |
 | Scored | 52,611 |
 | Output | 100 candidates |
-| Execution time | ~20s |
-| Score range | 0.9180 – 0.9681 |
+| Execution time | ~43s |
+| Score range | 0.9000 – 0.9990 |
 
 ### Top-10 Preview
 

@@ -74,7 +74,7 @@ These words appear often. Learn them once, then everything is easy:
 - **Python** (version 3.10 or above)
 - These libraries: `pandas`, `numpy`, `scikit-learn`, `lightgbm`, `sentence-transformers`, `rapidfuzz`, `matplotlib`
 - A **GitHub** account + create a private repo
-- Make folders: `data/`, `src/` (code), `notebooks/` (experiments), `outputs/` (results)
+- Make folders: `data/`, `backend/src/` (code), `notebooks/` (experiments), `outputs/` (results)
 
 ### Step 0.3 — Learn the concepts (the ones you don't know)
 On YouTube/docs, understand these 4 things (20-30 min each):
@@ -252,7 +252,7 @@ Rank #1 — Candidate A (Score 91%)
 10. How to run (install + commands — so a judge can run it themselves)
 
 ### Step 6.2 — Keep the repo clean (clarity = marks)
-- Clean folders: `src/ data/ notebooks/ outputs/`
+- Clean folders: `backend/src/ data/ notebooks/ outputs/`
 - `requirements.txt` (list of libraries)
 - Comments in the code
 - An architecture diagram in the README (from draw.io or mermaid)

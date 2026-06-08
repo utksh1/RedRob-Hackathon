@@ -37,7 +37,7 @@ submission path from the optional demo/sandbox path.
 | `submission.csv` | Final top-100 ranked output |
 | `submission_baseline.csv` | Baseline output used for ablation comparison |
 | `submission_metadata.yaml` | Portal metadata; team/contact/GitHub/sandbox fields still need final values |
-| `docs/11_DECK_Track1_Methodology.md` | Methodology deck draft |
+| `doc1/docs/11_DECK_Track1_Methodology.md` | Methodology deck draft |
 
 ## Optional Future Stack
 
@@ -65,7 +65,7 @@ python validate_submission.py \
 
 # Local sandbox
 pip install streamlit
-streamlit run app.py
+streamlit run frontend/app.py
 ```
 
 ## Current Next Step
@@ -75,6 +75,6 @@ finish the submission deliverables:
 
 1. Fill `submission_metadata.yaml` with team name, contact, GitHub URL, and sandbox URL.
 2. Push the repo to GitHub.
-3. Deploy `app.py` on Streamlit Community Cloud and paste that URL into the metadata.
-4. Export or polish the methodology deck from `docs/11_DECK_Track1_Methodology.md`.
+3. Deploy `frontend/app.py` on Streamlit Community Cloud and paste that URL into the metadata.
+4. Export or polish the methodology deck from `doc1/docs/11_DECK_Track1_Methodology.md`.
 5. Run the final `rank.py` + `validate_submission.py` commands once more before upload.

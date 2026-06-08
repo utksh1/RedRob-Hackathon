@@ -2,7 +2,7 @@
 
 > **How to use:** paste each slide into Gamma/Canva, add the noted visual, export PDF as
 > `RedRobRanker_IndiaRuns_[Team].pdf`. 8 slides. `[VISUAL: ...]` = put a diagram/chart there.
-> All numbers are measured on the real 100K pool (see [README.md](../README.md) ablation).
+> All numbers are measured on the real 100K pool (see [README.md](../../README.md) ablation).
 
 ---
 
@@ -14,7 +14,7 @@ We don't match keywords — we read what they actually built.
 Track 1 · Senior AI Engineer JD · 100,000 candidates → ranked top 100
 Team: [name] · India Runs 2026
 ```
-`[VISUAL: clean title; a faint funnel 100,000 → 100. CPU-only · ~20s · zero dependencies badge.]`
+`[VISUAL: clean title; a faint funnel 100,000 → 100. CPU-only · ~43s · standard-library ranker badge.]`
 
 ---
 
@@ -41,7 +41,7 @@ So two failures must be avoided:
 4. Composite ranking    → weighted blend × availability gate
 5. Reasoning            → varied, concern-aware, per candidate
 
-Pure Python · CPU-only · no network · ~20s on 100K (budget: 300s)
+Pure Python · CPU-only · no network · ~43s on 100K (budget: 300s)
 ```
 `[VISUAL: left-to-right pipeline diagram, 100,000 → 96 honeypots out → 47K filtered → 52,611 scored → top 100.]`
 
@@ -63,20 +63,20 @@ Rare JD terms (embedding drift, hybrid retrieval, re-ranking) weigh most.
 
 ---
 
-## SLIDE 5 — RESULTS: what relevance changed (ablation)
+## SLIDE 5 — RESULTS: precision reranking
 ```
 We can't compute NDCG locally (ground truth is hidden) — so we measure the
 ranking change and reasoning quality directly.
 
-Adding the relevance axis moved 18 of the top 100:
-  PROMOTED  → "owned the ranking layer for e-commerce search",
-              "semantic search over 500K docs", "RAG chatbot", "personalization infra"
-  DEMOTED   → "sentiment analysis", "fraud detection", "computer vision for moderation"
-              (the JD explicitly disfavors CV-only)
+The precision pass reranks only the top 300, rewarding:
+  PROMOTE   → vector/semantic search, NDCG/MRR/MAP, A/B tests,
+              production deployment, index refresh, embedding drift
+  PENALIZE  → toy/demo RAG, CV/speech-only profiles, generic applied ML
 
-That is the exact "read between the lines" the JD asks for.
+Result: only 4 of the baseline top-10 remain, but every top-100 row still validates,
+with 0 honeypots and 100/100 distinct reasoning strings.
 ```
-`[VISUAL: before/after columns of the top-100 churn — promoted (green) vs demoted (grey) job-description snippets.]`
+`[VISUAL: top-300 rerank diagram — production retrieval/eval evidence moves up; toy/CV-only moves down.]`
 
 ---
 
@@ -90,7 +90,7 @@ and surfaces honest concerns — tone scaled to rank.
 #75  "NLP Engineer, below the top tier. Upside: product-company, 5-9 yr band.
       Concerns: long 90-day notice; not flagged open-to-work."
 
-100/100 distinct · 0 templated · 80/100 surface a real concern.
+100/100 distinct · 0 templated · 68/100 surface a concern term.
 ```
 `[VISUAL: two reasoning cards (rank 1 glowing, rank 75 hedged) with facts/concerns colour-coded.]`
 
@@ -102,7 +102,7 @@ and surfaces honest concerns — tone scaled to rank.
   (spec disqualifies >10% honeypot rate — we run 0%).
 • Availability gate: a perfect-on-paper candidate inactive 6 months with a 5%
   response rate is down-weighted — "not actually available", per the JD.
-• Reproducible: one command, no GPU, no API calls, zero dependencies.
+• Reproducible: one command, no GPU, no API calls, standard-library ranker.
     python rank.py --candidates candidates.json --out submission.csv
 • Sandbox: live Streamlit demo ranks an uploaded sample end-to-end.
 ```
@@ -113,7 +113,7 @@ and surfaces honest concerns — tone scaled to rank.
 ## SLIDE 8 — COST + ROADMAP (Redrob fit)
 ```
 Cost-aware by design — Redrob's whole thesis:
-• Ranks 100K on a laptop CPU in ~20s. No GPU, no per-candidate LLM calls.
+• Ranks 100K on a laptop CPU in ~43s. No GPU, no per-candidate LLM calls.
 • An LLM is used only OFFLINE to distill labels into a small CPU reranker —
   never in the ranking path. Production-grade latency-quality tradeoff.
 
@@ -122,7 +122,7 @@ learning-to-rank · the same engine powers lead-ranking in Redrob's GTM.
 
 "We don't find the best resume — we find the right person, in plain language."
 ```
-`[VISUAL: cost comparison — per-candidate GPT call (✗, won't fit budget) vs our CPU pipeline (✓ ~20s); small roadmap arrow.]`
+`[VISUAL: cost comparison — per-candidate GPT call (✗, won't fit budget) vs our CPU pipeline (✓ ~43s); small roadmap arrow.]`
 
 ---
 
@@ -135,12 +135,12 @@ learning-to-rank · the same engine powers lead-ranking in Redrob's GTM.
 ## SPEAKER NOTES (≈30s each)
 1. "We rank 100K candidates for the Senior AI Engineer role — and the trick is we read what they built, not the keywords they listed."
 2. "The JD literally says keyword-matching is a trap, with two failure modes: stuffers get in, real plain-language talent gets dropped."
-3. "Five stages, all CPU, 20 seconds. Honeypots out, obvious disqualifiers out, then scoring."
+3. "Five stages, all CPU, 43 seconds. Honeypots out, obvious disqualifiers out, then scoring."
 4. "The core: BM25/TF-IDF of the JD against the candidate's own career text. Real retrieval work scores high even with no buzzwords; keyword systems score it zero."
-5. "Ground truth is hidden, so we measure the change: relevance promoted the search/ranking people and demoted sentiment/fraud/CV — exactly the JD's intent."
+5. "Ground truth is hidden, so we validate by proxy: the precision pass promotes production retrieval/evaluation evidence and penalizes toy RAG or CV-only profiles."
 6. "Every rank gets honest reasoning — strengths, the JD tie, and real concerns — tone matching the rank. Nothing templated."
 7. "Trust: zero honeypots in the top 100, availability gating, and one-command reproduction with no network."
-8. "It's cheap — laptop CPU, 20 seconds — and the LLM only labels offline. That's Redrob's cost thesis, and the same engine ranks sales leads too."
+8. "It's cheap — laptop CPU, 43 seconds — and the LLM only labels offline. That's Redrob's cost thesis, and the same engine ranks sales leads too."
 
 ## JUDGE Q&A
 | Question | Answer |

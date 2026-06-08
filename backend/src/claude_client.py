@@ -39,7 +39,7 @@ import json
 import sys
 import time
 
-from src.jd_text import JD_TEXT
+from backend.src.jd_text import JD_TEXT
 
 # Default model — the skill mandates claude-opus-4-8 unless the user picks another.
 # (Override with --model for cheaper bulk labeling, e.g. claude-sonnet-4-6.)

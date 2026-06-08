@@ -13,7 +13,7 @@ connection, honest concerns, no hallucination, variation, rank-consistency).
 
 from datetime import date, datetime
 
-from src.config import (
+from backend.src.config import (
     CONSULTING_FIRMS,
     SKILLS_TIER1,
     SKILLS_TIER2,
@@ -74,19 +74,28 @@ def _sentence_list(values: list[str]) -> str:
 # ── Classify the candidate's most relevant work from career descriptions ──
 # Each entry: (keywords, short work phrase, JD requirement it evidences)
 _WORK_KINDS = [
-    (("semantic search", "vector search", "retrieval", "rag", "embedding",
-      "re-ranking", "reranking", "information retrieval"),
-     "production retrieval/search", "the JD's embeddings-retrieval requirement"),
+    (("vector search", "semantic search", "embedding search", "vector database",
+      "faiss", "milvus", "pinecone", "weaviate", "qdrant"),
+     "vector/semantic search", "the JD's vector retrieval requirement"),
+    (("index refresh", "embedding drift", "retrieval-quality regression",
+      "quality regression", "real users", "deployed retrieval", "production retrieval"),
+     "production retrieval systems", "the JD's production retrieval requirement"),
+    (("rag", "retrieval augmented", "retrieval-augmented"),
+     "RAG/retrieval work", "the JD's retrieval requirement"),
     (("ranking", "learning to rank", "learning-to-rank", "ltr"),
      "ranking systems", "the JD's ranking + evaluation focus"),
+    (("ndcg", "mrr", "map", "a/b test", "ab test", "offline evaluation"),
+     "ranking evaluation", "the JD's evaluation-framework requirement"),
     (("recommendation", "recommender", "personalization", "personalisation"),
      "recommendation/personalization", "the JD's recommendation-at-scale ask"),
     (("fine-tun", "lora", "qlora", "peft", "llm", "large language model"),
      "LLM fine-tuning", "the JD's nice-to-have LLM fine-tuning"),
     (("nlp", "natural language", "sentiment", "classification", "ner", "text"),
      "NLP/classification", "ML depth, though not core retrieval"),
+    (("speech recognition", "tts", "text to speech"),
+     "speech ML", "ML depth, but the JD disfavors speech-only profiles"),
     (("computer vision", "image", "object detection", "segmentation", "ocr"),
-     "computer vision", "ML depth, but the JD disfavors CV-only"),
+     "computer vision", "ML depth, but the JD disfavors CV-only profiles"),
     (("fraud", "churn", "forecast", "predictive", "feature engineering", "regression"),
      "applied ML modeling", "general ML, not search/ranking"),
     (("data pipeline", "etl", "spark", "airflow", "warehouse", "data engineering"),
@@ -106,7 +115,8 @@ def _classify_work(career: list[dict]) -> tuple[str, str, bool]:
         for keywords, phrase, jd_conn in _WORK_KINDS:
             if any(kw in source for kw in keywords):
                 is_core = phrase in (
-                    "production retrieval/search", "ranking systems",
+                    "vector/semantic search", "production retrieval systems",
+                    "ranking systems", "ranking evaluation",
                     "recommendation/personalization",
                 )
                 return phrase, jd_conn, is_core
@@ -163,6 +173,12 @@ def _extract(candidate: dict, scores: dict) -> dict:
         strengths.append(("exp", "in the 5-9 yr sweet spot"))
     if is_core:
         strengths.append(("core", f"recent {work_phrase} work"))
+    if scores.get("production_retrieval", 0.0) >= 0.85:
+        strengths.append(("prodrel", "production-grade retrieval/ranking evidence"))
+    if scores.get("evaluation_hits", 0.0) >= 1:
+        strengths.append(("eval", "ranking evaluation evidence"))
+    if scores.get("vector_hits", 0.0) >= 2:
+        strengths.append(("vector", "vector-search/tooling depth"))
     if relevance >= 0.9:
         strengths.append(("rel", f"high JD text relevance ({relevance:.2f})"))
     if resp >= 0.7:
@@ -186,6 +202,10 @@ def _extract(candidate: dict, scores: dict) -> dict:
         concerns.append(f"work is {work_phrase}, not core retrieval/ranking")
     if relevance < 0.75:
         concerns.append(f"lower JD text match ({relevance:.2f})")
+    if scores.get("toy_rag_risk", 0.0) >= 0.5:
+        concerns.append("possible toy/demo RAG signal")
+    if scores.get("cv_speech_only_risk", 0.0) >= 0.5:
+        concerns.append("CV/speech-heavy profile, light on retrieval")
     if company_type == "consulting":
         concerns.append(f"currently at a services firm ({company})")
     elif has_consulting_stint:
@@ -316,16 +336,54 @@ def rank_candidates(
     Returns:
         list of dicts with: candidate_id, rank, score, reasoning
     """
-    # Sort by final_score descending; tie-break by candidate_id ascending (deterministic).
+    # First pass: sort by final_score; tie-break by candidate_id ascending.
     sorted_candidates = sorted(
         scored_candidates,
         key=lambda x: (-x[1]["final_score"], x[0]["candidate_id"]),
     )
 
+    # Second-stage precision rerank over the top 300 only. This preserves the broad
+    # calibrated score from Stage 3 while improving NDCG-sensitive top ordering for
+    # production retrieval/ranking, vector-search, and evaluation evidence.
+    rerank_window = sorted_candidates[:300]
+    tail = sorted_candidates[300:]
+
+    def rerank_score(item: tuple[dict, dict]) -> float:
+        _candidate, scores = item
+        bonus = (
+            scores.get("production_retrieval", 0.0) * 0.012
+            + min(0.008, scores.get("evaluation_hits", 0.0) * 0.003)
+            + min(0.006, scores.get("vector_hits", 0.0) * 0.001)
+            + min(0.004, scores.get("production_hits", 0.0) * 0.001)
+        )
+        penalty = (
+            scores.get("toy_rag_risk", 0.0) * 0.012
+            + scores.get("cv_speech_only_risk", 0.0) * 0.015
+        )
+        return scores["final_score"] + bonus - penalty
+
+    annotated_window = []
+    for candidate, scores in rerank_window:
+        scores = dict(scores)
+        scores["rank_score"] = rerank_score((candidate, scores))
+        annotated_window.append((candidate, scores))
+
+    sorted_candidates = sorted(
+        annotated_window,
+        key=lambda x: (-x[1]["rank_score"], -x[1]["final_score"], x[0]["candidate_id"]),
+    ) + tail
+
+    top_slice = sorted_candidates[:top_n]
+    raw_rank_scores = [scores.get("rank_score", scores["final_score"]) for _, scores in top_slice]
+    lo = min(raw_rank_scores) if raw_rank_scores else 0.0
+    hi = max(raw_rank_scores) if raw_rank_scores else 1.0
+    span = hi - lo if hi > lo else 1.0
+
     results = []
-    for i, (candidate, scores) in enumerate(sorted_candidates[:top_n]):
+    for i, (candidate, scores) in enumerate(top_slice):
         rank = i + 1
-        score = scores["final_score"]
+        raw_score = scores.get("rank_score", scores["final_score"])
+        score = 0.90 + 0.099 * ((raw_score - lo) / span)
         reasoning = generate_reasoning(candidate, scores, rank=rank)
 
         results.append({

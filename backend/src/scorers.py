@@ -17,7 +17,7 @@ import math
 from datetime import date, datetime
 from typing import Any
 
-from src.config import (
+from backend.src.config import (
     REFERENCE_DATE,
     # Skills
     SKILLS_TIER1, SKILLS_TIER2, SKILLS_ANTI,
@@ -613,20 +613,21 @@ def score_logistics(candidate: dict) -> float:
 # Composite scorer
 # ─────────────────────────────────────────────────────────
 
-def score_candidate(candidate: dict, relevance: float = 0.0) -> dict:
+def score_candidate(candidate: dict, relevance: float = 0.0, relevance_detail: dict | None = None) -> dict:
     """
     Compute all axis scores and the weighted composite for a candidate.
 
     Args:
         candidate: the candidate record.
         relevance: the BM25 + TF-IDF JD-match score in [0, 1], precomputed across the
-            whole scored population by src.relevance.RelevanceScorer. Passed in (rather
-            than computed here) because it needs corpus-level statistics.
+            whole scored population by src.relevance.RelevanceScorer.
+        relevance_detail: optional relevance subfeatures (BM25, TF-IDF, core hits,
+            production/evaluation/vector evidence, and risk flags).
 
     Returns a dict with individual axis scores, availability multiplier,
     and final composite score.
     """
-    from src.config import WEIGHTS
+    from backend.src.config import WEIGHTS
 
     skills = score_skills(candidate)
     career = score_career(candidate)
@@ -636,6 +637,7 @@ def score_candidate(candidate: dict, relevance: float = 0.0) -> dict:
     logistics = score_logistics(candidate)
 
     availability = compute_availability_multiplier(candidate)
+    detail = relevance_detail or {}
 
     # Weighted composite (relevance is the free-text JD-match axis)
     raw_composite = (
@@ -648,10 +650,33 @@ def score_candidate(candidate: dict, relevance: float = 0.0) -> dict:
         logistics * WEIGHTS["logistics"]
     )
 
+    precision_bonus = (
+        min(0.035, detail.get("production_retrieval", 0.0) * 0.020)
+        + min(0.018, detail.get("evaluation_hits", 0.0) * 0.006)
+        + min(0.018, detail.get("vector_hits", 0.0) * 0.004)
+        + min(0.012, detail.get("production_hits", 0.0) * 0.003)
+    )
+    precision_penalty = (
+        detail.get("toy_rag_risk", 0.0) * 0.025
+        + detail.get("cv_speech_only_risk", 0.0) * 0.030
+    )
+    raw_composite = _clamp(raw_composite + precision_bonus - precision_penalty)
+
     final_score = raw_composite * availability
 
     return {
         "relevance": round(relevance, 4),
+        "bm25_norm": round(detail.get("bm25_norm", 0.0), 4),
+        "tfidf_norm": round(detail.get("tfidf_norm", 0.0), 4),
+        "core_jd_hits": round(detail.get("core_jd_hits", 0.0), 4),
+        "evaluation_hits": round(detail.get("evaluation_hits", 0.0), 4),
+        "vector_hits": round(detail.get("vector_hits", 0.0), 4),
+        "production_hits": round(detail.get("production_hits", 0.0), 4),
+        "production_retrieval": round(detail.get("production_retrieval", 0.0), 4),
+        "toy_rag_risk": round(detail.get("toy_rag_risk", 0.0), 4),
+        "cv_speech_only_risk": round(detail.get("cv_speech_only_risk", 0.0), 4),
+        "precision_bonus": round(precision_bonus, 4),
+        "precision_penalty": round(precision_penalty, 4),
         "skills": round(skills, 4),
         "career": round(career, 4),
         "behavioral": round(behavioral, 4),

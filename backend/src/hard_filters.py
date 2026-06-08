@@ -5,7 +5,8 @@ These filters run AFTER honeypot detection and BEFORE scoring.
 They remove candidates who cannot possibly be a match regardless of other factors.
 """
 
-from src.config import CONSULTING_FIRMS, TITLES_NEGATIVE
+from backend.src.config import CONSULTING_FIRMS, TITLES_NEGATIVE
+from backend.src.relevance import has_strong_rescue_signal
 
 
 def _normalize_company(name: str) -> str:
@@ -83,6 +84,9 @@ def filter_pure_non_technical(candidate: dict) -> tuple[bool, str]:
     title_is_negative = any(neg in current_title for neg in TITLES_NEGATIVE)
 
     if not title_is_negative:
+        return False, ""
+
+    if has_strong_rescue_signal(candidate):
         return False, ""
 
     # Title is negative — check if ANY career description mentions ML/AI work

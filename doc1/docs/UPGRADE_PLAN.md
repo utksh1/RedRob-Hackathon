@@ -66,11 +66,11 @@ not official scoring — but the diagnosis is confirmed by the code:
 
 | # | Root cause | Where in code | Effect on score |
 |---|---|---|---|
-| 1 | **Keyword matching disguised as understanding** — all "semantic" functions are substring matches against fixed word lists | [scorers.py:65](../src/scorers.py#L65) `_skill_match`, [scorers.py:89](../src/scorers.py#L89) `_score_description_text` | Misses the JD's "plain-language Tier 5" candidates → directly lowers NDCG |
-| 2 | **`_score_description_text` returns `0.0` when no keywords hit** | [scorers.py:105](../src/scorers.py#L105) | A real retrieval engineer who avoids buzzwords scores zero on description |
-| 3 | **No ranking model** — composite is a fixed hand-weighted linear sum | [scorers.py:635](../src/scorers.py#L635) | Nothing optimizes NDCG@10 (50% of grade); top-10 ordering is near-arbitrary |
+| 1 | **Keyword matching disguised as understanding** — all "semantic" functions are substring matches against fixed word lists | [scorers.py:65](../../backend/src/scorers.py#L65) `_skill_match`, [scorers.py:89](../../backend/src/scorers.py#L89) `_score_description_text` | Misses the JD's "plain-language Tier 5" candidates → directly lowers NDCG |
+| 2 | **`_score_description_text` returns `0.0` when no keywords hit** | [scorers.py:105](../../backend/src/scorers.py#L105) | A real retrieval engineer who avoids buzzwords scores zero on description |
+| 3 | **No ranking model** — composite is a fixed hand-weighted linear sum | [scorers.py:635](../../backend/src/scorers.py#L635) | Nothing optimizes NDCG@10 (50% of grade); top-10 ordering is near-arbitrary |
 | 4 | **Score spread is 0.8929–0.9542** (0.06 across 100) | symptom of #3 | Poor differentiation among top candidates = weak NDCG |
-| 5 | **Templated reasoning**, one f-string for all 100, zero honest concerns | [ranker.py:113](../src/ranker.py#L113) | Explicitly penalized at Stage 4 manual review |
+| 5 | **Templated reasoning**, one f-string for all 100, zero honest concerns | [ranker.py:113](../../backend/src/ranker.py#L113) | Explicitly penalized at Stage 4 manual review |
 | 6 | **Missing mandatory deliverables**: sandbox, `submission_metadata.yaml`, GitHub push, PDF deck, real git history | — | Eliminated at Stage 1/3 regardless of score |
 
 ### How the scoring pipeline shapes priorities
@@ -155,7 +155,7 @@ Load 100K candidates
 Output CSV  +  validate_submission.py  +  metadata + deck
 ```
 
-### 3.1 NEW module: `src/relevance.py` (the core upgrade)
+### 3.1 NEW module: `backend/src/relevance.py` (the core upgrade)
 
 **Responsibility:** Produce a continuous JD-relevance score per candidate from *free text*,
 not keyword lists. This is the single highest-leverage change.
@@ -197,14 +197,14 @@ high-IDF terms with the JD (`recommends`, `NDCG`, `A/B`, `offline`, `tuned`) **w
 the exact tokens in `DESC_KEYWORDS_CORE`. BM25/TF-IDF reward that overlap; the current code scores
 it 0.0.
 
-**Track B add-on (optional):** `src/embed_precompute.py` (offline, not run by `rank.py`):
+**Track B add-on (optional):** `backend/src/embed_precompute.py` (offline, not run by `rank.py`):
 - Load `BAAI/bge-small-en-v1.5` via `sentence-transformers`, encode `JD_TEXT` and every candidate
   doc, save `embeddings.npy` (id-aligned) + `jd_vector.npy`.
 - `rank.py` loads these and computes cosine — no model at rank time, network stays off.
 - Document this clearly in README as a pre-compute step (spec §10.3 explicitly allows it).
 - Blend: `relevance = 0.4·bm25 + 0.2·tfidf + 0.4·embed_cos`.
 
-### 3.2 Changes to `src/scorers.py`
+### 3.2 Changes to `backend/src/scorers.py`
 
 - Add `relevance` to the composite. Re-balance `WEIGHTS` so career/skills no longer double-count
   keyword presence. Proposed starting weights (tune later):
@@ -219,7 +219,7 @@ it 0.0.
       "logistics":  0.03,   # was 0.05
   }  # sum = 1.00
   ```
-- Keep the **availability multiplier** ([scorers.py:400](../src/scorers.py#L400)) — it correctly
+- Keep the **availability multiplier** ([scorers.py:400](../../backend/src/scorers.py#L400)) — it correctly
   encodes the JD's "not actually available" point. Consider softening floor from 0.3 only after
   measuring its effect on spread.
 - Fix `_score_description_text` so "no keywords" is not the same as "negative" — but this becomes
@@ -232,7 +232,7 @@ it 0.0.
 - Sanity check post-run: top-100 score range should be noticeably wider than 0.06.
 
 ### 3.4 Hard-filter softening (deferred)
-- `filter_pure_non_technical` ([hard_filters.py:70](../src/hard_filters.py#L70)) currently uses
+- `filter_pure_non_technical` ([hard_filters.py:70](../../backend/src/hard_filters.py#L70)) currently uses
   keyword hits. Risk: it drops a genuine engineer with an odd title.
 - **Deferred for Phase 1:** relevance is currently computed after hard filters. Using relevance
   inside hard filters would require moving relevance earlier or doing a second pass over rejected
@@ -263,9 +263,9 @@ Phase 1 on sanity checks.
 
 ---
 
-## 5. Reasoning rewrite (`src/ranker.py`) — passes Stage 4
+## 5. Reasoning rewrite (`backend/src/ranker.py`) — passes Stage 4
 
-Current: one f-string template for all 100 ([ranker.py:113](../src/ranker.py#L113)). The spec
+Current: one f-string template for all 100 ([ranker.py:113](../../backend/src/ranker.py#L113)). The spec
 ([submission_spec_extracted.md](submission_spec_extracted.md) §3) checks 6 things; we must satisfy
 each **deterministically, with no network** (LLM is off-limits at rank time):
 
@@ -326,8 +326,8 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 ## 8. Sequenced task list (do in this order)
 
 **Phase 1 — Ranking quality (highest leverage)**
-1. [x] Extract `JD_TEXT` constant into `src/jd_text.py` from the JD doc.
-2. [x] Build `src/relevance.py`: tokenizer + corpus stats + BM25 + TF-IDF cosine.
+1. [x] Extract `JD_TEXT` constant into `backend/src/jd_text.py` from the JD doc.
+2. [x] Build `backend/src/relevance.py`: tokenizer + corpus stats + BM25 + TF-IDF cosine.
 3. [x] Wire `relevance` into `score_candidate` + rebalance `WEIGHTS`; normalize the signal.
 4. [x] Re-run on the sample (50) for correctness, then full set; check budget + spread.
 5. [x] Defer hard-filter softening until after Phase 1 diagnostics.
@@ -357,7 +357,7 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
   artifacts are supported only if precomputed and present; no hosted calls are used.
 - [ ] **Submission identity.** Team name, contacts, GitHub repo, sandbox platform — needed for
   `submission_metadata.yaml` (§6).
-- [ ] **`REFERENCE_DATE`** is hard-coded to 2026-06-01 ([config.py:13](../src/config.py#L13));
+- [ ] **`REFERENCE_DATE`** is hard-coded to 2026-06-01 ([config.py:13](../../backend/src/config.py#L13));
   confirm it matches the dataset's "now" so recency math is correct.
 - [ ] **Registration/deadline** confusion (8 vs 28 June) noted in strategy docs — confirm the real
   Track 1 deadline so the build schedule is safe.

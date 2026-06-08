@@ -1,8 +1,8 @@
 # Task: RedRob Candidate Ranking System
 
 - [x] Create project structure and config
-  - [x] src/__init__.py
-  - [x] src/config.py
+  - [x] backend/src/__init__.py
+  - [x] backend/src/config.py
   - [x] requirements.txt
 - [x] Build honeypot detector
 - [x] Build hard filters

@@ -65,7 +65,7 @@ def main():
     print(f"{'='*60}", file=sys.stderr)
 
     # Import pipeline (deferred to after arg parsing for fast --help)
-    from src.pipeline import load_candidates, run_pipeline
+    from backend.src.pipeline import load_candidates, run_pipeline
 
     # Load candidates
     print(f"\nLoading candidates...", file=sys.stderr)

@@ -12,12 +12,12 @@ import sys
 import json
 import time
 
-from src.honeypot_detector import detect_honeypot
-from src.hard_filters import apply_hard_filters
-from src.scorers import score_candidate
-from src.ranker import rank_candidates
-from src.relevance import RelevanceScorer
-from src.jd_text import JD_TEXT
+from backend.src.honeypot_detector import detect_honeypot
+from backend.src.hard_filters import apply_hard_filters
+from backend.src.scorers import score_candidate
+from backend.src.ranker import rank_candidates
+from backend.src.relevance import RelevanceScorer
+from backend.src.jd_text import JD_TEXT
 
 
 def _log(msg: str) -> None:
@@ -188,6 +188,7 @@ def run_pipeline(
 
     relevance_scorer = RelevanceScorer(JD_TEXT).fit(filtered, embedding_cos=embedding_cos)
     relevance_map = relevance_scorer.relevance_scores()
+    relevance_features = relevance_scorer.feature_scores()
     if verbose:
         mode = "BM25+TF-IDF+embeddings" if embedding_cos else "BM25+TF-IDF"
         _log(f"  → Relevance computed for {len(relevance_map)} candidates ({mode})")
@@ -195,7 +196,8 @@ def run_pipeline(
     scored = []
     for i, candidate in enumerate(filtered):
         rel = relevance_map.get(candidate["candidate_id"], 0.0)
-        scores = score_candidate(candidate, relevance=rel)
+        detail = relevance_features.get(candidate["candidate_id"], {})
+        scores = score_candidate(candidate, relevance=rel, relevance_detail=detail)
         scored.append((candidate, scores))
 
         if verbose and (i + 1) % 10000 == 0:

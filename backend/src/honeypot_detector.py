@@ -14,7 +14,7 @@ Detection signals:
 from datetime import date, datetime
 from typing import Any
 
-from src.config import (
+from backend.src.config import (
     REFERENCE_DATE,
     HONEYPOT_DURATION_MISMATCH_MONTHS,
     HONEYPOT_EXPERT_ZERO_DURATION_THRESHOLD,

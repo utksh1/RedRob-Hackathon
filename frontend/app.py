@@ -8,12 +8,12 @@ well within the 5-minute budget.
 
 Run locally:
     pip install streamlit
-    streamlit run app.py
+    streamlit run frontend/app.py
 
-Deploy (free): push to GitHub, then point Streamlit Community Cloud at this file.
+Deploy (free): push to GitHub, then point Streamlit Community Cloud at `frontend/app.py`.
 
 Notes:
-  - This calls the same src/ pipeline that produces submission.csv — no separate logic.
+  - This calls the same backend/src/ pipeline that produces submission.csv — no separate logic.
   - It loads only the uploaded sample (or the bundled 50-candidate sample), never the
     full 487 MB pool, so it stays fast and within free-tier memory.
 """
@@ -23,12 +23,12 @@ import json
 
 import streamlit as st
 
-from src.honeypot_detector import detect_honeypot
-from src.hard_filters import apply_hard_filters
-from src.scorers import score_candidate
-from src.ranker import rank_candidates
-from src.relevance import RelevanceScorer
-from src.jd_text import JD_TEXT
+from backend.src.honeypot_detector import detect_honeypot
+from backend.src.hard_filters import apply_hard_filters
+from backend.src.scorers import score_candidate
+from backend.src.ranker import rank_candidates
+from backend.src.relevance import RelevanceScorer
+from backend.src.jd_text import JD_TEXT
 
 SAMPLE_PATH = "India_runs_data_and_ai_challenge/sample_candidates.json"
 
@@ -58,8 +58,20 @@ def run_pipeline_sample(candidates: list[dict], top_n: int):
     if not filtered:
         return [], stats
 
-    rel = RelevanceScorer(JD_TEXT).fit(filtered).relevance_scores()
-    scored = [(c, score_candidate(c, relevance=rel.get(c["candidate_id"], 0.0))) for c in filtered]
+    relevance_scorer = RelevanceScorer(JD_TEXT).fit(filtered)
+    rel = relevance_scorer.relevance_scores()
+    details = relevance_scorer.feature_scores()
+    scored = [
+        (
+            c,
+            score_candidate(
+                c,
+                relevance=rel.get(c["candidate_id"], 0.0),
+                relevance_detail=details.get(c["candidate_id"], {}),
+            ),
+        )
+        for c in filtered
+    ]
     results = rank_candidates(scored, top_n=min(top_n, len(scored)))
     return results, stats
 

@@ -56,6 +56,89 @@ _MIN_TOKEN_LEN = 2
 _BM25_K1 = 1.5
 _BM25_B = 0.75
 
+_VECTOR_TERMS = {
+    "vector search", "semantic search", "embedding search", "embeddings",
+    "sentence-transformers", "bge", "e5", "faiss", "milvus", "pinecone",
+    "weaviate", "qdrant", "opensearch", "elasticsearch", "vector database",
+    "ann", "nearest neighbor", "hybrid search",
+}
+_GENERIC_SEARCH_TERMS = {
+    "search", "retrieval", "information retrieval", "re-ranking", "reranking",
+    "ranking", "learning to rank", "ltr", "recommendation", "recommender",
+    "personalization", "personalisation",
+}
+_EVAL_TERMS = {
+    "ndcg", "mrr", "map", "precision@k", "recall@k", "offline evaluation",
+    "online evaluation", "a/b test", "ab test", "experiment", "offline-to-online",
+    "rank correlation", "click-through", "ctr", "relevance judgment",
+}
+_PRODUCTION_TERMS = {
+    "production", "deployed", "deployment", "served", "serving", "real users",
+    "scale", "latency", "monitoring", "index refresh", "embedding drift",
+    "regression", "quality regression", "pipeline", "inference", "online",
+}
+_TOY_TERMS = {
+    "tutorial", "demo", "toy", "prototype", "poc", "proof of concept",
+    "weekend", "course project", "kaggle", "side project", "chatgpt wrapper",
+    "langchain tutorial",
+}
+_CV_SPEECH_TERMS = {
+    "computer vision", "image classification", "object detection", "segmentation",
+    "ocr", "speech recognition", "tts", "text to speech", "robotics", "gan",
+}
+
+
+def _count_phrase_hits(text: str, phrases: set[str]) -> int:
+    text_lower = text.lower()
+    return sum(1 for phrase in phrases if phrase in text_lower)
+
+
+def lexical_signal_features(candidate: dict) -> dict[str, float]:
+    """
+    Cheap JD-specific text features used for rescue, scoring, reranking, and reasoning.
+    These are deliberately transparent: they distinguish production vector/ranking work
+    from generic search mentions, toy RAG demos, and CV/speech-only ML.
+    """
+    text = build_candidate_document(candidate).lower()
+    vector_hits = _count_phrase_hits(text, _VECTOR_TERMS)
+    generic_hits = _count_phrase_hits(text, _GENERIC_SEARCH_TERMS)
+    eval_hits = _count_phrase_hits(text, _EVAL_TERMS)
+    production_hits = _count_phrase_hits(text, _PRODUCTION_TERMS)
+    toy_hits = _count_phrase_hits(text, _TOY_TERMS)
+    cv_speech_hits = _count_phrase_hits(text, _CV_SPEECH_TERMS)
+
+    core_hits = vector_hits + generic_hits
+    production_retrieval = min(1.0, (vector_hits * 0.45 + generic_hits * 0.20 + production_hits * 0.25 + eval_hits * 0.25) / 2.0)
+    toy_rag_risk = min(1.0, toy_hits / 2.0)
+    cv_speech_only_risk = min(1.0, cv_speech_hits / 3.0) if core_hits == 0 else min(0.4, cv_speech_hits / 8.0)
+
+    return {
+        "vector_hits": float(vector_hits),
+        "generic_search_hits": float(generic_hits),
+        "core_jd_hits": float(core_hits),
+        "evaluation_hits": float(eval_hits),
+        "production_hits": float(production_hits),
+        "toy_hits": float(toy_hits),
+        "cv_speech_hits": float(cv_speech_hits),
+        "production_retrieval": round(production_retrieval, 4),
+        "toy_rag_risk": round(toy_rag_risk, 4),
+        "cv_speech_only_risk": round(cv_speech_only_risk, 4),
+    }
+
+
+def has_strong_rescue_signal(candidate: dict) -> bool:
+    """
+    Conservative pre-filter rescue: keep an odd-title candidate only if they have
+    strong retrieval/ranking/vector evidence plus production/evaluation support.
+    """
+    f = lexical_signal_features(candidate)
+    return (
+        f["core_jd_hits"] >= 3
+        and f["production_retrieval"] >= 0.75
+        and f["toy_rag_risk"] < 0.5
+        and f["cv_speech_only_risk"] < 0.6
+    )
+
 
 def tokenize(text: str) -> list[str]:
     """Lowercase, extract technical-aware tokens, drop stopwords and 1-char noise."""
@@ -144,6 +227,7 @@ class RelevanceScorer:
         self._has_embeddings: bool = False
         self._relevance: dict[str, float] = {}
         self._raw: dict[str, tuple[float, float]] = {}  # id -> (bm25_raw, tfidf_raw)
+        self._lexical: dict[str, dict[str, float]] = {}
 
     # ── Fit ──────────────────────────────────────────────
     def fit(self, candidates: list[dict], embedding_cos: dict[str, float] | None = None) -> "RelevanceScorer":
@@ -163,6 +247,7 @@ class RelevanceScorer:
             self._doc_counts.append(counts)
             self._doc_len.append(sum(counts.values()))
             self._df.update(counts.keys())
+            self._lexical[cid] = lexical_signal_features(cand)
 
         self._N = len(self._ids)
         self._avgdl = (sum(self._doc_len) / self._N) if self._N else 0.0
@@ -249,6 +334,10 @@ class RelevanceScorer:
         """{candidate_id: blended relevance in [0, 1]}."""
         return self._relevance
 
+    def feature_scores(self) -> dict[str, dict[str, float]]:
+        """Detailed relevance and lexical subfeatures keyed by candidate_id."""
+        return {cid: self.detail(cid) for cid in self._ids}
+
     def detail(self, candidate_id: str) -> dict[str, float]:
         bm25_raw, tfidf_raw = self._raw.get(candidate_id, (0.0, 0.0))
         return {
@@ -257,4 +346,5 @@ class RelevanceScorer:
             "bm25_norm": round(self._bm25_norm.get(candidate_id, 0.0), 4),
             "tfidf_norm": round(self._tfidf_norm.get(candidate_id, 0.0), 4),
             "relevance": round(self._relevance.get(candidate_id, 0.0), 4),
+            **self._lexical.get(candidate_id, {}),
         }
