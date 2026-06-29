@@ -9,7 +9,8 @@ a ranked top-100 list with per-candidate reasoning, in under a minute.
 The system's core idea: the JD explicitly warns that *"the right answer is not find
 candidates whose skills section contains the most AI keywords — that's a trap."* So
 ranking is driven by a **BM25 + TF-IDF relevance match of the full job description against
-each candidate's free-text career history** — rewarding people who *describe* real
+each candidate's free-text career history**, with an optional precomputed sentence-embedding
+cosine signal for paraphrased experience — rewarding people who *describe* real
 retrieval/ranking work in plain language, not those who merely list buzzwords.
 
 ## Quick Start
@@ -25,6 +26,28 @@ python validate_submission.py --submission submission.csv \
 
 **Performance:** ~43 seconds on a standard machine (well inside the 5-minute budget).
 
+### Optional Embedding Relevance Signal
+
+The default ranking path is dependency-light and uses BM25 + TF-IDF only. To add dense
+semantic matching for paraphrases, generate sentence embeddings offline, then point
+`rank.py` at the generated artifacts:
+
+```bash
+# Offline precompute: may download a local model and can run longer than 5 minutes
+python -m pip install -r requirements-embeddings.txt
+python -m backend.src.embedding_precompute \
+    --candidates ./India_runs_data_and_ai_challenge/candidates.json \
+    --out-dir ./embedding_artifacts
+
+# Rank step: still CPU-only, no network, no model loading
+REDROB_EMBEDDING_DIR=./embedding_artifacts \
+python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.json --out ./submission.csv
+```
+
+When the artifacts are present, relevance is blended as `0.4 × BM25 + 0.2 × TF-IDF +
+0.4 × embedding cosine`. If the artifacts are absent or invalid, the ranker falls back
+to BM25 + TF-IDF automatically.
+
 ## Architecture
 
 ### 5-Stage Pipeline
@@ -32,7 +55,7 @@ python validate_submission.py --submission submission.csv \
 ```
 Stage 1: Honeypot Detection  → flag ~96 impossible profiles (impossible timelines, fake expertise)
 Stage 2: Hard Filters        → eliminate ~47K disqualified candidates (wrong career, wrong location)
-Stage 3: Relevance + Scoring → BM25/TF-IDF JD match + 6 structured axes for ~53K candidates
+Stage 3: Relevance + Scoring → BM25/TF-IDF (+ optional embeddings) + 6 structured axes
 Stage 4: Composite Ranking   → weighted combination with availability gating
 Stage 5: Top-100 + Reasoning → varied, concern-aware reasoning per candidate
 ```
@@ -41,7 +64,7 @@ Stage 5: Top-100 + Reasoning → varied, concern-aware reasoning per candidate
 
 | Axis | Weight | What it measures |
 |---|---|---|
-| **Relevance (BM25 + TF-IDF)** | 30% | Free-text match of the full JD against the candidate's summary + career descriptions |
+| **Relevance (BM25 + TF-IDF + optional embeddings)** | 30% | Free-text match of the full JD against the candidate's summary + career descriptions |
 | **Career Quality** | 22% | Product vs consulting, title relevance, description analysis |
 | **Skills Relevance** | 16% | Tier-1/Tier-2 skill match with keyword-stuffer detection |
 | **Behavioral Signals** | 14% | Platform activity, response rates, engagement, verification |
@@ -61,9 +84,10 @@ JD's explicit instruction.
    real ranking/retrieval work without the buzzwords, and demoting adjacent ML (sentiment,
    fraud, CV-only) that merely shares keywords.
 
-2. **No hosted models, no network**: BM25 + TF-IDF are implemented in pure Python, so the
-   ranking step is fully reproducible inside a clean CPU-only container — satisfying the
-   spec's Stage-3 reproduction constraints (no GPU, no API calls, ≤5 min).
+2. **No hosted models, no network**: BM25 + TF-IDF are implemented in pure Python, and
+   optional embedding artifacts are precomputed offline. The ranking step remains fully
+   reproducible inside a CPU-only container — satisfying the spec's Stage-3 reproduction
+   constraints (no GPU, no API calls, ≤5 min).
 
 3. **Honest, varied reasoning**: Each reasoning cites concrete facts from the profile,
    names the JD requirement evidenced, and surfaces real concerns (long notice, inactivity,
@@ -106,7 +130,8 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 │   └── src/
 │       ├── config.py           # All tunable constants + weights
 │       ├── jd_text.py          # The JD as the relevance query
-│       ├── relevance.py        # BM25 + TF-IDF JD-relevance scorer
+│       ├── relevance.py        # BM25 + TF-IDF + optional embedding JD-relevance scorer
+│       ├── embedding_precompute.py # Offline sentence-embedding artifact builder
 │       ├── honeypot_detector.py
 │       ├── hard_filters.py
 │       ├── scorers.py
@@ -121,6 +146,7 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 ├── submission.csv              # Output
 ├── submission_baseline.csv     # Keyword-only baseline (ablation reference)
 ├── requirements.txt            # Streamlit sandbox dependency
+├── requirements-embeddings.txt # Optional offline embedding precompute dependencies
 └── India_runs_data_and_ai_challenge/
     └── candidates.json         # 100K candidate pool (487 MB, not committed)
 ```
@@ -131,6 +157,7 @@ describing *"sentiment analysis / document classification"*, *"fraud detection"*
 - Any machine with ≥4 GB RAM
 - CPU only — no GPU required
 - No network access during ranking
+- Optional embeddings are generated before ranking; `rank.py` only reads local artifacts
 - Streamlit is only needed for the optional frontend sandbox
 
 ## AI Tools Used

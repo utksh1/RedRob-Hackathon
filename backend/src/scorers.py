@@ -13,6 +13,8 @@ Axes:
 6. Logistics Fit        (0.05)  — location, notice period, salary, work mode
 """
 
+from __future__ import annotations
+
 import math
 from datetime import date, datetime
 from typing import Any
@@ -619,10 +621,10 @@ def score_candidate(candidate: dict, relevance: float = 0.0, relevance_detail: d
 
     Args:
         candidate: the candidate record.
-        relevance: the BM25 + TF-IDF JD-match score in [0, 1], precomputed across the
-            whole scored population by src.relevance.RelevanceScorer.
-        relevance_detail: optional relevance subfeatures (BM25, TF-IDF, core hits,
-            production/evaluation/vector evidence, and risk flags).
+        relevance: the BM25 + TF-IDF (+ optional embedding) JD-match score in [0, 1],
+            precomputed across the whole scored population by src.relevance.RelevanceScorer.
+        relevance_detail: optional relevance subfeatures (BM25, TF-IDF, embedding cosine,
+            core hits, production/evaluation/vector evidence, and risk flags).
 
     Returns a dict with individual axis scores, availability multiplier,
     and final composite score.
@@ -668,6 +670,9 @@ def score_candidate(candidate: dict, relevance: float = 0.0, relevance_detail: d
         "relevance": round(relevance, 4),
         "bm25_norm": round(detail.get("bm25_norm", 0.0), 4),
         "tfidf_norm": round(detail.get("tfidf_norm", 0.0), 4),
+        "embedding_norm": round(detail.get("embedding_norm", 0.0), 4),
+        "embedding_cos": round(detail.get("embedding_cos", 0.0), 4),
+        "has_embedding": round(detail.get("has_embedding", 0.0), 4),
         "core_jd_hits": round(detail.get("core_jd_hits", 0.0), 4),
         "evaluation_hits": round(detail.get("evaluation_hits", 0.0), 4),
         "vector_hits": round(detail.get("vector_hits", 0.0), 4),

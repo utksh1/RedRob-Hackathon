@@ -1,5 +1,7 @@
 """BM25, TF-IDF, and JD-specific lexical features for candidate ranking."""
 
+from __future__ import annotations
+
 import math
 import re
 from collections import Counter
@@ -179,6 +181,7 @@ class RelevanceScorer:
         self._bm25_norm: dict[str, float] = {}
         self._tfidf_norm: dict[str, float] = {}
         self._emb_norm: dict[str, float] = {}
+        self._emb_raw: dict[str, float] = {}
         self._has_embeddings: bool = False
         self._relevance: dict[str, float] = {}
         self._raw: dict[str, tuple[float, float]] = {}
@@ -190,7 +193,7 @@ class RelevanceScorer:
         Build corpus stats and score every candidate.
 
         embedding_cos (optional): {candidate_id: cosine(jd, candidate)} precomputed
-        offline from sentence embeddings (see scripts/precompute_embeddings.py). When
+        offline from sentence embeddings (see backend/src/embedding_precompute.py). When
         present, it becomes a third relevance signal blended with BM25 + TF-IDF. When
         absent (the default, zero-dependency path), relevance is BM25 + TF-IDF only.
         """
@@ -250,6 +253,7 @@ class RelevanceScorer:
 
         if embedding_cos:
             self._has_embeddings = True
+            self._emb_raw = embedding_cos
             self._emb_norm = self._normalize(embedding_cos)
             for cid in self._ids:
                 self._relevance[cid] = (
@@ -288,6 +292,9 @@ class RelevanceScorer:
             "tfidf_cos": round(tfidf_raw, 4),
             "bm25_norm": round(self._bm25_norm.get(candidate_id, 0.0), 4),
             "tfidf_norm": round(self._tfidf_norm.get(candidate_id, 0.0), 4),
+            "embedding_cos": round(self._emb_raw.get(candidate_id, 0.0), 4),
+            "embedding_norm": round(self._emb_norm.get(candidate_id, 0.0), 4),
+            "has_embedding": 1.0 if self._has_embeddings and candidate_id in self._emb_norm else 0.0,
             "relevance": round(self._relevance.get(candidate_id, 0.0), 4),
             **self._lexical.get(candidate_id, {}),
         }

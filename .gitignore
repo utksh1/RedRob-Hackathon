@@ -41,6 +41,9 @@ India_runs_data_and_ai_challenge/~$*
 submission_phase1.csv
 pseudo_labels.jsonl
 *.npy
+embedding_artifacts/
+embedding_ids.json
+embedding_metadata.json
 
 # Local configs / credentials
 *.env

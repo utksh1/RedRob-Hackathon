@@ -5,6 +5,8 @@ These filters run AFTER honeypot detection and BEFORE scoring.
 They remove candidates who cannot possibly be a match regardless of other factors.
 """
 
+from __future__ import annotations
+
 from backend.src.config import CONSULTING_FIRMS, TITLES_NEGATIVE
 from backend.src.relevance import has_strong_rescue_signal
 

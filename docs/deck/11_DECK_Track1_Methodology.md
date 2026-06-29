@@ -114,11 +114,11 @@ and surfaces honest concerns — tone scaled to rank.
 ```
 Cost-aware by design — Redrob's whole thesis:
 • Ranks 100K on a laptop CPU in ~43s. No GPU, no per-candidate LLM calls.
-• An LLM is used only OFFLINE to distill labels into a small CPU reranker —
-  never in the ranking path. Production-grade latency-quality tradeoff.
+• Optional sentence embeddings are precomputed offline and loaded as compact local
+  artifacts; the ranking path never calls a hosted model or uses network.
 
-Roadmap: pre-computed embeddings as a 3rd relevance signal · LLM-distilled
-learning-to-rank · the same engine powers lead-ranking in Redrob's GTM.
+Roadmap: top-300 manual audit · pseudo-label learning-to-rank only if it beats
+the current precision reranker · the same engine powers lead-ranking in Redrob's GTM.
 
 "We don't find the best resume — we find the right person, in plain language."
 ```
@@ -140,12 +140,12 @@ learning-to-rank · the same engine powers lead-ranking in Redrob's GTM.
 5. "Ground truth is hidden, so we validate by proxy: the precision pass promotes production retrieval/evaluation evidence and penalizes toy RAG or CV-only profiles."
 6. "Every rank gets honest reasoning — strengths, the JD tie, and real concerns — tone matching the rank. Nothing templated."
 7. "Trust: zero honeypots in the top 100, availability gating, and one-command reproduction with no network."
-8. "It's cheap — laptop CPU, 43 seconds — and the LLM only labels offline. That's Redrob's cost thesis, and the same engine ranks sales leads too."
+8. "It's cheap — laptop CPU, 43 seconds — and optional embeddings are local artifacts, not live calls. That's Redrob's cost thesis, and the same engine ranks sales leads too."
 
 ## JUDGE Q&A
 | Question | Answer |
 |---|---|
-| "Why no embeddings / GPU?" | "BM25+TF-IDF already catches plain-language fit and is fully reproducible offline in seconds. Embeddings are a documented next step, pre-computed offline." |
+| "Why no GPU or live embedding model?" | "BM25+TF-IDF is the safe default; optional sentence embeddings are pre-computed offline and loaded as local vectors, so the rank step stays CPU-only and network-free." |
 | "How do you know it's good without NDCG?" | "We can't see the truth, so we validate by proxy: 0% honeypots, trap-resistance, the 18-candidate churn toward JD-core roles, and an LLM-judge spot-check (offline)." |
 | "Isn't this still keyword matching?" | "No — BM25/TF-IDF score *term overlap with the JD's own language* weighted by rarity, over full descriptions. It promotes candidates with no buzzwords at all." |
 | "Did you use AI?" | "Yes — Claude as a dev assistant, declared. The ranking step has zero LLM calls; the engineering, relevance design, and tuning were ours." |

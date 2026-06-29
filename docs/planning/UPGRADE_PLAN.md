@@ -396,7 +396,7 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 18. [ ] Generate `top100_audit.csv` and `top300_audit.csv`.
 19. [ ] Manually audit false positives/false negatives in top 150.
 20. [ ] Tune top-300 reranker weights only if audit shows clear errors.
-21. [ ] (If time) Pre-computed `bge-small` embeddings as a 3rd relevance signal.
+21. [x] Optional pre-computed `bge-small` embeddings as a 3rd relevance signal.
 22. [ ] (If time) LambdaMART rerank on pseudo-labels (§4), only if it beats Phase 2 sanity checks.
 
 ---
@@ -406,7 +406,8 @@ We can't compute true NDCG locally (truth is hidden). Validate everything we *ca
 - [x] **Full dataset presence.** `India_runs_data_and_ai_challenge/candidates.json` is present
   and contains the full 100K pool as line-delimited JSON despite the `.json` extension.
 - [x] **Dependency policy.** Phase 1 keeps Track A pure-Python at rank time. Optional embedding
-  artifacts are supported only if precomputed and present; no hosted calls are used.
+  artifacts are produced by `python -m backend.src.embedding_precompute` and loaded only if
+  precomputed and present; no hosted calls are used during ranking.
 - [ ] **Submission identity.** Team name, contacts, and sandbox URL still need user input in
   `submission_metadata.yaml`.
 - [x] **GitHub PR.** Current PR: `https://github.com/Shivam990q/RedRob-Hackathon/pull/1`.

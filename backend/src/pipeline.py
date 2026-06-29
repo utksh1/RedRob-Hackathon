@@ -1,8 +1,12 @@
 """Ranking pipeline orchestration."""
 
+from __future__ import annotations
+
 import sys
 import json
+import os
 import time
+from pathlib import Path
 
 from backend.src.honeypot_detector import detect_honeypot
 from backend.src.hard_filters import apply_hard_filters
@@ -22,27 +26,70 @@ _log.start_time = time.time()
 _EMB_MATRIX = "embeddings.npy"
 _EMB_IDS = "embedding_ids.json"
 _EMB_JD = "jd_vector.npy"
+_EMB_DIR_ENV = "REDROB_EMBEDDING_DIR"
+
+
+def _embedding_paths() -> tuple[Path, Path, Path]:
+    """Resolve optional embedding artifact paths."""
+    artifact_dir = Path(os.environ.get(_EMB_DIR_ENV, "."))
+    return (
+        artifact_dir / _EMB_MATRIX,
+        artifact_dir / _EMB_IDS,
+        artifact_dir / _EMB_JD,
+    )
 
 
 def _load_embedding_cosines(candidates: list[dict], verbose: bool) -> dict[str, float] | None:
     """Load optional precomputed embedding cosines when local artifacts exist."""
-    import os
+    matrix_path, ids_path, jd_path = _embedding_paths()
 
-    if not (os.path.exists(_EMB_MATRIX) and os.path.exists(_EMB_IDS) and os.path.exists(_EMB_JD)):
+    if not (matrix_path.exists() and ids_path.exists() and jd_path.exists()):
         return None
     try:
         import numpy as np
-        ids = json.load(open(_EMB_IDS, encoding="utf-8"))
-        matrix = np.load(_EMB_MATRIX)
-        jd_vec = np.load(_EMB_JD)
+
+        with ids_path.open(encoding="utf-8") as f:
+            ids = json.load(f)
+        matrix = np.load(matrix_path)
+        jd_vec = np.load(jd_path)
+
+        if matrix.ndim != 2 or jd_vec.ndim != 1:
+            raise ValueError("expected embeddings.npy as 2D matrix and jd_vector.npy as 1D vector")
+        if matrix.shape[0] != len(ids):
+            raise ValueError(f"embedding row count {matrix.shape[0]} != id count {len(ids)}")
+        if matrix.shape[1] != jd_vec.shape[0]:
+            raise ValueError(f"embedding dim {matrix.shape[1]} != JD dim {jd_vec.shape[0]}")
+
         row_of = {cid: i for i, cid in enumerate(ids)}
-        cos: dict[str, float] = {}
+        selected: list[tuple[str, int]] = []
         for c in candidates:
             i = row_of.get(c["candidate_id"])
             if i is not None:
-                cos[c["candidate_id"]] = float(matrix[i] @ jd_vec)
+                selected.append((c["candidate_id"], i))
+
+        if not selected:
+            if verbose:
+                _log("  → Embedding artifacts found but no candidate IDs matched; using BM25+TF-IDF only")
+            return None
+
+        selected_ids = [cid for cid, _ in selected]
+        selected_rows = matrix[[i for _, i in selected]].astype("float32", copy=False)
+        jd_vec = jd_vec.astype("float32", copy=False)
+
+        row_norms = np.linalg.norm(selected_rows, axis=1)
+        jd_norm = float(np.linalg.norm(jd_vec))
+        denom = row_norms * jd_norm
+        scores = np.divide(
+            selected_rows @ jd_vec,
+            denom,
+            out=np.zeros(len(selected_ids), dtype="float32"),
+            where=denom > 0,
+        )
+        scores = np.nan_to_num(scores, nan=0.0, posinf=0.0, neginf=0.0)
+        cos = {cid: float(score) for cid, score in zip(selected_ids, scores)}
+
         if verbose:
-            _log(f"  → Loaded embedding cosines for {len(cos)} candidates")
+            _log(f"  → Loaded embedding cosines for {len(cos)} candidates from {matrix_path.parent}")
         return cos or None
     except Exception as e:
         if verbose:

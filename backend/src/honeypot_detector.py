@@ -11,6 +11,8 @@ Detection signals:
 - Skill assessment score vs proficiency contradictions
 """
 
+from __future__ import annotations
+
 from datetime import date, datetime
 from typing import Any
 

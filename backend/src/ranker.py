@@ -1,5 +1,7 @@
 """Candidate ranking and per-candidate reasoning."""
 
+from __future__ import annotations
+
 from datetime import date, datetime
 
 from backend.src.config import (

@@ -18,6 +18,8 @@ Usage:
         --candidates ./India_runs_data_and_ai_challenge/candidates.json
 """
 
+from __future__ import annotations
+
 import argparse
 import csv
 import json
