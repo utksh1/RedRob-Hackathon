@@ -1,0 +1,38 @@
+# submission_metadata.yaml
+# Mirrors the portal metadata (submission_spec.docx §10.2/§10.3).
+# Fields marked TODO need your input before upload.
+
+team_name: "TODO"                       # appears in leaderboard / results
+primary_contact:
+  name: "TODO"
+  email: "TODO"
+  phone: "TODO"
+team_members:
+  - name: "TODO"
+    email: "TODO"
+  # add up to 4 total
+
+github_repository_url: "https://github.com/utksh1/RedRob-Hackathon"
+sandbox_demo_link: "TODO"               # Streamlit Cloud / HF Spaces / Colab — see spec §10.5
+
+ai_tools_declared:                      # honest declaration (not penalized)
+  - Claude                              # used as a development assistant (Claude Code)
+
+compute_environment: "MacBook (Apple Silicon), 16 GB RAM, Python 3.14, CPU-only, no network during ranking"
+
+# Single command to reproduce submission.csv (Stage-3 reproduction):
+reproduce_command: "python rank.py --candidates ./India_runs_data_and_ai_challenge/candidates.json --out ./submission.csv"
+
+methodology_summary: >
+  A five-stage, CPU-only pipeline (no GPU, no network, ~43s on 100K). Stage 1 flags
+  ~96 honeypots with impossible timelines/credentials; Stage 2 hard-filters all-consulting
+  careers, non-relocating non-India candidates, zero-experience, and non-technical
+  keyword-stuffers. Stage 3 scores survivors on seven axes, the most important being a
+  BM25 + TF-IDF relevance match of the full job description against each candidate's
+  free-text (summary + career descriptions), plus transparent precision features for
+  vector search, ranking evaluation, production deployment, toy/demo RAG risk, and
+  CV/speech-only risk. Stage 4 applies a conservative top-300 precision reranker and
+  availability gate. Stage 5 generates per-candidate
+  reasoning that cites concrete facts, names the JD requirement evidenced, and honestly
+  surfaces concerns (notice period, inactivity, off-core work), with tone scaled to rank.
+  Zero external dependencies; fully reproducible from a single command.
